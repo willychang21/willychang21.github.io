@@ -2,7 +2,7 @@
 layout: post
 title: "作業系統 Chapter6 Memory Management"
 date: 2019-05-09
-excerpt: "A ton of text to test readability."
+excerpt: "Memory Management"
 tags: [作業系統]
 comments: true
 ---
