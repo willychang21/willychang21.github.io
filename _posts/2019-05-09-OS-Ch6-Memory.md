@@ -60,6 +60,7 @@ comments: true
       * [2]：拖長執行時間 → Performance 差 ( ∵ 停下來等 I/O )
       * [3]：dynamic loading 是古老的方法，e.g. MS-DOS Overlay files
  
+
  ## 重點二:Contiguous Memory Allocation
  
  * **Def** : process 必須佔用連續的 memory space ， OS 依據各個 Process 的大小找到一塊夠大的連續可用的記憶體，配置給該 process 使用
@@ -81,6 +82,7 @@ comments: true
  * **Contiguous Allocation 缺點**
      * 均有外部碎裂(External Fragmentation)問題：所有可用空間總和大於某個 process 所需要，但因為此空間不連續所以無法配給該 process 使用，造成            memory 空間閒置。
      * 配置完所剩的極小 Free Blocks 仍會保存在 AV-list 中，徒增 Search Time 與記錄成本。 
+	 
  ## 重點三:Fragmentation
  
  * **外部碎裂 (External Fragmentation)** ( 空房是夠住的，但空房但都分散開(規定要住旁邊)，造成空屋太多 )
