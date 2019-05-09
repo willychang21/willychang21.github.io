@@ -39,12 +39,12 @@ disqus_shortname:   taylantatli
 #bing-verify:
 #email:
 #twitter:            username
-facebook:           https://www.facebook.com/willyCJin
-github-url:         https://github.com/willychang21
+facebook:           "https://www.facebook.com/willyCJin"
+github-url:         "https://github.com/willychang21"
 #stackoverflow:     123456/username   from a "http://stackoverflow.com/users/123456/username" link
 #linkedin:          username
 #xing:              username
-instagram:          https://www.instagram.com/willichang21/?hl=zh-tw
+instagram:          "https://www.instagram.com/willichang21/?hl=zh-tw"
 #lastfm:            username
 #tumblr:            username
 #medium:            '@username'
