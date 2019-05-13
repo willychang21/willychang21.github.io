@@ -25,3 +25,10 @@ sitemap: false
 @import "vendor/animate";
 @import "vendor/magnific-popup/magnific-popup";
 @import "print"
+
+if (typeof $('#markdown-toc').html() === 'undefined') {
+    //...	
+   }else {
+    /*将其显示在侧边栏*/
+    $('.sidebar_catelog').html('<ul class="list_catelog">' + $('#markdown-toc').html() + '</ul>');
+   }
