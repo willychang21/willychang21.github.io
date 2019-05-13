@@ -7,8 +7,11 @@ tags: [markdown,syntax,jekyll]
 feature: https://static1.squarespace.com/static/59e71dccf6576e2bd65ea29d/t/5a2a54c324a694e5fd1e492e/1512723777569/000069_R3.jpg
 comments: true
 ---
+<<<<<<< HEAD
 * 目錄
 {:toc}
+=======
+>>>>>>> 60c982393cc5c5f8a551221acb1454a0de91f003
 
 ## Tables
 
@@ -144,7 +147,11 @@ mathjax: true
 {% include gallery images=images caption="jaypark / dean / sik-k" cols=3 %}
 
 使用`gallery`Liquid template,就不用 html tag.
+<<<<<<< HEAD
 * `caption`: 就是`figcaption`的意思
+=======
+* `cpation`: 就是`figcaption`的意思
+>>>>>>> 60c982393cc5c5f8a551221acb1454a0de91f003
 * `cols`: 設定一行可以放幾張圖片
 {% highlight liquid %}
 {% raw %}

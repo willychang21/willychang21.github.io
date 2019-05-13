@@ -38,8 +38,11 @@ GEM
       sass (~> 3.4)
     jekyll-sitemap (0.11.0)
       addressable (~> 2.4.0)
+<<<<<<< HEAD
     jekyll-toc (0.12.1)
       nokogiri (~> 1.9)
+=======
+>>>>>>> 60c982393cc5c5f8a551221acb1454a0de91f003
     jekyll-watch (1.5.1)
       listen (~> 3.0)
     kramdown (1.17.0)
@@ -85,7 +88,10 @@ DEPENDENCIES
   jekyll-gist
   jekyll-mentions
   jekyll-sitemap
+<<<<<<< HEAD
   jekyll-toc
+=======
+>>>>>>> 60c982393cc5c5f8a551221acb1454a0de91f003
 
 BUNDLED WITH
    2.0.1
