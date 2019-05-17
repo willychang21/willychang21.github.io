@@ -544,7 +544,7 @@ code {
   padding: 2px 4px;
   font-size: 90%;
   color: #c7254e;
-  background-color: #f9f2f4;
+  background-color: #f9f2f4; /*#f9f2f4;*/
   white-space: nowrap;
   border-radius: 4px;
 }
@@ -557,7 +557,7 @@ pre {
   word-break: break-all;
   word-wrap: break-word;
   color: #333333;
-  background-color: #f5f5f5;
+  background-color: #f5f5f5;     /* #f5f5f5;*/
   border: 1px solid #cccccc;
   border-radius: 4px;
 }
@@ -6443,14 +6443,14 @@ hr {
   padding-top: 10px;
   padding-bottom: 10px;
   text-shadow: 0 1px 0 rgba(255, 255, 255, 0.5);
-  background-color: #f7f7f7;
+  background-color: #0000;
   border-radius: 5px;
 }
 /* All levels of nav */
 .sidebar .nav > li > a {
   display: block;
   color: #36556e;
-  padding: 5px 20px;
+  padding: 5px 20 px;
 }
 .sidebar .nav > li > a:hover,
 .sidebar .nav > li > a:focus {

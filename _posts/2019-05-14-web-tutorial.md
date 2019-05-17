@@ -9,4 +9,12 @@ tag: Note
 * content
 {:toc}
 
-# 
+## Rule-based Classifier 
+
+{% highlight python %}
+x = ('a', 1, False)
+{% endhighlight %}
+
+{% highlight %}
+Some code.
+{% endhighlight %}

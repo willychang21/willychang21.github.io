@@ -10,8 +10,8 @@
 		orderTheLeftNavigations();
 
     function orderTheLeftNavigations(){
-	    $('#navigation .sidenav').html($("#markdown-toc").html());
-	    $('#navigation .sidenav ul').addClass("nav");
+      $('#navigation .sidenav').html($("#markdown-toc").html());
+      $('#navigation .sidenav ul').addClass("nav");
 	    $("#markdown-toc").remove();
 
       // 添加Bootstrap表格样式 table-hover 
@@ -42,6 +42,8 @@
     function resetHeadersStyles(){
       resetHeaderItemStyles($(".docs-content h1"));
       resetHeaderItemStyles($(".docs-content h2"));
+      resetHeaderItemStyles($(".docs-content h3"));
+      resetHeaderItemStyles($(".docs-content h4"));
     }
 
     function resetHeaderItemStyles(headers){

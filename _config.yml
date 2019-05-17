@@ -21,6 +21,6 @@ github_username: willychang21
 
 # Build settings
 markdown: kramdown
-
+mathjax: true
 
 
