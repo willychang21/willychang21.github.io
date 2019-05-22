@@ -1,26 +1,16 @@
-# Site settings
-name: Willearning
-email: willychang17@gmail.com
+title: willearning
+url: "" 
 author: willy chang
-url: https://willylearning.nctu.me/
-resume_site: https://willylearning.nctu.me/
-github: https://github.com/willychang21/
-baseurl: 
-description: We lost because we told ourselves we lost.
-meta_description: The minute you start talking about what you’re going to do if you lose, you have lost.
-motto: It's our wits that make us men.
-banner: No one can make you feel inferior without your consent.
 
-#permalink: /:categories/:year/:month/:day/:title/
-permalink: /:year/:month/:day/:title/
-paginate: 10
+plugins:
+  - jekyll-feed
+  - jekyll-paginate
 
-exclude: ['README.md', 'Gemfile.lock', 'Gemfile', 'Rakefile']
+permalink : /:year/:month/:day/:title/
+paginate : 10
 
-github_username: willychang21
+exclude : ['README.md', 'Gemfile.lock', 'Gemfile', 'Rakefile']
 
-# Build settings
+highlighter: rouge
 markdown: kramdown
 mathjax: true
-
-

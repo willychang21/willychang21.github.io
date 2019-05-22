@@ -2,7 +2,7 @@
 layout: post
 title:  Classification Alternative Techniques
 date:  2019-05-15
-categories: DateMining
+categories: DataMining
 tag: Note
 ---
 

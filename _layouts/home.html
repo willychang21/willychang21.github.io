@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
+    <link rel="stylesheet" href = " {{ '/style/css/basic.css' | prepend: site.baseurl }} " >
+    <title>{{site.title}}</title>
+    <style>
+        div {
+            height: 100vh;
+        }
+    </style>
+</head>
+<body>
+    <div class="d-flex flex-column justify-content-center align-items-center">
+        <a href="{{ site.url }}" class="fas fa-code fa-10x" style="color: #000000;"></a>
+        <hr>
+        <h1>{{site.title}}</h1>
+        <blockquote class="blockquote text-center">
+                <p class="mb-0">You are never wrong to do the right thing.</p>
+                <footer class="blockquote-footer"><cite title="Source Title">The Intern</cite></footer>
+        </blockquote>
+        <h4>
+        <a href="https://github.com/willychang21" class="fab fa-github fa-2x" style="color: #000000;"></a>&nbsp;&nbsp;
+        <a href="https://www.facebook.com/willyCJin" class="fab fa-facebook fa-2x" style="color: #000000;"></a>&nbsp;&nbsp;
+        <a href="https://www.instagram.com/willichang21/?hl=zh-tw" class="fab fa-instagram fa-2x" style="color: #000000;"></a>&nbsp;&nbsp;
+        <a href="#" class="fab fa-linkedin fa-2x" style="color: #000000;"></a>
+        </h4>    
+        <hr>
+        <h3>
+            <a href="{{ site.url }}/posts" class="btn btn-outline-dark home_button">Post</a>&nbsp;&nbsp;
+            <a href="{{ site.url }}/categories" class="btn btn-outline-dark home_button">Category</a>&nbsp;&nbsp;
+            <a href="{{ site.url }}/about" class="btn btn-outline-dark home_button">About</a>&nbsp;&nbsp;
+        </h3>          
+    </div>
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T" crossorigin="anonymous"></script>
+</body>
+</html>
