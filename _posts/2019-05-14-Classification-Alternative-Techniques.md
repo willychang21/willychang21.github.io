@@ -3,11 +3,7 @@ layout: post
 title:  Classification Alternative Techniques
 date:  2019-05-15
 categories: DataMining
-tag: Note
 ---
-
-* content
-{:toc}
 
 ## **Rule-based Classifier**
 ### **1. Rule-Based Classifier** 

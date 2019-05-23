@@ -2,26 +2,34 @@
 layout: default
 title: post
 ---
-
+<button onclick="topFunction()" id="myBtn" title="Go to top">Top</button>
 <div class="container docs-container">
-        <div class="row">
-          <div class="col-md-9" role="main">
-            <div class="panel docs-content">
-              <div class="wrapper">
-                  <header class="post-header">
-                    <h1 class="post-title">{{ page.title }}</h1>
-                    <!--
-                      <p class="post-meta">{{ page.date | date: "%b %-d, %Y" }}{% if page.author %} • {{ page.author }}{% endif %}{% if page.meta %} • {{ page.meta }}{% endif %}</p>
-                    -->
-                    <div class="meta">Posted on <span class="postdate">{{ page.date | date: "%b %d, %Y" }}</span> By <a target="_blank" href="{{site.url}}">{{ site.author }}</a></div>
-                    <br />
-                  </header>
-                  <article class="post-content">
-                    {{ content }}
-                  </article>
-              </div>
-            </div>
+  <div class="row">
+    <div class="col-sm-3">
+      <nav id="toc" data-toggle="toc" class="sticky-top"></nav>
+    </div>
+    <div class="col-md-9" role="main">
+      <div class="panel docs-content">
+        <div class="wrapper">
+          <div class="banner">
+            {% if page.categories != null %}
+            <a href="{{ '/categories/' | prepend: site.baseurl }}#{{page.categories}}-ref">{{page.categories}}</a> /
+            <a href="{{ '/tag/' | prepend: site.baseurl }}#{{page.tag}}-ref">{{page.tag}}</a>
+            {% else %}
+            {{ site.banner }}
+            {% endif %}
           </div>
+          <header class="post-header">
+            <h1 class="post-title">{{ page.title }}</h1>
+            <div class="meta">Posted on <span class="postdate">{{ page.date | date: "%b %d, %Y" }}</span> By <a
+                target="_blank" href="{{site.url}}">{{ site.author }}</a></div>
+            <br />
+          </header>
+          <article class="post-content">
+            {{ content }}
+          </article>
         </div>
       </div>
-      
+    </div>
+  </div>
+</div>
