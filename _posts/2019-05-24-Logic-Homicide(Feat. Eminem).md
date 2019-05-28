@@ -12,11 +12,9 @@ categories: MusicEnglish
 
 ## homicide
 謀殺（行為）  
+e.g. He was convicted of homicide. 他被判犯下謀殺罪。
 ## greatest alive
 最活著的 / 生來就與眾不同
-## homicide
-謀殺（行為）  
-e.g. He was convicted of homicide. 他被判犯下謀殺罪。
 ## Bust
 * (n.) : （女子的）胸部，胸圍
 * (v.) : 撃碎；打破；弄壞   

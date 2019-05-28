@@ -11,6 +11,9 @@ paginate : 10
 
 exclude : ['README.md', 'Gemfile.lock', 'Gemfile', 'Rakefile']
 
-highlighter: rouge
+highlighter: Rouge
 markdown: kramdown
+kramdown:
+  input: GFM
+  syntax_highlighter: rouge
 mathjax: true
