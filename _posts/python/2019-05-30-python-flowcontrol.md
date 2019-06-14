@@ -1,12 +1,13 @@
 ---
 layout: post
-title: Python 流程控制
-date: 2019-05-30
+title:  Python 流程控制
+date:  2019-05-30
 categories: Python
-----
+---
 
 # 補充額外流程控制語法
 ## range 函數
+
 * class range( stop )
 * class range( start , stop [ , step ] )
 
@@ -123,6 +124,7 @@ f()
 會打印 `5` 。
 
 ## 2. 關鍵字參數
+
 也可以使用形如 `kwarg=value` 的關鍵字參數來調用函數。例如下面的函數:
 
 ```python
