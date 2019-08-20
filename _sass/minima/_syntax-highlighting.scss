@@ -3,13 +3,13 @@ pre.highlight {
 }
 
 .highlight {
-	background-color: #49483e;
+	background-color: #443a3a;
 	font-family: Inconsolata;
 	color: #f8f8f2;
-	border-radius: 6px;
+	border-radius: 10px;
 	pre {
 		position: relative;
-		margin: 0;
+		margin: 3;
 		padding: 1em;
 	}
 	.lineno            { padding-right: 24px; color: lighten(#49483e,50);}
