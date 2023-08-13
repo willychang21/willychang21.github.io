@@ -1,7 +1,7 @@
 # 👨‍🎓 Education
 `2022-Present` [University of Illinois Urbana-Champaign](https://illinois.edu/)
 - **Master's degree** in Computer Science
-- GPA: 3.91/4.0
+- GPA: 3.9/4.0
 - Courses: 
   - CS441 Applied Machine Learning (Python)
   - CS411 Database Systems (MySQL, MongoDB, Neo4j)
