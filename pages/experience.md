@@ -1,6 +1,6 @@
 # 👨‍💻 Experience
 
-**Software Developer** @ [Showu Tech](https://shouwu.com.tw/) _(May 2022 - Aug 2022)_
+**Software Developer** @ [Showu Tech](https://shouwu.com.tw/) `May 2022 - Aug 2022`
 - Detailed achievements:
   - Engineered and sustained dynamic, responsive web applications using advanced technologies such as React.js, Redux, and JavaScript, ensuring a seamless user experience.
   - Enhanced user interaction by incorporating an innovative, interactive map feature utilizing the Leaflet.js library. Implemented Openrouteservice for proficient data querying, improving the user experience through filter and search functions.
@@ -9,7 +9,7 @@
 
 &nbsp;
 
-**iOS App Developer intern** @ [Institute for Information Industry](https://web.iii.org.tw/) _(Nov 2021 - Mar 2022)_
+**iOS App Developer intern** @ [Institute for Information Industry](https://web.iii.org.tw/) `Nov 2021 - Mar 2022`
 
 - Detailed achievements:
   - Maintained a complex internal real-time chat app, applying MVVM architectural patterns to ensure structured, efficient, and maintainable coding practices.
