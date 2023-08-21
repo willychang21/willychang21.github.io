@@ -16,13 +16,13 @@
   - Leveraged UIKit to design intuitive user interfaces, and Firebase for secure data storage and robust user authentication, ensuring a comprehensive and secure user experience.
   - Amplified chat app capabilities by implementing innovative features: integrated MapKit to enable location-based messaging, and exploited AVFoundation for audio and video message functionality, enriching the communication tools within the app, and enhancing user satisfaction.
 - _**Technologies used:**_
-  - Programming Language: Swift, Objective-C
-  - Framework: UIKit, SwiftUI
-  - Design Pattern: MVC, MVVM
-  - Web: RESTful API, Sockets
-  - Push Notification: APNS, FCM
-  - SPM: Alamorfire, SDWebImage, SwiftJSON, Charts, MessageKit, JGProgressHUD, SQLite
-  - Version Control: Git, Sourcetree
-  - Cloud Service: Firebase
+  - **Programming Language**: Swift, Objective-C
+  - **Framework**: UIKit, SwiftUI
+  - **Design Pattern**: MVC, MVVM
+  - **Web**: RESTful API, Sockets
+  - **Push Notification**: APNS, FCM
+  - **SPM**: Alamorfire, SDWebImage, SwiftJSON, Charts, MessageKit, JGProgressHUD, SQLite
+  - **Version Control**: Git, Sourcetree
+  - **Cloud Service**: Firebase
   
 &nbsp;
