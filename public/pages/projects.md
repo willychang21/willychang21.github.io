@@ -10,8 +10,8 @@ Although the team faced some challenges with SQLite conventions, like frequent u
 Overall, the project showcases the team's proficiency in using a variety of data cleaning tools and demonstrates their ability to enhance data quality in support of a significant use case.
 
 ## `May 2023 - Jul 2023` Online Marketplace
-- Developed a robust online marketplace, managing the entire stack from frontend to backend. Utilized **React** for frontend development, crafting a user-friendly interface. Implemented **RESTful** **APIs** in **NestJS** for an efficient and effective backend.
-- Accomplished persistent data storage utilizing **DynamoDB** and **AWS S3**, ensuring data integrity and availability. Employed **ElastiCache** (**Redis**) for efficient session storage, optimizing performance.
+- Developed a robust online marketplace, managing the entire stack from frontend to backend. Utilized **React** for frontend development, crafting a user-friendly interface. Implemented **GraphQL** in **NestJS** for an efficient and effective backend.
+- Accomplished persistent data storage utilizing **DynamoDB** and **AWS RDS**, ensuring data integrity and availability. Employed **ElastiCache** (**Redis**) for efficient session storage, optimizing performance.
 - Ensured high availability and superior performance by deploying the website on AWS **EC2**, resulting in a robust and reliable online marketplace.
 - Established a continuous integration pipeline using **Jenkins** and maintained high code quality through rigorous **Jest** Testing, reducing potential bugs and ensuring smooth deployment.
 - Managed the provisioning of AWS infrastructure using **CloudFormation** and **Terraform**, and configured management
