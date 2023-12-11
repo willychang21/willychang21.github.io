@@ -53,10 +53,10 @@ I continuously strive to adapt and learn, keeping abreast with the latest trends
 
 ## Education
 
-`2022-Present` [University of Illinois Urbana-Champaign](https://illinois.edu/)
+`2024-Present` [University of Illinois Urbana-Champaign](https://illinois.edu/)
 - **Master's degree** in Computer Science
 - GPA: 3.9/4.0
-- Courses:
+- Courses: 
   - CS441 Applied Machine Learning (Python)
   - CS411 Database Systems (MySQL, MongoDB, Neo4j)
   - CS498 Cloud Computing Application 
@@ -65,7 +65,7 @@ I continuously strive to adapt and learn, keeping abreast with the latest trends
   - CS425 Distributed Systems (C++)
 
 
-`2022-Present` [Northeastern University](https://www.northeastern.edu/)
+`2022-2023 (Transfer to UIUC)` [Northeastern University](https://www.northeastern.edu/)
 - **Master of Science** in Computer Software Engineering
 - GPA: 3.9/4.0
 - Courses:
@@ -73,12 +73,12 @@ I continuously strive to adapt and learn, keeping abreast with the latest trends
   - CSYE7280 User Experience Design and Testing (Figma)
   - INFO6205 Program Structure and Algorithms (Java)
   - INFO6350 Smartphones-Based Web Development (Swift)
-  - CSYE6205 Concepts of Object-Oriented Design with C++
-  - INFO7500 Cryptocurrency and Smart Contract Engineering (Rust, Solidity) 
+  - CSYE6205 Concepts of Object-Oriented Design with C++ 
+  - INFO7255 Advanced Big Data Application and Indexing (Spring Boot, Redis, JWT, ElasticSearch)
 
 
 ## Tech Skills
-- **Programming Languages**: C++, Java, JavaScript, Swift, Python, C#
+- **Programming Languages**: Java, JavaScript, Swift, Python, C#, C++
 - **Front-End web technologies**: React, Redux, jQuery, Bootstrap, HTML, CSS
 - **Back-End web technologies**: Flask, NestJS, Restful API, GraphQL
 - **Databases**: MySQL, MongoDB, Neo4j

@@ -1,5 +1,5 @@
 # 👨‍🎓 Education
-`2022-Present` [University of Illinois Urbana-Champaign](https://illinois.edu/)
+`2024-Present` [University of Illinois Urbana-Champaign](https://illinois.edu/)
 - **Master's degree** in Computer Science
 - GPA: 3.9/4.0
 - Courses: 
@@ -11,7 +11,7 @@
   - CS425 Distributed Systems (C++)
 
 
-`2022-Present` [Northeastern University](https://www.northeastern.edu/)
+`2022-2023 (Transfer to UIUC)` [Northeastern University](https://www.northeastern.edu/)
 - **Master of Science** in Computer Software Engineering
 - GPA: 3.9/4.0
 - Courses:
@@ -20,3 +20,4 @@
   - INFO6205 Program Structure and Algorithms (Java)
   - INFO6350 Smartphones-Based Web Development (Swift)
   - CSYE6205 Concepts of Object-Oriented Design with C++ 
+  - INFO7255 Advanced Big Data Application and Indexing (Spring Boot, Redis, JWT, ElasticSearch)
