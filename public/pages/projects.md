@@ -9,13 +9,13 @@ Although the team faced some challenges with SQLite conventions, like frequent u
 
 Overall, the project showcases the team's proficiency in using a variety of data cleaning tools and demonstrates their ability to enhance data quality in support of a significant use case.
 
-## `May 2023 - Jul 2023` Online Marketplace
-- Developed a robust online marketplace, managing the entire stack from frontend to backend. Utilized **React** for frontend development, crafting a user-friendly interface. Implemented **GraphQL** in **NestJS** for an efficient and effective backend.
-- Accomplished persistent data storage utilizing **DynamoDB** and **AWS RDS**, ensuring data integrity and availability. Employed **ElastiCache** (**Redis**) for efficient session storage, optimizing performance.
-- Ensured high availability and superior performance by deploying the website on AWS **EC2**, resulting in a robust and reliable online marketplace.
-- Established a continuous integration pipeline using **Jenkins** and maintained high code quality through rigorous **Jest** Testing, reducing potential bugs and ensuring smooth deployment.
-- Managed the provisioning of AWS infrastructure using **CloudFormation** and **Terraform**, and configured management
-using **Ansible**.
+## `May 2023 - Jul 2023` X Clone
+- Developed a full-stack X clone leveraging Next.js and TailwindCSS for a dynamic and responsive front-end.
+- Implemented a robust backend using Express.js, hosting a GraphQL server (Apollo Server) for efficient data retrieval and management, with Prisma ORM for type-safe database operations on PostgreSQL.
+- Integrated AWS S3 for scalable media storage, ensuring high availability and performance of user-generated content.
+- Enhanced platform security with Google OAuth for authentication and JWT for session management.
+- Optimized application performance by employing Redis for server-side query caching and React-Query for client-side data management, resulting in a 40% reduction in average load times.
+- Deployed backend on AWS EC2, utilizing Load Balancer and CloudFront for optimized performance and scalability.
 
 ## `Apr 2023 - May 2023` [CS PhD Academic World Website](https://github.com/willychang21/CS-PhD-Academic-World-Website) 🔗
 - Designed a sleek frontend using **Dash Plotly** and a **Flask** backend, , integrating various databases seamlessly.
