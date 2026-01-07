@@ -12,7 +12,7 @@
 	let { id, title, children, delay = 0 }: Props = $props();
 </script>
 
-<section {id} class="mt-16 first:mt-12">
+<section {id} class="mt-20 first:mt-12">
 	<FadeIn {delay}>
 		<h2 class="mb-8 text-xs font-medium uppercase tracking-widest text-[var(--color-text-subtle)]">
 			{title}
