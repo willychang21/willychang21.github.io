@@ -2,6 +2,7 @@
 	import { resume } from '$lib/data/resume';
 	import { siteConfig } from '$lib/data/seo';
 	import Header from '$lib/components/Header.svelte';
+	import Section from '$lib/components/Section.svelte';
 	import Experience from '$lib/components/Experience.svelte';
 	import Education from '$lib/components/Education.svelte';
 	import Skills from '$lib/components/Skills.svelte';
@@ -20,32 +21,28 @@
 	<meta name="twitter:description" content={siteConfig.description} />
 </svelte:head>
 
-<main class="mx-auto max-w-3xl px-6 py-12 md:py-16">
+<main class="mx-auto max-w-2xl px-6 py-16 md:py-24">
 	<Header {resume} />
 
-	<section id="experience" class="mt-12">
-		<h2 class="mb-6 text-xl font-semibold text-[var(--color-text)]">Experience</h2>
-		{#each resume.experiences as exp (exp.company)}
-			<Experience {exp} />
+	<Section id="experience" title="Experience" delay={200}>
+		{#each resume.experiences as exp, i (exp.company)}
+			<Experience {exp} index={i} />
 		{/each}
-	</section>
+	</Section>
 
-	<section id="education" class="mt-12">
-		<h2 class="mb-6 text-xl font-semibold text-[var(--color-text)]">Education</h2>
-		{#each resume.education as edu (edu.school)}
-			<Education {edu} />
+	<Section id="education" title="Education" delay={100}>
+		{#each resume.education as edu, i (edu.school)}
+			<Education {edu} index={i} />
 		{/each}
-	</section>
+	</Section>
 
-	<section id="skills" class="mt-12">
-		<h2 class="mb-6 text-xl font-semibold text-[var(--color-text)]">Skills</h2>
+	<Section id="skills" title="Skills" delay={100}>
 		<Skills skills={resume.skills} />
-	</section>
+	</Section>
 
-	<section id="projects" class="mt-12">
-		<h2 class="mb-6 text-xl font-semibold text-[var(--color-text)]">Selected Projects</h2>
-		{#each resume.projects as project (project.name)}
-			<Projects {project} />
+	<Section id="projects" title="Projects" delay={100}>
+		{#each resume.projects as project, i (project.name)}
+			<Projects {project} index={i} />
 		{/each}
-	</section>
+	</Section>
 </main>
