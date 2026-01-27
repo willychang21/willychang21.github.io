@@ -6,9 +6,10 @@
 		delay?: number;
 		duration?: number;
 		y?: number;
+		scale?: number;
 	}
 
-	let { children, delay = 0, duration = 400, y = 12 }: Props = $props();
+	let { children, delay = 0, duration = 400, y = 12, scale = 1 }: Props = $props();
 
 	let visible = $state(false);
 	let element: HTMLDivElement;
@@ -37,13 +38,15 @@
 
 		return () => observer.disconnect();
 	});
+
+	const initialScale = scale < 1 ? scale : 0.98;
 </script>
 
 <div
 	bind:this={element}
 	class="fade-in-wrapper"
 	style:opacity={visible ? 1 : 0}
-	style:transform={visible ? 'translateY(0)' : `translateY(${y}px)`}
+	style:transform={visible ? 'translateY(0) scale(1)' : `translateY(${y}px) scale(${initialScale})`}
 	style:transition-delay="{delay}ms"
 	style:--duration="{duration}ms"
 >
@@ -53,8 +56,9 @@
 <style>
 	.fade-in-wrapper {
 		transition:
-			opacity var(--duration) cubic-bezier(0.33, 1, 0.68, 1),
-			transform var(--duration) cubic-bezier(0.33, 1, 0.68, 1);
+			opacity var(--duration) cubic-bezier(0.22, 1, 0.36, 1),
+			transform var(--duration) cubic-bezier(0.22, 1, 0.36, 1);
+		will-change: opacity, transform;
 	}
 
 	@media (prefers-reduced-motion: reduce) {
