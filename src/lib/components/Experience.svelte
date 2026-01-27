@@ -82,12 +82,12 @@
 <style>
 	.experience-card {
 		position: relative;
-		padding: 1.25rem;
-		margin-bottom: 1.5rem;
-		margin-left: -1.25rem;
-		margin-right: -1.25rem;
-		border-radius: 0.75rem;
-		transition: all 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+		padding: 1.5rem;
+		margin-bottom: 1rem;
+		margin-left: -1.5rem;
+		margin-right: -1.5rem;
+		border-radius: 0.5rem;
+		transition: background-color var(--duration-normal) var(--ease-out);
 	}
 
 	.experience-card:last-child {
@@ -96,7 +96,6 @@
 
 	.experience-card:hover {
 		background-color: var(--color-bg-elevated);
-		box-shadow: var(--shadow-md);
 	}
 
 	.logo-container {
@@ -179,9 +178,10 @@
 		position: absolute;
 		left: 0;
 		top: 0.6em;
-		height: 0.375rem;
-		width: 0.375rem;
+		height: 4px;
+		width: 4px;
 		border-radius: 9999px;
-		background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-text-subtle) 100%);
+		background-color: var(--color-primary);
+		opacity: 0.7;
 	}
 </style>

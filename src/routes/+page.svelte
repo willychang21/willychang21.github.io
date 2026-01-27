@@ -21,7 +21,7 @@
 	<meta name="twitter:description" content={siteConfig.description} />
 </svelte:head>
 
-<main class="mx-auto max-w-2xl px-6 py-16 md:py-24">
+<main class="mx-auto max-w-3xl px-8 py-20 md:py-32">
 	<Header {resume} />
 
 	<Section id="experience" title="Experience" delay={200}>

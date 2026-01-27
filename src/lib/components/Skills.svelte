@@ -71,26 +71,19 @@
 	.skill-tag {
 		display: inline-flex;
 		align-items: center;
-		padding: 0.25rem 0.625rem;
-		font-size: 0.75rem;
+		padding: 0.25rem 0.75rem;
+		font-size: 0.8125rem;
 		color: var(--color-text-muted);
-		background-color: var(--color-bg-elevated);
+		background-color: transparent;
 		border: 1px solid var(--color-border);
-		border-radius: 0.375rem;
-		transition: all 0.2s cubic-bezier(0.22, 1, 0.36, 1);
+		border-radius: 9999px;
+		transition: all var(--duration-normal) var(--ease-out);
 		cursor: default;
 	}
 
 	.skill-tag:hover {
 		border-color: var(--color-primary);
 		color: var(--color-text);
-		transform: translateY(-2px);
-		box-shadow: 0 4px 12px -2px rgba(2, 101, 191, 0.15);
-	}
-
-	@media (prefers-color-scheme: dark) {
-		.skill-tag:hover {
-			box-shadow: 0 4px 12px -2px rgba(59, 158, 255, 0.2);
-		}
+		background-color: var(--color-bg-elevated);
 	}
 </style>

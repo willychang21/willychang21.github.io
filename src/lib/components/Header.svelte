@@ -9,7 +9,7 @@
 	let { resume }: Props = $props();
 </script>
 
-<header class="pb-8 border-b border-[var(--color-border-subtle)]">
+<header>
 	<FadeIn y={20} duration={500}>
 		<div class="flex items-center gap-5">
 			<!-- Avatar -->
@@ -57,21 +57,12 @@
 
 <style>
 	.header-name {
-		background: linear-gradient(135deg, var(--color-text) 0%, var(--color-primary) 100%);
-		background-clip: text;
-		-webkit-background-clip: text;
-		-webkit-text-fill-color: transparent;
-		background-size: 200% 200%;
-		animation: gradient-shift 8s ease-in-out infinite;
+		color: var(--color-text);
+		transition: color var(--duration-normal) var(--ease-out);
 	}
 
-	@keyframes gradient-shift {
-		0%, 100% {
-			background-position: 0% 50%;
-		}
-		50% {
-			background-position: 100% 50%;
-		}
+	.header-name:hover {
+		color: var(--color-primary);
 	}
 
 	.nav-link {
