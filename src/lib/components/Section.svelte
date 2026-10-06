@@ -6,20 +6,19 @@
 		id: string;
 		title: string;
 		children: Snippet;
-		delay?: number;
 	}
 
-	let { id, title, children, delay = 0 }: Props = $props();
+	let { id, title, children }: Props = $props();
 </script>
 
-<section {id} class="mt-10">
-	<FadeIn {delay}>
+<section {id} aria-labelledby="{id}-title" class="mt-16 scroll-mt-16">
+	<FadeIn>
 		<div class="section-header">
-			<h2 class="section-title">{title}</h2>
-			<div class="section-line"></div>
+			<h2 id="{id}-title" class="section-title">{title}</h2>
+			<div class="section-line" aria-hidden="true"></div>
 		</div>
+		{@render children()}
 	</FadeIn>
-	{@render children()}
 </section>
 
 <style>
@@ -27,7 +26,7 @@
 		display: flex;
 		align-items: center;
 		gap: 1rem;
-		margin-bottom: 2rem;
+		margin-bottom: 1.75rem;
 	}
 
 	.section-title {
@@ -42,10 +41,6 @@
 	.section-line {
 		flex: 1;
 		height: 1px;
-		background: linear-gradient(
-			to right,
-			var(--color-border),
-			transparent
-		);
+		background: linear-gradient(to right, var(--color-border), transparent);
 	}
 </style>
