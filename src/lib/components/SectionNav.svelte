@@ -17,7 +17,7 @@
 			// Bottom of page only hands over to the last section once its heading is on screen.
 			const atBottom =
 				innerHeight + scrollY >= document.documentElement.scrollHeight - 2 &&
-				(els.at(-1)?.getBoundingClientRect().top ?? Infinity) < innerHeight * 0.6;
+				(els.at(-1)?.getBoundingClientRect().top ?? Infinity) < innerHeight - 120;
 			const readingLine = innerHeight * 0.3;
 			const passed = els.filter((el) => el.getBoundingClientRect().top <= readingLine);
 			current = (atBottom ? els.at(-1) : (passed.at(-1) ?? els[0]))?.id ?? '';

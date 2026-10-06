@@ -32,8 +32,8 @@
 </script>
 
 <!-- The label changes in place so feedback never reflows the row. -->
-<button type="button" class="copy-button" onclick={copy} aria-label="Copy email address">
-	<span aria-hidden="true">{label[status]}</span>
+<button type="button" class="copy-button" onclick={copy}>
+	<span>{label[status]}</span><span class="sr-only">{status === 'idle' ? ' email address' : ''}</span>
 </button>
 <span class="sr-only" role="status">{announcement[status]}</span>
 
@@ -49,7 +49,7 @@
 		cursor: pointer;
 	}
 
-	.copy-button span {
+	.copy-button span:not(.sr-only) {
 		padding: 0.125rem 0.5rem;
 		border: 1px solid var(--color-border);
 		border-radius: 0.375rem;
@@ -62,7 +62,7 @@
 			border-color var(--duration-fast) var(--ease-out);
 	}
 
-	.copy-button:hover span {
+	.copy-button:hover span:not(.sr-only) {
 		color: var(--color-accent);
 		border-color: var(--color-accent);
 	}

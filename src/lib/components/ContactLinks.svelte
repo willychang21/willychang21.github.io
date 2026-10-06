@@ -22,6 +22,13 @@
 		</svg>
 		<span class="nav-label">github.com/{resume.github}</span>
 	</a>
+
+	<button type="button" class="nav-link print-link" onclick={() => print()}>
+		<svg class="nav-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+			<path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 4v11m0 0l-4-4m4 4l4-4M5 19h14" />
+		</svg>
+		<span class="nav-label">Save as PDF</span>
+	</button>
 </nav>
 
 <style>
@@ -38,6 +45,17 @@
 		text-decoration: underline 1px var(--color-primary);
 		text-underline-offset: 4px;
 		transition: text-decoration-color var(--duration-normal) var(--ease-out);
+	}
+
+	.print-link {
+		cursor: pointer;
+		font: inherit;
+	}
+
+	@media print {
+		.print-link {
+			display: none;
+		}
 	}
 
 	.nav-link:hover {

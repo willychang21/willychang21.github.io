@@ -12,7 +12,7 @@
 		<dd><a href="mailto:{resume.email}" class="text-link">{resume.email}</a><CopyEmail email={resume.email} /></dd>
 	</div>
 	<div>
-		<dt>Code</dt>
+		<dt>GitHub</dt>
 		<dd><a href={resume.githubUrl} class="text-link">github.com/{resume.github}</a></dd>
 	</div>
 	<div class="print-row">

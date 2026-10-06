@@ -45,7 +45,7 @@ export const resume: ResumeData = {
 	name: 'Willy Chang',
 	role: 'Software Engineer at TikTok',
 	headline:
-		'Builds internal platforms for global data-privacy requests at TikTok. Before that, full-stack products for music co-creation, classroom attendance and job recruiting.',
+		'Builds internal platforms that handle global data-privacy requests. Before that, full-stack products for music co-creation, classroom attendance and job recruiting.',
 	phone: '206-889-0757',
 	email: 'willysde2025@gmail.com',
 	github: 'willychang21',

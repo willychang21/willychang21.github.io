@@ -10,7 +10,7 @@
 	let { id, title, children }: Props = $props();
 </script>
 
-<section {id} aria-labelledby="{id}-title" class="mt-16 scroll-mt-16">
+<section {id} aria-labelledby="{id}-title" tabindex="-1" class="mt-16 scroll-mt-16 outline-none">
 	<div class="section-header">
 		<h2 id="{id}-title" class="section-title">{title}</h2>
 		<div class="section-line" aria-hidden="true"></div>
@@ -27,11 +27,11 @@
 	}
 
 	.section-title {
-		font-size: 0.8125rem;
-		font-weight: 500;
+		font-size: 0.875rem;
+		font-weight: 600;
 		text-transform: uppercase;
-		letter-spacing: 0.1em;
-		color: var(--color-text-muted);
+		letter-spacing: 0.08em;
+		color: var(--color-text);
 		flex-shrink: 0;
 	}
 
