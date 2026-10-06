@@ -17,7 +17,7 @@
 	<p class="headline mt-5">{resume.headline}</p>
 
 	<div class="mt-3">
-		<ContactLinks {resume} label="Contact" />
+		<ContactLinks {resume} label="Contact links" />
 	</div>
 </header>
 

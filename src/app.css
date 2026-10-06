@@ -198,11 +198,14 @@
   background-color: var(--color-logo-bg);
 }
 
+/* No usable logo: a deliberate monogram, not an imitation of a missing image. */
 .logo-plate--empty {
+  border-color: transparent;
   background-color: var(--color-bg-elevated);
-  color: var(--color-text-subtle);
-  font-size: 0.875rem;
-  font-weight: 500;
+  font-family: "Poppins", system-ui, sans-serif;
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: var(--color-accent);
 }
 
 .highlight-item {

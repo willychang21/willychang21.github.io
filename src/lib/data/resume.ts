@@ -45,7 +45,7 @@ export const resume: ResumeData = {
 	name: 'Willy Chang',
 	role: 'Software Engineer at TikTok',
 	headline:
-		'Full-stack engineer working across distributed systems and data privacy.',
+		'Builds internal platforms for global data-privacy requests at TikTok. Before that, full-stack products for music co-creation, classroom attendance and job recruiting.',
 	phone: '206-889-0757',
 	email: 'willysde2025@gmail.com',
 	github: 'willychang21',
@@ -59,9 +59,9 @@ export const resume: ResumeData = {
 			location: 'San Jose, CA, USA',
 			period: 'Apr. 2025 – Present',
 			highlights: [
+				'Released change-region automation that reduced manual operations workload, auto-replying to **65% of requests** and leaving only 35% for ops to process manually.',
 				'Developing internal platforms and workflows to support global data privacy requests, enhancing compliance and user trust.',
-				'Launched new data intake channels to address region-specific regulatory requirements, boosting compliance coverage across multiple jurisdictions.',
-				'Released change-region automation that reduced manual operations workload, auto-replying to **65% of requests** and leaving only 35% for ops to process manually.'
+				'Launched new data intake channels to address region-specific regulatory requirements, boosting compliance coverage across multiple jurisdictions.'
 			]
 		},
 		{
@@ -117,7 +117,7 @@ export const resume: ResumeData = {
 
 	skills: {
 		languages: ['Golang', 'TypeScript', 'JavaScript', 'Python', 'Swift', 'C#'],
-		frontend: ['React', 'Remix', 'Modern.js (React framework)', 'Svelte', 'Zustand (state management)', 'Tanstack Query', 'Tailwind', 'Jest'],
+		frontend: ['React', 'Remix', 'Modern.js (React framework)', 'Svelte', 'Zustand (state management)', 'TanStack Query', 'Tailwind', 'Jest'],
 		backend: ['Kitex (Go RPC)', 'Hertz (Go HTTP)', 'NestJS', 'Express.js', 'MongoDB', 'PostgreSQL', 'Redis', 'Firebase', 'AWS', 'BytePlus (cloud)'],
 		devops: ['Docker', 'Kubernetes', 'GitHub Actions', 'Linux']
 	},

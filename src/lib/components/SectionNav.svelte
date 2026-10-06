@@ -9,13 +9,18 @@
 	$effect(() => {
 		const els = sections.map(({ id }) => document.getElementById(id)).filter((el) => el !== null);
 
-		// Current = last section whose top has passed the nav; at page bottom the last section wins,
-		// since a short final section never reaches the top. ponytail: 4 rect reads per scroll is fine.
+		// Current = last section whose top has crossed the reading line (30% down), else the first
+		// section; at page bottom the last section wins, since a short final section never reaches
+		// the line. ponytail: 5 rect reads per scroll is fine.
 		const update = () => {
 			if (pinned) return;
-			const atBottom = innerHeight + scrollY >= document.documentElement.scrollHeight - 2;
-			const passed = els.filter((el) => el.getBoundingClientRect().top <= 96);
-			current = (atBottom ? els.at(-1) : passed.at(-1))?.id ?? '';
+			// Bottom of page only hands over to the last section once its heading is on screen.
+			const atBottom =
+				innerHeight + scrollY >= document.documentElement.scrollHeight - 2 &&
+				(els.at(-1)?.getBoundingClientRect().top ?? Infinity) < innerHeight * 0.6;
+			const readingLine = innerHeight * 0.3;
+			const passed = els.filter((el) => el.getBoundingClientRect().top <= readingLine);
+			current = (atBottom ? els.at(-1) : (passed.at(-1) ?? els[0]))?.id ?? '';
 		};
 
 		const unpin = () => (pinned = false);
@@ -74,7 +79,7 @@
 		font-family: 'Poppins', system-ui, sans-serif;
 		font-size: 0.75rem;
 		white-space: nowrap;
-		color: var(--color-text-subtle);
+		color: var(--color-text-muted);
 		box-shadow: inset 0 -2px 0 transparent;
 		transition:
 			color var(--duration-fast) var(--ease-out),

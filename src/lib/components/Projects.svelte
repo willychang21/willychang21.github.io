@@ -4,6 +4,13 @@
 	import Highlight from './Highlight.svelte';
 
 	let { project }: { project: Project } = $props();
+
+	const hosts: Record<string, string> = { 'drive.google.com': 'Google Drive file', 'github.com': 'GitHub repo' };
+	const destination = $derived.by(() => {
+		if (!project.url) return '';
+		const host = new URL(project.url).hostname.replace(/^www\./, '');
+		return hosts[host] ?? host;
+	});
 </script>
 
 <article class="entry sm:pl-15">
@@ -19,7 +26,7 @@
 	</h3>
 	<p class="mt-0.5 text-[0.8125rem] text-[var(--color-text-muted)]">
 		{project.tech}{#if project.url}<span class="text-[var(--color-text-subtle)]"
-				>{' · '}{new URL(project.url).hostname.replace(/^www\./, '')}</span
+				>{' · '}{destination}</span
 			>{/if}
 	</p>
 

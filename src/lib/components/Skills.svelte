@@ -48,8 +48,9 @@
 	.skill-list {
 		display: flex;
 		flex-wrap: wrap;
-		gap: 0.125rem 1.125rem;
-		font-size: 0.9375rem;
+		gap: 0.25rem 1rem;
+		font-family: 'Poppins', system-ui, sans-serif;
+		font-size: 0.875rem;
 		color: var(--color-text-muted);
 	}
 
