@@ -8,13 +8,13 @@
 	import Skills from '#lib/components/Skills.svelte';
 	import Projects from '#lib/components/Projects.svelte';
 	import SectionNav from '#lib/components/SectionNav.svelte';
-	import Footer from '#lib/components/Footer.svelte';
+	import Contact from '#lib/components/Contact.svelte';
 
 	const sections = [
 		{ id: 'experience', title: 'Experience' },
 		{ id: 'education', title: 'Education' },
-		{ id: 'skills', title: 'Skills' },
-		{ id: 'projects', title: 'Projects' }
+		{ id: 'projects', title: 'Projects' },
+		{ id: 'skills', title: 'Skills' }
 	];
 </script>
 
@@ -31,7 +31,7 @@
 	<meta name="twitter:image" content={siteConfig.ogImage} />
 </svelte:head>
 
-<main class="mx-auto max-w-2xl px-5 py-16 sm:px-8 md:py-28">
+<main class="mx-auto max-w-2xl px-5 py-14 sm:px-8 md:py-20">
 	<Header {resume} />
 	<SectionNav {sections} />
 
@@ -47,15 +47,17 @@
 		{/each}
 	</Section>
 
-	<Section id="skills" title="Skills">
-		<Skills skills={resume.skills} />
-	</Section>
-
 	<Section id="projects" title="Projects">
 		{#each resume.projects as project (project.name)}
 			<Projects {project} />
 		{/each}
 	</Section>
 
-	<Footer {resume} />
+	<Section id="skills" title="Skills">
+		<Skills skills={resume.skills} />
+	</Section>
+
+	<Section id="contact" title="Contact">
+		<Contact {resume} />
+	</Section>
 </main>

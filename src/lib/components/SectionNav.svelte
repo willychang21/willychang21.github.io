@@ -42,6 +42,12 @@
 		border-bottom: 1px solid var(--color-border);
 	}
 
+	@media print {
+		.section-nav {
+			display: none;
+		}
+	}
+
 	.section-nav-link {
 		display: inline-flex;
 		align-items: center;

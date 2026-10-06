@@ -1,6 +1,7 @@
 <script lang="ts">
 	import type { Project } from '#lib/data/resume.ts';
 	import ExternalIcon from './ExternalIcon.svelte';
+	import Highlight from './Highlight.svelte';
 
 	let { project }: { project: Project } = $props();
 </script>
@@ -15,11 +16,11 @@
 			{project.name}
 		{/if}
 	</h3>
-	<p class="meta-badge mt-0.5">{project.tech}</p>
+	<p class="mt-0.5 text-[0.8125rem] text-[var(--color-text-muted)]">{project.tech}</p>
 
 	<ul class="mt-3 space-y-2">
 		{#each project.highlights as highlight, i (i)}
-			<li class="highlight-item">{highlight}</li>
+			<li class="highlight-item"><Highlight text={highlight} /></li>
 		{/each}
 	</ul>
 </article>

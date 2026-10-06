@@ -2,6 +2,7 @@
 	import type { Experience } from '#lib/data/resume.ts';
 	import ExternalIcon from './ExternalIcon.svelte';
 	import Logo from './Logo.svelte';
+	import Highlight from './Highlight.svelte';
 
 	let { exp }: { exp: Experience } = $props();
 </script>
@@ -29,7 +30,7 @@
 
 		<ul class="mt-3 space-y-2">
 			{#each exp.highlights as highlight, i (i)}
-				<li class="highlight-item">{highlight}</li>
+				<li class="highlight-item"><Highlight text={highlight} /></li>
 			{/each}
 		</ul>
 	</div>

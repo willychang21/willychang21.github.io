@@ -31,7 +31,7 @@
 		font-weight: 500;
 		text-transform: uppercase;
 		letter-spacing: 0.1em;
-		color: var(--color-text-subtle);
+		color: var(--color-text-muted);
 		flex-shrink: 0;
 	}
 

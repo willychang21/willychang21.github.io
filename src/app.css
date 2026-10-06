@@ -112,6 +112,11 @@
   padding-block: 0.75rem;
 }
 
+/* Keep the focus ring on the text, not the padded hit area. */
+.entry-link:focus-visible {
+  padding-block: 0;
+}
+
 .entry-link:hover {
   color: var(--color-accent);
 }
@@ -165,6 +170,12 @@
   position: relative;
 }
 
+.highlight-item strong {
+  font-weight: 600;
+  color: var(--color-text);
+  font-variant-numeric: tabular-nums;
+}
+
 .highlight-item::before {
   content: "";
   position: absolute;
@@ -174,4 +185,39 @@
   width: 5px;
   border-radius: 9999px;
   background-color: var(--color-primary);
+}
+
+/* Print / Save as PDF: plain paper, no screen chrome, URLs spelled out. */
+@media print {
+  :root {
+    --color-bg: #fff;
+    --color-text: #000;
+    --color-text-muted: #222;
+    --color-text-subtle: #444;
+  }
+
+  @page {
+    margin: 1.5cm;
+  }
+
+  main {
+    padding: 0 !important;
+    max-width: none !important;
+  }
+
+  .entry {
+    break-inside: avoid;
+  }
+
+  .entry-link[href^="http"]::after {
+    content: " (" attr(href) ")";
+    font-size: 0.75rem;
+    font-weight: 400;
+    color: var(--color-text-subtle);
+    word-break: break-all;
+  }
+
+  .external-icon {
+    display: none;
+  }
 }

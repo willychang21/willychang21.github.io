@@ -1,21 +1,8 @@
 <script lang="ts">
 	import type { ResumeData } from '#lib/data/resume.ts';
+	import CopyEmail from './CopyEmail.svelte';
 
 	let { resume, label }: { resume: ResumeData; label: string } = $props();
-
-	let copied = $state(false);
-	let timer: ReturnType<typeof setTimeout>;
-
-	async function copyEmail() {
-		try {
-			await navigator.clipboard.writeText(resume.email);
-			copied = true;
-			clearTimeout(timer);
-			timer = setTimeout(() => (copied = false), 2000);
-		} catch {
-			// Clipboard blocked (permissions/insecure context): the mailto link still works.
-		}
-	}
 </script>
 
 <nav aria-label={label} class="flex flex-wrap items-center gap-x-6 text-sm">
@@ -26,10 +13,7 @@
 			</svg>
 			<span class="nav-label">{resume.email}</span>
 		</a>
-		<button type="button" class="copy-button" onclick={copyEmail} aria-label="Copy email address">
-			<span aria-hidden="true">{copied ? 'Copied' : 'Copy'}</span>
-		</button>
-		<span class="sr-only" aria-live="polite">{copied ? 'Email address copied' : ''}</span>
+		<CopyEmail email={resume.email} />
 	</span>
 
 	<a href={resume.githubUrl} target="_blank" rel="noopener noreferrer" class="nav-link">
@@ -73,22 +57,6 @@
 	}
 
 	.nav-link:hover .nav-icon {
-		color: var(--color-accent);
-	}
-
-	.copy-button {
-		min-height: 2.75rem;
-		min-width: 3.5rem;
-		padding-inline: 0.5rem;
-		margin-left: 0.25rem;
-		font-family: 'Poppins', system-ui, sans-serif;
-		font-size: 0.75rem;
-		color: var(--color-text-subtle);
-		cursor: pointer;
-		transition: color var(--duration-fast) var(--ease-out);
-	}
-
-	.copy-button:hover {
 		color: var(--color-accent);
 	}
 </style>
