@@ -17,7 +17,7 @@
 	<p class="headline mt-5">{resume.headline}</p>
 
 	<div class="mt-3">
-		<ContactLinks {resume} label="Contact links" />
+		<ContactLinks {resume} label="Contact and print" />
 	</div>
 </header>
 
@@ -36,6 +36,7 @@
 		font-family: 'Poppins', system-ui, sans-serif;
 		font-size: 1rem;
 		font-weight: 500;
+		color: var(--color-text-muted);
 		letter-spacing: -0.01em;
 	}
 
@@ -46,8 +47,9 @@
 	}
 
 	.headline {
+		font-size: 1.0625rem;
 		line-height: 1.6;
-		color: var(--color-text-muted);
+		color: var(--color-text);
 		max-width: 38rem;
 	}
 </style>

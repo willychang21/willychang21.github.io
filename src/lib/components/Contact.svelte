@@ -5,7 +5,7 @@
 	let { resume }: { resume: ResumeData } = $props();
 </script>
 
-<!-- One fact per line so the closing never wraps mid-thought. -->
+<!-- One fact per line so the closing never wraps mid-thought; print lives in the header. -->
 <dl class="contact-lines">
 	<div>
 		<dt>Email</dt>
@@ -15,18 +15,12 @@
 		<dt>GitHub</dt>
 		<dd><a href={resume.githubUrl} class="text-link">github.com/{resume.github}</a></dd>
 	</div>
-	<div class="print-row">
-		<dt>Résumé</dt>
-		<dd>
-			<button type="button" class="text-link print-button" onclick={() => print()}>Save this page as PDF</button>
-		</dd>
-	</div>
 </dl>
 
 <style>
 	.contact-lines {
 		display: grid;
-		gap: 0.25rem;
+		gap: 1rem;
 		font-family: 'Poppins', system-ui, sans-serif;
 		font-size: 1.125rem;
 		letter-spacing: -0.01em;
@@ -49,27 +43,16 @@
 		color: var(--color-text-muted);
 	}
 
+	/* 44px tap row; the link itself adds no padding, so label and value stay paired. */
 	dd {
 		display: flex;
 		align-items: center;
 		min-width: 0;
+		min-height: 2.75rem;
 	}
 
-	/* 44px tap areas without growing the line. */
 	.text-link {
-		padding-block: 0.6rem;
 		color: var(--color-text);
 		overflow-wrap: anywhere;
-	}
-
-	.print-button {
-		cursor: pointer;
-		font: inherit;
-	}
-
-	@media print {
-		.print-row {
-			display: none !important;
-		}
 	}
 </style>

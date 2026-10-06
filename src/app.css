@@ -108,6 +108,15 @@
   .entry + .entry {
     margin-top: 2.25rem;
   }
+
+  /* Desktop: step the reading sizes up so the column doesn't read as fine print. */
+  .highlight-item {
+    font-size: 1rem;
+  }
+
+  .meta-badge {
+    font-size: 0.875rem;
+  }
 }
 
 .entry-head > h3 {
@@ -200,7 +209,6 @@
 
 /* No usable logo: a deliberate monogram, not an imitation of a missing image. */
 .logo-plate--empty {
-  border-color: transparent;
   background-color: var(--color-bg-elevated);
   font-family: "Poppins", system-ui, sans-serif;
   font-size: 1.125rem;

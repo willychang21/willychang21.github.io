@@ -88,7 +88,7 @@
 
 	@media (min-width: 40rem) {
 		.section-nav-link {
-			font-size: 0.8125rem;
+			font-size: 0.875rem;
 			padding-inline: 0.5rem;
 		}
 	}
