@@ -17,7 +17,7 @@
 <dl class="space-y-3">
 	{#each groups as [label, items] (label)}
 		<div class="flex flex-col gap-0.5 sm:flex-row sm:gap-3">
-			<dt class="w-24 flex-shrink-0 font-[Poppins] text-sm font-medium sm:pt-0.5">{label}</dt>
+			<dt class="skill-label">{label}</dt>
 			<dd>
 				<ul class="skill-list">
 					{#each items as item (item)}
@@ -31,17 +31,26 @@
 </dl>
 
 <style>
+	.skill-label {
+		flex-shrink: 0;
+		width: 6rem;
+		font-family: 'Poppins', system-ui, sans-serif;
+		font-size: 0.875rem;
+		font-weight: 500;
+	}
+
+	@media (min-width: 40rem) {
+		.skill-label {
+			padding-top: 0.125rem;
+		}
+	}
+
 	.skill-list {
 		display: flex;
 		flex-wrap: wrap;
+		gap: 0.125rem 1.125rem;
 		font-size: 0.9375rem;
 		color: var(--color-text-muted);
-	}
-
-	.skill-list li:not(:last-child)::after {
-		content: '·';
-		margin-inline: 0.5em;
-		color: var(--color-text-subtle);
 	}
 
 	.gloss {

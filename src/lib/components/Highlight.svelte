@@ -18,5 +18,5 @@
 			href={part.url}
 			target="_blank"
 			rel="noopener noreferrer"
-			class="entry-link inline-link">{part.label}<ExternalIcon /></a
+			class="entry-link text-link">{part.label}<ExternalIcon /></a
 		>{:else if part.kind === 'strong'}<strong>{part.label}</strong>{:else}{part.label}{/if}{/each}

@@ -150,6 +150,20 @@
   color: var(--color-accent);
 }
 
+/* The one in-text link style: bronze underline, accent on hover. */
+.text-link {
+  text-decoration: underline 1px var(--color-primary);
+  text-underline-offset: 4px;
+  transition:
+    color var(--duration-fast) var(--ease-out),
+    text-decoration-color var(--duration-fast) var(--ease-out);
+}
+
+.text-link:hover {
+  color: var(--color-accent);
+  text-decoration-color: var(--color-accent);
+}
+
 .external-icon {
   display: inline-block;
   vertical-align: -0.05em;

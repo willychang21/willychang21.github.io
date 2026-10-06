@@ -26,7 +26,7 @@
 </nav>
 
 <style>
-	/* 44px tall hit areas; the hover underline sits under the label only. */
+	/* 44px tall hit areas; the underline sits under the label only, not the icon. */
 	.nav-link {
 		display: inline-flex;
 		align-items: center;
@@ -36,7 +36,7 @@
 	}
 
 	.nav-label {
-		text-decoration: underline 1px transparent;
+		text-decoration: underline 1px var(--color-primary);
 		text-underline-offset: 4px;
 		transition: text-decoration-color var(--duration-normal) var(--ease-out);
 	}

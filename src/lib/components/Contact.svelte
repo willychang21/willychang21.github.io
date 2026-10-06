@@ -25,13 +25,6 @@
 	.text-link {
 		padding-block: 0.6rem;
 		color: var(--color-text);
-		text-decoration: underline 1px var(--color-primary);
-		text-underline-offset: 5px;
 		overflow-wrap: anywhere;
-	}
-
-	.text-link:hover {
-		color: var(--color-accent);
-		text-decoration-color: var(--color-accent);
 	}
 </style>

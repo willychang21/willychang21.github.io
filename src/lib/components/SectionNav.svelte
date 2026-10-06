@@ -37,7 +37,7 @@
 		position: sticky;
 		top: 0;
 		z-index: 10;
-		margin-top: 2.5rem;
+		margin-top: 1.5rem;
 		background-color: var(--color-bg);
 		border-bottom: 1px solid var(--color-border);
 	}

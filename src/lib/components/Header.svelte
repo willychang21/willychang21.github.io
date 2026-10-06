@@ -10,11 +10,11 @@
 		<img src="/avatar.jpg" alt="" width="72" height="72" class="avatar" fetchpriority="high" />
 		<div>
 			<h1 class="text-3xl font-semibold md:text-4xl">{resume.name}</h1>
-			<p class="mt-1 font-[Poppins] text-sm text-[var(--color-text-muted)]">{resume.role}</p>
+			<p class="role">{resume.role}</p>
 		</div>
 	</div>
 
-	<p class="headline mt-6">{resume.headline}</p>
+	<p class="headline mt-5">{resume.headline}</p>
 
 	<div class="mt-3">
 		<ContactLinks {resume} label="Contact" />
@@ -31,8 +31,21 @@
 		border: 3px solid var(--color-border);
 	}
 
+	.role {
+		margin-top: 0.25rem;
+		font-family: 'Poppins', system-ui, sans-serif;
+		font-size: 1rem;
+		font-weight: 500;
+		letter-spacing: -0.01em;
+	}
+
+	@media (min-width: 40rem) {
+		.role {
+			font-size: 1.125rem;
+		}
+	}
+
 	.headline {
-		font-size: 1.0625rem;
 		line-height: 1.6;
 		color: var(--color-text-muted);
 		max-width: 38rem;
