@@ -4,19 +4,26 @@
 	let status = $state<'idle' | 'copied' | 'failed'>('idle');
 	let timer: ReturnType<typeof setTimeout>;
 
-	const label = { idle: 'Copy', copied: 'Copied', failed: 'Copy failed' };
+	let failedLabel = $state('Copy failed');
+	const label = $derived({ idle: 'Copy', copied: 'Copied', failed: failedLabel });
 	const announcement = {
 		idle: '',
 		copied: 'Email address copied',
-		failed: 'Couldn’t copy. Select the email address instead.'
+		failed: 'Couldn’t copy automatically. The email address is selected; copy it with your keyboard.'
 	};
 
-	async function copy() {
+	async function copy(event: MouseEvent) {
+		// Read before awaiting: currentTarget is null once the event has finished dispatching.
+		const button = event.currentTarget as HTMLElement;
 		try {
 			await navigator.clipboard.writeText(email);
 			status = 'copied';
 		} catch {
-			// Clipboard blocked (permissions or insecure context): say so; the mailto link still works.
+			// Clipboard blocked (permissions or insecure context): select the address so the
+			// reader can copy it by hand. The button always sits right after the email link.
+			const link = button.previousElementSibling;
+			if (link) getSelection()?.selectAllChildren(link);
+			failedLabel = /Mac|iPhone|iPad/.test(navigator.userAgent) ? 'Press ⌘C' : 'Press Ctrl+C';
 			status = 'failed';
 		}
 		clearTimeout(timer);

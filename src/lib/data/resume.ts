@@ -66,7 +66,6 @@ export const resume: ResumeData = {
 		},
 		{
 			company: 'Kocree',
-			logo: '/logos/kocree.png',
 			title: 'Software Engineer Intern',
 			location: 'Champaign, IL, USA',
 			period: 'May 2024 – Aug. 2024',
@@ -89,7 +88,6 @@ export const resume: ResumeData = {
 		},
 		{
 			company: 'Showu Tech',
-			logo: '/logos/showutech.png',
 			title: 'Software Engineer',
 			location: 'Taipei, Taiwan',
 			period: 'Jul. 2022 – Aug. 2022',

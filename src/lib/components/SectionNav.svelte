@@ -2,6 +2,9 @@
 	let { sections }: { sections: { id: string; title: string }[] } = $props();
 
 	let current = $state('');
+	// After a nav click, trust the click until the reader scrolls by hand: a short final
+	// section can't scroll to the top, so scroll position alone would mark the wrong tab.
+	let pinned = false;
 
 	$effect(() => {
 		const els = sections.map(({ id }) => document.getElementById(id)).filter((el) => el !== null);
@@ -9,14 +12,22 @@
 		// Current = last section whose top has passed the nav; at page bottom the last section wins,
 		// since a short final section never reaches the top. ponytail: 4 rect reads per scroll is fine.
 		const update = () => {
+			if (pinned) return;
 			const atBottom = innerHeight + scrollY >= document.documentElement.scrollHeight - 2;
 			const passed = els.filter((el) => el.getBoundingClientRect().top <= 96);
 			current = (atBottom ? els.at(-1) : passed.at(-1))?.id ?? '';
 		};
 
+		const unpin = () => (pinned = false);
+		const manual = ['wheel', 'touchstart', 'keydown'] as const;
+
 		update();
 		addEventListener('scroll', update, { passive: true });
-		return () => removeEventListener('scroll', update);
+		for (const type of manual) addEventListener(type, unpin, { passive: true });
+		return () => {
+			removeEventListener('scroll', update);
+			for (const type of manual) removeEventListener(type, unpin);
+		};
 	});
 </script>
 
@@ -24,7 +35,12 @@
 	<ul class="flex justify-between overflow-x-auto sm:justify-start sm:gap-x-3">
 		{#each sections as { id, title } (id)}
 			<li>
-				<a href="#{id}" class="section-nav-link" aria-current={current === id ? 'location' : undefined}>
+				<a
+					href="#{id}"
+					class="section-nav-link"
+					aria-current={current === id ? 'location' : undefined}
+					onclick={() => ((current = id), (pinned = true))}
+				>
 					{title}
 				</a>
 			</li>

@@ -23,7 +23,7 @@
 			: 'Try reloading. If it keeps happening, the home page still works.'}
 	</p>
 	<p class="mt-8">
-		<a href="/" class="entry-link text-link font-medium">
+		<a href="/" class="entry-link text-link">
 			Back to the résumé
 		</a>
 	</p>

@@ -17,6 +17,7 @@
 {#each parts as part, i (i)}{#if part.kind === 'link'}<a
 			href={part.url}
 			target="_blank"
+			aria-describedby="new-tab-note"
 			rel="noopener noreferrer"
 			class="entry-link text-link">{part.label}<ExternalIcon /></a
 		>{:else if part.kind === 'strong'}<strong>{part.label}</strong>{:else}{part.label}{/if}{/each}

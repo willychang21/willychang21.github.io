@@ -9,7 +9,8 @@
 <article class="entry sm:pl-15">
 	<h3>
 		{#if project.url}
-			<a href={project.url} target="_blank" rel="noopener noreferrer" class="entry-link text-link">
+			<a href={project.url} target="_blank"
+			aria-describedby="new-tab-note" rel="noopener noreferrer" class="entry-link text-link">
 				{project.name}<ExternalIcon />
 			</a>
 		{:else}

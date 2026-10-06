@@ -13,8 +13,8 @@
 		<div class="entry-head">
 			<h3>{exp.company}</h3>
 			<span class="meta-badge">{exp.period}</span>
-			<p class="text-sm text-[var(--color-text-muted)]">
-				<span class="text-[var(--color-text)]">{exp.title}</span>
+			<p class="text-[0.9375rem] text-[var(--color-text-muted)]">
+				<span class="font-semibold text-[var(--color-text)]">{exp.title}</span>
 				<span class="text-[var(--color-text-subtle)]" aria-hidden="true">·</span>
 				{exp.location}
 			</p>

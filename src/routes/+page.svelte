@@ -12,8 +12,8 @@
 
 	const sections = [
 		{ id: 'experience', title: 'Experience' },
-		{ id: 'education', title: 'Education' },
 		{ id: 'projects', title: 'Projects' },
+		{ id: 'education', title: 'Education' },
 		{ id: 'skills', title: 'Skills' },
 		{ id: 'contact', title: 'Contact' }
 	];
@@ -44,15 +44,15 @@
 		{/each}
 	</Section>
 
-	<Section id="education" title="Education">
-		{#each resume.education as edu (edu.school)}
-			<Education {edu} />
-		{/each}
-	</Section>
-
 	<Section id="projects" title="Projects">
 		{#each resume.projects as project (project.name)}
 			<Projects {project} />
+		{/each}
+	</Section>
+
+	<Section id="education" title="Education">
+		{#each resume.education as edu (edu.school)}
+			<Education {edu} />
 		{/each}
 	</Section>
 
