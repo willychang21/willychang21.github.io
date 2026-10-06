@@ -14,7 +14,8 @@
 		{ id: 'experience', title: 'Experience' },
 		{ id: 'education', title: 'Education' },
 		{ id: 'projects', title: 'Projects' },
-		{ id: 'skills', title: 'Skills' }
+		{ id: 'skills', title: 'Skills' },
+		{ id: 'contact', title: 'Contact' }
 	];
 </script>
 
@@ -30,6 +31,8 @@
 	<meta name="twitter:description" content={siteConfig.description} />
 	<meta name="twitter:image" content={siteConfig.ogImage} />
 </svelte:head>
+
+<a href="#experience" class="skip-link">Skip to experience</a>
 
 <main class="mx-auto max-w-2xl px-5 py-14 sm:px-8 md:py-20">
 	<Header {resume} />

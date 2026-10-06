@@ -4,7 +4,6 @@ export interface Experience {
 	location: string;
 	period: string;
 	highlights: string[];
-	url?: string;
 	logo?: string;
 }
 
@@ -46,7 +45,7 @@ export const resume: ResumeData = {
 	name: 'Willy Chang',
 	role: 'Software Engineer at TikTok',
 	headline:
-		'Full-stack engineer working across distributed systems and data privacy. Master of Computer Science, University of Illinois Urbana-Champaign.',
+		'Full-stack engineer working across distributed systems and data privacy.',
 	phone: '206-889-0757',
 	email: 'willysde2025@gmail.com',
 	github: 'willychang21',
@@ -71,9 +70,8 @@ export const resume: ResumeData = {
 			title: 'Software Engineer Intern',
 			location: 'Champaign, IL, USA',
 			period: 'May 2024 – Aug. 2024',
-			url: 'https://muosaic-demo.kocree.net/home',
 			highlights: [
-				'Developed Muosaic, a music co-creation platform, using Svelte, Nest.js, PostgreSQL, and NooBaa for S3-compatible storage.',
+				'Developed [Muosaic](https://muosaic-demo.kocree.net/home), a music co-creation platform, using Svelte, Nest.js, PostgreSQL, and NooBaa for S3-compatible storage.',
 				'Optimized authentication by integrating OAuth 2.0 authentication via Stytch, streamlining the sign-up/sign-in process.',
 				'Overhauled data model to enhance privacy and access control for assets, implementing user-based permissions, task-based teams, and dynamic accessibility rules.'
 			]
@@ -84,9 +82,8 @@ export const resume: ResumeData = {
 			title: 'Software Engineer, part-time',
 			location: 'Champaign, IL, USA',
 			period: 'Mar. 2024 – Dec. 2024',
-			url: 'https://attendance-uiuc-beta-v1.netlify.app/',
 			highlights: [
-				'Built Here @ UIUC under Professor Abdussalam Alawini, serving **5,000+ students** across **90+ instructors**.',
+				'Built [Here @ UIUC](https://attendance-uiuc-beta-v1.netlify.app/) under Professor Abdussalam Alawini, serving **5,000+ students** across **90+ instructors**.',
 				'Decomposed existing Express.js backend into an MVC architecture, streamlining routing with distinct routers, controllers, and services, improving modularity, unit testing, and maintainability.'
 			]
 		},

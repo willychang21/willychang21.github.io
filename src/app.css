@@ -23,7 +23,7 @@
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --color-primary: #e8b89a;
+    --color-primary: #b98f74; /* decorative, dimmer than the interactive accent */
     --color-accent: #e8b89a;
     --color-on-accent: #141413;
     --color-text: #f5f4f0;
@@ -81,9 +81,38 @@
   }
 }
 
+/* Visible only when focused by keyboard. */
+.skip-link {
+  position: absolute;
+  left: 1rem;
+  top: -4rem;
+  z-index: 20;
+  padding: 0.75rem 1rem;
+  background: var(--color-bg-elevated);
+  border: 1px solid var(--color-border);
+  border-radius: 0.5rem;
+  font-family: "Poppins", system-ui, sans-serif;
+  font-size: 0.875rem;
+}
+
+.skip-link:focus {
+  top: 1rem;
+}
+
 /* Shared résumé entry pieces (Experience, Education, Projects) */
 .entry + .entry {
-  margin-top: 2.25rem;
+  margin-top: 2.75rem;
+}
+
+@media (min-width: 40rem) {
+  .entry + .entry {
+    margin-top: 2.25rem;
+  }
+}
+
+.entry-head > h3 {
+  font-size: 1.125rem;
+  font-weight: 600;
 }
 
 /* Phone: name, role, date stacked. Wider: date sits right of the name. */
@@ -136,7 +165,7 @@
 }
 
 .meta-badge {
-  font-size: 0.75rem;
+  font-size: 0.8125rem;
   color: var(--color-text-subtle);
   font-variant-numeric: tabular-nums;
   white-space: nowrap;

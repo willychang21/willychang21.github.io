@@ -1,6 +1,5 @@
 <script lang="ts">
 	import type { Experience } from '#lib/data/resume.ts';
-	import ExternalIcon from './ExternalIcon.svelte';
 	import Logo from './Logo.svelte';
 	import Highlight from './Highlight.svelte';
 
@@ -12,18 +11,11 @@
 
 	<div class="min-w-0 flex-1">
 		<div class="entry-head">
-			<h3>
-				{#if exp.url}
-					<a href={exp.url} target="_blank" rel="noopener noreferrer" class="entry-link">
-						{exp.company}<ExternalIcon />
-					</a>
-				{:else}
-					{exp.company}
-				{/if}
-			</h3>
+			<h3>{exp.company}</h3>
 			<span class="meta-badge">{exp.period}</span>
 			<p class="text-sm text-[var(--color-text-muted)]">
-				{exp.title} <span class="text-[var(--color-text-subtle)]" aria-hidden="true">·</span>
+				<span class="text-[var(--color-text)]">{exp.title}</span>
+				<span class="text-[var(--color-text-subtle)]" aria-hidden="true">·</span>
 				{exp.location}
 			</p>
 		</div>

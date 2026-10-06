@@ -21,7 +21,7 @@
 </script>
 
 <nav aria-label="Sections" class="section-nav">
-	<ul class="flex gap-x-5 overflow-x-auto">
+	<ul class="flex justify-between overflow-x-auto sm:justify-start sm:gap-x-3">
 		{#each sections as { id, title } (id)}
 			<li>
 				<a href="#{id}" class="section-nav-link" aria-current={current === id ? 'location' : undefined}>
@@ -51,15 +51,25 @@
 	.section-nav-link {
 		display: inline-flex;
 		align-items: center;
+		justify-content: center;
 		min-height: 2.75rem;
+		min-width: 2.75rem;
+		padding-inline: 0.25rem;
 		font-family: 'Poppins', system-ui, sans-serif;
-		font-size: 0.8125rem;
+		font-size: 0.75rem;
 		white-space: nowrap;
 		color: var(--color-text-subtle);
 		box-shadow: inset 0 -2px 0 transparent;
 		transition:
 			color var(--duration-fast) var(--ease-out),
 			box-shadow var(--duration-fast) var(--ease-out);
+	}
+
+	@media (min-width: 40rem) {
+		.section-nav-link {
+			font-size: 0.8125rem;
+			padding-inline: 0.5rem;
+		}
 	}
 
 	.section-nav-link:hover {

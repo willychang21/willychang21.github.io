@@ -9,16 +9,20 @@
 		['Backend', skills.backend],
 		['DevOps', skills.devops]
 	] as const);
+
+	// "Kitex (Go RPC)" -> ["Kitex", "Go RPC"]
+	const split = (item: string) => item.match(/^(.*?)(?: \((.+)\))?$/)!.slice(1) as [string, string?];
 </script>
 
-<dl class="space-y-4">
+<dl class="space-y-3">
 	{#each groups as [label, items] (label)}
-		<div class="flex flex-col gap-1.5 sm:flex-row sm:gap-3">
-			<dt class="w-24 flex-shrink-0 pt-0.5 font-[Poppins] text-sm font-medium">{label}</dt>
+		<div class="flex flex-col gap-0.5 sm:flex-row sm:gap-3">
+			<dt class="w-24 flex-shrink-0 font-[Poppins] text-sm font-medium sm:pt-0.5">{label}</dt>
 			<dd>
-				<ul class="flex flex-wrap gap-1.5">
+				<ul class="skill-list">
 					{#each items as item (item)}
-						<li class="skill-tag">{item}</li>
+						{@const [name, gloss] = split(item)}
+						<li>{name}{#if gloss}{' '}<span class="gloss">({gloss})</span>{/if}</li>
 					{/each}
 				</ul>
 			</dd>
@@ -27,11 +31,21 @@
 </dl>
 
 <style>
-	.skill-tag {
-		padding: 0.1875rem 0.6875rem;
-		font-size: 0.8125rem;
+	.skill-list {
+		display: flex;
+		flex-wrap: wrap;
+		font-size: 0.9375rem;
 		color: var(--color-text-muted);
-		border: 1px solid var(--color-border);
-		border-radius: 9999px;
+	}
+
+	.skill-list li:not(:last-child)::after {
+		content: '·';
+		margin-inline: 0.5em;
+		color: var(--color-text-subtle);
+	}
+
+	.gloss {
+		font-size: 0.8125rem;
+		color: var(--color-text-subtle);
 	}
 </style>
