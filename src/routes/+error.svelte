@@ -17,7 +17,9 @@
 			? 'The link may be out of date. Everything on this site lives on one page.'
 			: 'Try reloading. If it keeps happening, the home page still works.'}
 	</p>
-	<a href="/" class="entry-link mt-8 min-h-11 font-medium underline decoration-[var(--color-primary)] underline-offset-4">
-		Back to the résumé
-	</a>
+	<p class="mt-8">
+		<a href="/" class="entry-link font-medium underline decoration-[var(--color-primary)] underline-offset-4">
+			Back to the résumé
+		</a>
+	</p>
 </main>

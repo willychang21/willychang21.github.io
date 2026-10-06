@@ -83,10 +83,13 @@ a {
   margin-top: 2.25rem;
 }
 
+/* Padding grows the hit area to 44px; the negative margin keeps the text box in place. */
 .entry-link {
   display: inline-flex;
   align-items: center;
   gap: 0.375rem;
+  padding-block: 0.75rem;
+  margin-block: -0.75rem;
 }
 
 .entry-link:hover {

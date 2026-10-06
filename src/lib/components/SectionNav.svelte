@@ -4,23 +4,19 @@
 	let current = $state('');
 
 	$effect(() => {
-		if (typeof IntersectionObserver === 'undefined') return;
+		const els = sections.map(({ id }) => document.getElementById(id)).filter((el) => el !== null);
 
-		// ponytail: a section is "current" while it crosses the band just below the nav.
-		const observer = new IntersectionObserver(
-			(entries) => {
-				for (const entry of entries) {
-					if (entry.isIntersecting) current = entry.target.id;
-				}
-			},
-			{ rootMargin: '-15% 0px -80% 0px' }
-		);
+		// Current = last section whose top has passed the nav; at page bottom the last section wins,
+		// since a short final section never reaches the top. ponytail: 4 rect reads per scroll is fine.
+		const update = () => {
+			const atBottom = innerHeight + scrollY >= document.documentElement.scrollHeight - 2;
+			const passed = els.filter((el) => el.getBoundingClientRect().top <= 96);
+			current = (atBottom ? els.at(-1) : passed.at(-1))?.id ?? '';
+		};
 
-		for (const { id } of sections) {
-			const el = document.getElementById(id);
-			if (el) observer.observe(el);
-		}
-		return () => observer.disconnect();
+		update();
+		addEventListener('scroll', update, { passive: true });
+		return () => removeEventListener('scroll', update);
 	});
 </script>
 
