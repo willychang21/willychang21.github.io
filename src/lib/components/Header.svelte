@@ -1,5 +1,5 @@
 <script lang="ts">
-	import type { ResumeData } from '$lib/data/resume';
+	import type { ResumeData } from '#lib/data/resume.ts';
 	import FadeIn from './FadeIn.svelte';
 
 	interface Props {

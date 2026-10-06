@@ -1,12 +1,12 @@
 <script lang="ts">
-	import { resume } from '$lib/data/resume';
-	import { siteConfig } from '$lib/data/seo';
-	import Header from '$lib/components/Header.svelte';
-	import Section from '$lib/components/Section.svelte';
-	import Experience from '$lib/components/Experience.svelte';
-	import Education from '$lib/components/Education.svelte';
-	import Skills from '$lib/components/Skills.svelte';
-	import Projects from '$lib/components/Projects.svelte';
+	import { resume } from '#lib/data/resume.ts';
+	import { siteConfig } from '#lib/data/seo.ts';
+	import Header from '#lib/components/Header.svelte';
+	import Section from '#lib/components/Section.svelte';
+	import Experience from '#lib/components/Experience.svelte';
+	import Education from '#lib/components/Education.svelte';
+	import Skills from '#lib/components/Skills.svelte';
+	import Projects from '#lib/components/Projects.svelte';
 </script>
 
 <svelte:head>
