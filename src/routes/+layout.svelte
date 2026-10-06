@@ -9,7 +9,7 @@
 	<link rel="preconnect" href="https://fonts.googleapis.com" />
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="anonymous" />
 	<link
-		href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&family=Source+Serif+4:ital,wght@0,400;0,500;0,600;1,400&display=swap"
+		href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600&family=Source+Serif+4:wght@400;500&display=swap"
 		rel="stylesheet"
 	/>
 	<meta name="author" content="Willy Chang" />
@@ -22,9 +22,7 @@
 	<meta property="og:locale" content="en_US" />
 
 	<!-- Twitter -->
-	<meta name="twitter:card" content="summary_large_image" />
+	<meta name="twitter:card" content="summary" />
 </svelte:head>
 
-<div class="min-h-screen bg-[var(--color-bg)]">
-	{@render children()}
-</div>
+{@render children()}

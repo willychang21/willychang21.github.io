@@ -7,6 +7,14 @@
 	import Education from '#lib/components/Education.svelte';
 	import Skills from '#lib/components/Skills.svelte';
 	import Projects from '#lib/components/Projects.svelte';
+	import SectionNav from '#lib/components/SectionNav.svelte';
+
+	const sections = [
+		{ id: 'experience', title: 'Experience' },
+		{ id: 'education', title: 'Education' },
+		{ id: 'skills', title: 'Skills' },
+		{ id: 'projects', title: 'Projects' }
+	];
 </script>
 
 <svelte:head>
@@ -19,30 +27,32 @@
 	<meta property="og:image" content={siteConfig.ogImage} />
 	<meta name="twitter:title" content={siteConfig.title} />
 	<meta name="twitter:description" content={siteConfig.description} />
+	<meta name="twitter:image" content={siteConfig.ogImage} />
 </svelte:head>
 
-<main class="mx-auto max-w-3xl px-8 py-20 md:py-32">
+<main class="mx-auto max-w-2xl px-5 py-16 sm:px-8 md:py-28">
 	<Header {resume} />
+	<SectionNav {sections} />
 
-	<Section id="experience" title="Experience" delay={200}>
-		{#each resume.experiences as exp, i (exp.company)}
-			<Experience {exp} index={i} />
+	<Section id="experience" title="Experience">
+		{#each resume.experiences as exp (exp.company)}
+			<Experience {exp} />
 		{/each}
 	</Section>
 
-	<Section id="education" title="Education" delay={100}>
-		{#each resume.education as edu, i (edu.school)}
-			<Education {edu} index={i} />
+	<Section id="education" title="Education">
+		{#each resume.education as edu (edu.school)}
+			<Education {edu} />
 		{/each}
 	</Section>
 
-	<Section id="skills" title="Skills" delay={100}>
+	<Section id="skills" title="Skills">
 		<Skills skills={resume.skills} />
 	</Section>
 
-	<Section id="projects" title="Projects" delay={100}>
-		{#each resume.projects as project, i (project.name)}
-			<Projects {project} index={i} />
+	<Section id="projects" title="Projects">
+		{#each resume.projects as project (project.name)}
+			<Projects {project} />
 		{/each}
 	</Section>
 </main>

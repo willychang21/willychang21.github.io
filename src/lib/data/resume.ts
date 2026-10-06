@@ -5,6 +5,7 @@ export interface Experience {
 	period: string;
 	highlights: string[];
 	url?: string;
+	logo?: string;
 }
 
 export interface Education {
@@ -12,6 +13,7 @@ export interface Education {
 	degree: string;
 	location: string;
 	period: string;
+	logo?: string;
 }
 
 export interface Project {
@@ -48,17 +50,19 @@ export const resume: ResumeData = {
 	experiences: [
 		{
 			company: 'TikTok',
+			logo: '/logos/tiktok.png',
 			title: 'Software Engineer',
 			location: 'San Jose, CA, USA',
 			period: 'Apr. 2025 – Present',
 			highlights: [
 				'Developing internal platforms and workflows to support global data privacy requests, enhancing compliance and user trust.',
 				'Launched new data intake channels to address region-specific regulatory requirements, boosting compliance coverage across multiple jurisdictions.',
-				'Released Change region automation that reduced manual operations workload, auto-replying to 65% of requests while ops manually processed only 35% of remaining requests.'
+				'Released change-region automation that reduced manual operations workload, auto-replying to 65% of requests while ops manually processed only 35% of remaining requests.'
 			]
 		},
 		{
 			company: 'Kocree',
+			logo: '/logos/kocree.png',
 			title: 'Software Engineer Intern',
 			location: 'Champaign, IL, USA',
 			period: 'May 2024 – Aug. 2024',
@@ -71,17 +75,19 @@ export const resume: ResumeData = {
 		},
 		{
 			company: 'University of Illinois Urbana-Champaign',
+			logo: '/logos/uiuc.png',
 			title: 'Software Engineer, part-time',
 			location: 'Champaign, IL, USA',
 			period: 'Mar. 2024 – Dec. 2024',
 			url: 'https://attendance-uiuc-beta-v1.netlify.app/',
 			highlights: [
-				'Building Here @ UIUC under Professor Abdussalam Alawini, serving over 5,000+ students across 90+ instructors.',
+				'Building Here @ UIUC under Professor Abdussalam Alawini, serving 5,000+ students across 90+ instructors.',
 				'Decomposed existing Express.js backend into an MVC architecture, streamlining routing with distinct routers, controllers, and services, improving modularity, unit testing, and maintainability.'
 			]
 		},
 		{
 			company: 'Showu Tech',
+			logo: '/logos/showutech.png',
 			title: 'Software Engineer',
 			location: 'Taipei, Taiwan',
 			period: 'Jul. 2022 – Aug. 2022',
@@ -95,12 +101,14 @@ export const resume: ResumeData = {
 	education: [
 		{
 			school: 'University of Illinois Urbana-Champaign',
+			logo: '/logos/uiuc.png',
 			degree: 'Master of Computer Science',
 			location: 'Champaign, IL, USA',
 			period: 'Aug. 2022 – Dec. 2024'
 		},
 		{
 			school: 'Fu Jen Catholic University',
+			logo: '/logos/fju.png',
 			degree: 'Bachelor of Science in Computer Science',
 			location: 'Taipei, Taiwan',
 			period: 'Aug. 2015 – Jun. 2019'
@@ -128,7 +136,7 @@ export const resume: ResumeData = {
 			url: 'https://github.com/willychang21/MapboxARGame',
 			tech: 'Unity, C#, ARCore, Mapbox',
 			highlights: [
-				'Led a 4 engineers team to develop a location-based AR Navigation App using C# on the Unity Engine platform.',
+				'Led a team of 4 engineers to develop a location-based AR Navigation App using C# on the Unity Engine platform.',
 				'Designed AR games with image recognition using ARCore SDK, integrating Mapbox for 3D routing and mapping.'
 			]
 		},
@@ -137,7 +145,7 @@ export const resume: ResumeData = {
 			url: 'https://github.com/willychang21/Messenger',
 			tech: 'iOS, UIKit, Firebase',
 			highlights: [
-				'Improved code maintainability and scalability from MVVM architecture, simplifying updates and feature expansions.',
+				'Improved code maintainability and scalability with an MVVM architecture, simplifying updates and feature expansions.',
 				'Enhanced messaging capabilities by introducing location and multimedia messaging features via MapKit and AVFoundation.',
 				'Implemented backend infrastructure using Firebase Real-time Database, Cloud Storage, Cloud Firestore, and Firebase Authentication.'
 			]

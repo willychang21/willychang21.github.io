@@ -1,89 +1,37 @@
 <script lang="ts">
-	import FadeIn from './FadeIn.svelte';
+	import type { ResumeData } from '#lib/data/resume.ts';
 
-	interface Props {
-		skills: {
-			languages: string[];
-			frontend: string[];
-			backend: string[];
-			devops: string[];
-		};
-	}
+	let { skills }: { skills: ResumeData['skills'] } = $props();
 
-	let { skills }: Props = $props();
+	const groups = $derived([
+		['Languages', skills.languages],
+		['Frontend', skills.frontend],
+		['Backend', skills.backend],
+		['DevOps', skills.devops]
+	] as const);
 </script>
 
-<div class="space-y-4">
-	<FadeIn delay={0}>
-		<div class="flex flex-col gap-1 sm:flex-row sm:gap-3">
-			<span class="text-sm font-medium text-[var(--color-text)] w-24 flex-shrink-0">Languages</span>
-			<div class="flex flex-wrap gap-1.5">
-				{#each skills.languages as item (item)}
-					<span class="skill-tag">
-						{item}
-					</span>
-				{/each}
-			</div>
+<dl class="space-y-4">
+	{#each groups as [label, items] (label)}
+		<div class="flex flex-col gap-1.5 sm:flex-row sm:gap-3">
+			<dt class="w-24 flex-shrink-0 pt-0.5 text-sm font-medium">{label}</dt>
+			<dd>
+				<ul class="flex flex-wrap gap-1.5">
+					{#each items as item (item)}
+						<li class="skill-tag">{item}</li>
+					{/each}
+				</ul>
+			</dd>
 		</div>
-	</FadeIn>
-
-	<FadeIn delay={60}>
-		<div class="flex flex-col gap-1 sm:flex-row sm:gap-3">
-			<span class="text-sm font-medium text-[var(--color-text)] w-24 flex-shrink-0">Frontend</span>
-			<div class="flex flex-wrap gap-1.5">
-				{#each skills.frontend as item (item)}
-					<span class="skill-tag">
-						{item}
-					</span>
-				{/each}
-			</div>
-		</div>
-	</FadeIn>
-
-	<FadeIn delay={120}>
-		<div class="flex flex-col gap-1 sm:flex-row sm:gap-3">
-			<span class="text-sm font-medium text-[var(--color-text)] w-24 flex-shrink-0">Backend</span>
-			<div class="flex flex-wrap gap-1.5">
-				{#each skills.backend as item (item)}
-					<span class="skill-tag">
-						{item}
-					</span>
-				{/each}
-			</div>
-		</div>
-	</FadeIn>
-
-	<FadeIn delay={180}>
-		<div class="flex flex-col gap-1 sm:flex-row sm:gap-3">
-			<span class="text-sm font-medium text-[var(--color-text)] w-24 flex-shrink-0">DevOps</span>
-			<div class="flex flex-wrap gap-1.5">
-				{#each skills.devops as item (item)}
-					<span class="skill-tag">
-						{item}
-					</span>
-				{/each}
-			</div>
-		</div>
-	</FadeIn>
-</div>
+	{/each}
+</dl>
 
 <style>
 	.skill-tag {
-		display: inline-flex;
-		align-items: center;
-		padding: 0.25rem 0.75rem;
+		padding: 0.1875rem 0.6875rem;
 		font-size: 0.8125rem;
 		color: var(--color-text-muted);
-		background-color: transparent;
 		border: 1px solid var(--color-border);
 		border-radius: 9999px;
-		transition: all var(--duration-normal) var(--ease-out);
-		cursor: default;
-	}
-
-	.skill-tag:hover {
-		border-color: var(--color-primary);
-		color: var(--color-text);
-		background-color: var(--color-bg-elevated);
 	}
 </style>

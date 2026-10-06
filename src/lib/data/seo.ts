@@ -3,7 +3,7 @@ export const siteConfig = {
 	description:
 		'Software Engineer at TikTok with expertise in full-stack development, distributed systems, and data privacy. UIUC MCS graduate.',
 	url: 'https://willychang21.github.io',
-	ogImage: '/favicon.png',
+	ogImage: 'https://willychang21.github.io/avatar.jpg',
 	keywords: [
 		'Software Engineer',
 		'Full Stack Developer',
