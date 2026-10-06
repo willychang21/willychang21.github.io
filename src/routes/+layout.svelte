@@ -1,6 +1,6 @@
 <script lang="ts">
 	import '../app.css';
-	import { siteConfig } from '$lib/data/seo';
+	import { siteConfig } from '#lib/data/seo.ts';
 
 	let { children } = $props();
 </script>

@@ -1,4 +1,4 @@
-import { siteConfig } from '$lib/data/seo';
+import { siteConfig } from '#lib/data/seo.ts';
 
 export const prerender = true;
 
