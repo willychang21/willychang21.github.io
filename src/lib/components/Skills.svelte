@@ -14,7 +14,7 @@
 <dl class="space-y-4">
 	{#each groups as [label, items] (label)}
 		<div class="flex flex-col gap-1.5 sm:flex-row sm:gap-3">
-			<dt class="w-24 flex-shrink-0 pt-0.5 text-sm font-medium">{label}</dt>
+			<dt class="w-24 flex-shrink-0 pt-0.5 font-[Poppins] text-sm font-medium">{label}</dt>
 			<dd>
 				<ul class="flex flex-wrap gap-1.5">
 					{#each items as item (item)}

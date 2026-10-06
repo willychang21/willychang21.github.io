@@ -5,8 +5,8 @@
 	let { project }: { project: Project } = $props();
 </script>
 
-<article class="entry">
-	<h3 class="font-medium">
+<article class="entry sm:pl-15">
+	<h3>
 		{#if project.url}
 			<a href={project.url} target="_blank" rel="noopener noreferrer" class="entry-link">
 				{project.name}<ExternalIcon />

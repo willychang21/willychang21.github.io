@@ -8,6 +8,7 @@
 	import Skills from '#lib/components/Skills.svelte';
 	import Projects from '#lib/components/Projects.svelte';
 	import SectionNav from '#lib/components/SectionNav.svelte';
+	import Footer from '#lib/components/Footer.svelte';
 
 	const sections = [
 		{ id: 'experience', title: 'Experience' },
@@ -55,4 +56,6 @@
 			<Projects {project} />
 		{/each}
 	</Section>
+
+	<Footer {resume} />
 </main>

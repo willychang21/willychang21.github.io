@@ -1,6 +1,5 @@
 <script lang="ts">
 	import type { Snippet } from 'svelte';
-	import FadeIn from './FadeIn.svelte';
 
 	interface Props {
 		id: string;
@@ -12,13 +11,11 @@
 </script>
 
 <section {id} aria-labelledby="{id}-title" class="mt-16 scroll-mt-16">
-	<FadeIn>
-		<div class="section-header">
-			<h2 id="{id}-title" class="section-title">{title}</h2>
-			<div class="section-line" aria-hidden="true"></div>
-		</div>
-		{@render children()}
-	</FadeIn>
+	<div class="section-header">
+		<h2 id="{id}-title" class="section-title">{title}</h2>
+		<div class="section-line" aria-hidden="true"></div>
+	</div>
+	{@render children()}
 </section>
 
 <style>
@@ -41,6 +38,6 @@
 	.section-line {
 		flex: 1;
 		height: 1px;
-		background: linear-gradient(to right, var(--color-border), transparent);
+		background: var(--color-border);
 	}
 </style>

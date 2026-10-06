@@ -25,6 +25,8 @@ export interface Project {
 
 export interface ResumeData {
 	name: string;
+	role: string;
+	headline: string;
 	phone: string;
 	email: string;
 	github: string;
@@ -42,6 +44,9 @@ export interface ResumeData {
 
 export const resume: ResumeData = {
 	name: 'Willy Chang',
+	role: 'Software Engineer at TikTok',
+	headline:
+		'Full-stack engineer working across distributed systems and data privacy. Master of Computer Science, University of Illinois Urbana-Champaign.',
 	phone: '206-889-0757',
 	email: 'willysde2025@gmail.com',
 	github: 'willychang21',
@@ -57,7 +62,7 @@ export const resume: ResumeData = {
 			highlights: [
 				'Developing internal platforms and workflows to support global data privacy requests, enhancing compliance and user trust.',
 				'Launched new data intake channels to address region-specific regulatory requirements, boosting compliance coverage across multiple jurisdictions.',
-				'Released change-region automation that reduced manual operations workload, auto-replying to 65% of requests while ops manually processed only 35% of remaining requests.'
+				'Released change-region automation that reduced manual operations workload, auto-replying to 65% of requests and leaving only 35% for ops to process manually.'
 			]
 		},
 		{
@@ -81,7 +86,7 @@ export const resume: ResumeData = {
 			period: 'Mar. 2024 – Dec. 2024',
 			url: 'https://attendance-uiuc-beta-v1.netlify.app/',
 			highlights: [
-				'Building Here @ UIUC under Professor Abdussalam Alawini, serving 5,000+ students across 90+ instructors.',
+				'Built Here @ UIUC under Professor Abdussalam Alawini, serving 5,000+ students across 90+ instructors.',
 				'Decomposed existing Express.js backend into an MVC architecture, streamlining routing with distinct routers, controllers, and services, improving modularity, unit testing, and maintainability.'
 			]
 		},
@@ -118,7 +123,7 @@ export const resume: ResumeData = {
 	skills: {
 		languages: ['Golang', 'TypeScript', 'JavaScript', 'Python', 'Swift', 'C#'],
 		frontend: ['React', 'Remix', 'Modern.js', 'Svelte', 'Zustand', 'Tanstack Query', 'Tailwind', 'Jest'],
-		backend: ['Kitex (RPC)', 'Hertz (HTTP)', 'NestJS', 'Express.js', 'MongoDB', 'PostgreSQL', 'Redis', 'Firebase', 'AWS', 'BytePlus'],
+		backend: ['Kitex (Go RPC)', 'Hertz (Go HTTP)', 'NestJS', 'Express.js', 'MongoDB', 'PostgreSQL', 'Redis', 'Firebase', 'AWS', 'BytePlus (cloud)'],
 		devops: ['Docker', 'Kubernetes', 'GitHub Actions', 'Linux']
 	},
 

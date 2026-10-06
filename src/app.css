@@ -33,6 +33,7 @@
     --color-bg-elevated: #1e1e1c;
     --color-border: #2a2a28;
     --color-border-subtle: #222220;
+    --color-logo-bg: #e8e6de; /* dimmed plate so logos don't glare in the dark */
   }
 }
 
@@ -42,40 +43,42 @@
   }
 }
 
-body {
-  font-family: "Source Serif 4", Georgia, "Times New Roman", serif;
-  background-color: var(--color-bg);
-  color: var(--color-text);
-  line-height: 1.7;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
+@layer base {
+  body {
+    font-family: "Source Serif 4", Georgia, "Times New Roman", serif;
+    background-color: var(--color-bg);
+    color: var(--color-text);
+    line-height: 1.7;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
 
-h1,
-h2,
-h3 {
-  font-family: "Poppins", system-ui, sans-serif;
-  line-height: 1.3;
-  letter-spacing: -0.02em;
-  font-weight: 500;
-  text-wrap: balance;
-}
+  h1,
+  h2,
+  h3 {
+    font-family: "Poppins", system-ui, sans-serif;
+    line-height: 1.3;
+    letter-spacing: -0.02em;
+    font-weight: 500;
+    text-wrap: balance;
+  }
 
-a {
-  color: inherit;
-  text-decoration: none;
-  transition: color var(--duration-fast) var(--ease-out);
-}
+  a {
+    color: inherit;
+    text-decoration: none;
+    transition: color var(--duration-fast) var(--ease-out);
+  }
 
-:focus-visible {
-  outline: 2px solid var(--color-accent);
-  outline-offset: 3px;
-  border-radius: 2px;
-}
+  :focus-visible {
+    outline: 2px solid var(--color-accent);
+    outline-offset: 3px;
+    border-radius: 2px;
+  }
 
-::selection {
-  background-color: var(--color-accent);
-  color: var(--color-on-accent);
+  ::selection {
+    background-color: var(--color-accent);
+    color: var(--color-on-accent);
+  }
 }
 
 /* Shared résumé entry pieces (Experience, Education, Projects) */
@@ -83,13 +86,30 @@ a {
   margin-top: 2.25rem;
 }
 
-/* Padding grows the hit area to 44px; the negative margin keeps the text box in place. */
+/* Phone: name, role, date stacked. Wider: date sits right of the name. */
+.entry-head {
+  display: grid;
+  grid-template-areas: "title" "role" "date";
+  row-gap: 0.25rem;
+}
+
+.entry-head > h3 { grid-area: title; }
+.entry-head > p { grid-area: role; }
+.entry-head > .meta-badge { grid-area: date; }
+
+@media (min-width: 40rem) {
+  .entry-head {
+    grid-template-columns: 1fr auto;
+    grid-template-areas: "title date" "role role";
+    column-gap: 1rem;
+    align-items: baseline;
+  }
+}
+
+/* Inline so a wrapped title keeps its icon on the last line; vertical padding on an
+   inline box grows the 44px hit area without moving the text. */
 .entry-link {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.375rem;
   padding-block: 0.75rem;
-  margin-block: -0.75rem;
 }
 
 .entry-link:hover {
@@ -97,6 +117,9 @@ a {
 }
 
 .external-icon {
+  display: inline-block;
+  vertical-align: -0.05em;
+  margin-left: 0.375rem;
   height: 0.8125rem;
   width: 0.8125rem;
   color: var(--color-text-subtle);
@@ -123,6 +146,7 @@ a {
   border-radius: 0.75rem;
   border: 1px solid var(--color-border);
   overflow: hidden;
+  padding: 4px;
   background-color: var(--color-logo-bg);
 }
 
