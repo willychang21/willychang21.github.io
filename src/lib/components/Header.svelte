@@ -41,7 +41,7 @@
 		border: 3px solid var(--color-border);
 	}
 
-	/* 44px tall hit area; the visible underline sits under the label only. */
+	/* 44px tall hit area; the hover underline sits under the label only. */
 	.nav-link {
 		display: inline-flex;
 		align-items: center;
@@ -51,8 +51,9 @@
 	}
 
 	.nav-label {
-		background: linear-gradient(var(--color-accent), var(--color-accent)) no-repeat 0 100% / 0 1px;
-		transition: background-size var(--duration-normal) var(--ease-out);
+		text-decoration: underline 1px transparent;
+		text-underline-offset: 4px;
+		transition: text-decoration-color var(--duration-normal) var(--ease-out);
 	}
 
 	.nav-link:hover {
@@ -60,7 +61,7 @@
 	}
 
 	.nav-link:hover .nav-label {
-		background-size: 100% 1px;
+		text-decoration-color: var(--color-accent);
 	}
 
 	.nav-icon {
