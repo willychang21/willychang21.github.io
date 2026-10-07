@@ -77,7 +77,7 @@
 		min-width: 2.75rem;
 		padding-inline: 0.25rem;
 		font-family: 'Poppins', system-ui, sans-serif;
-		font-size: 0.75rem;
+		font-size: 0.8125rem;
 		white-space: nowrap;
 		color: var(--color-text-muted);
 		box-shadow: inset 0 -2px 0 transparent;

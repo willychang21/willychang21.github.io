@@ -16,7 +16,7 @@
 			<p class="text-[0.9375rem] text-[var(--color-text-muted)]">
 				<span class="font-semibold text-[var(--color-text)]">{exp.title}</span>
 				<span class="text-[var(--color-text-subtle)]" aria-hidden="true">·</span>
-				{exp.location}
+				<span class="whitespace-nowrap">{exp.location}</span>
 			</p>
 		</div>
 

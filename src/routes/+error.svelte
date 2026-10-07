@@ -7,7 +7,7 @@
 	<meta name="robots" content="noindex" />
 </svelte:head>
 
-<main class="mx-auto max-w-2xl px-5 py-16 sm:px-8 md:py-20">
+<main class="page mx-auto max-w-2xl px-5 py-16 sm:px-8 md:py-20">
 	<a href="/" class="home-lockup">
 		<img src="/avatar.jpg" alt="" width="40" height="40" />
 		<span>Willy Chang</span>
@@ -44,5 +44,16 @@
 		height: 2.5rem;
 		border-radius: 9999px;
 		object-fit: cover;
+	}
+
+	@media (min-width: 64rem) {
+		.home-lockup {
+			position: relative;
+		}
+
+		.home-lockup img {
+			position: absolute;
+			right: calc(100% + 2.25rem);
+		}
 	}
 </style>

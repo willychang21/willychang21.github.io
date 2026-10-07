@@ -8,14 +8,13 @@
 	import Skills from '#lib/components/Skills.svelte';
 	import Projects from '#lib/components/Projects.svelte';
 	import SectionNav from '#lib/components/SectionNav.svelte';
-	import Contact from '#lib/components/Contact.svelte';
+	import ContactLinks from '#lib/components/ContactLinks.svelte';
 
 	const sections = [
 		{ id: 'experience', title: 'Experience' },
 		{ id: 'projects', title: 'Projects' },
 		{ id: 'education', title: 'Education' },
-		{ id: 'skills', title: 'Skills' },
-		{ id: 'contact', title: 'Contact' }
+		{ id: 'skills', title: 'Skills' }
 	];
 </script>
 
@@ -61,6 +60,6 @@
 	</Section>
 
 	<Section id="contact" title="Contact">
-		<Contact {resume} />
+		<ContactLinks {resume} label="Contact and print, end of page" />
 	</Section>
 </main>
