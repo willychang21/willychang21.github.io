@@ -1,5 +1,5 @@
 <script lang="ts">
-	let { sections }: { sections: { id: string; title: string }[] } = $props();
+	let { sections }: { sections: { id: string; title: string; wideOnly?: boolean }[] } = $props();
 
 	let current = $state('');
 	// After a nav click, trust the click until the reader scrolls by hand: a short final
@@ -7,7 +7,10 @@
 	let pinned = false;
 
 	$effect(() => {
-		const els = sections.map(({ id }) => document.getElementById(id)).filter((el) => el !== null);
+		// Track every page section, not just the listed ones, so an unlisted closing section
+		// (Contact) clears the highlight instead of leaving the previous tab marked.
+		const els = [...document.querySelectorAll<HTMLElement>('main section[id]')];
+		const listed = new Set(sections.map(({ id }) => id));
 
 		// Current = last section whose top has crossed the reading line (30% down), else the first
 		// section; at page bottom the last section wins, since a short final section never reaches
@@ -20,7 +23,14 @@
 				(els.at(-1)?.getBoundingClientRect().top ?? Infinity) < innerHeight - 120;
 			const readingLine = innerHeight * 0.3;
 			const passed = els.filter((el) => el.getBoundingClientRect().top <= readingLine);
-			current = (atBottom ? els.at(-1) : (passed.at(-1) ?? els[0]))?.id ?? '';
+			let id = (atBottom ? els.at(-1) : (passed.at(-1) ?? els[0]))?.id ?? '';
+			// A tab hidden at this width (Contact on phones) hands over to the nearest visible one.
+			const visible = sections.filter((s) => !s.wideOnly || matchMedia('(min-width: 40rem)').matches);
+			if (!visible.some((s) => s.id === id)) {
+				const i = sections.findIndex((s) => s.id === id);
+				id = i < 0 ? '' : ([...sections.slice(0, i)].reverse().find((s) => visible.includes(s))?.id ?? '');
+			}
+			current = listed.has(id) ? id : '';
 		};
 
 		const unpin = () => (pinned = false);
@@ -38,8 +48,8 @@
 
 <nav aria-label="Sections" class="section-nav">
 	<ul class="flex justify-between overflow-x-auto sm:justify-start sm:gap-x-3">
-		{#each sections as { id, title } (id)}
-			<li>
+		{#each sections as { id, title, wideOnly } (id)}
+			<li class:wide-only={wideOnly}>
 				<a
 					href="#{id}"
 					class="section-nav-link"
@@ -63,6 +73,16 @@
 		border-bottom: 1px solid var(--color-border);
 	}
 
+	.wide-only {
+		display: none;
+	}
+
+	@media (min-width: 40rem) {
+		.wide-only {
+			display: list-item;
+		}
+	}
+
 	@media print {
 		.section-nav {
 			display: none;
@@ -77,7 +97,7 @@
 		min-width: 2.75rem;
 		padding-inline: 0.25rem;
 		font-family: 'Poppins', system-ui, sans-serif;
-		font-size: 0.75rem;
+		font-size: 0.8125rem;
 		white-space: nowrap;
 		color: var(--color-text-muted);
 		box-shadow: inset 0 -2px 0 transparent;

@@ -16,8 +16,7 @@
 <article class="entry sm:pl-15">
 	<h3>
 		{#if project.url}
-			<a href={project.url} target="_blank"
-			aria-describedby="new-tab-note" rel="noopener noreferrer" class="entry-link text-link">
+			<a href={project.url} class="entry-link text-link">
 				{project.name}<ExternalIcon />
 			</a>
 		{:else}
@@ -25,9 +24,7 @@
 		{/if}
 	</h3>
 	<p class="mt-0.5 text-[0.8125rem] text-[var(--color-text-muted)]">
-		{project.tech}{#if project.url}<span class="text-[var(--color-text-subtle)]"
-				>{' · '}{destination}</span
-			>{/if}
+		{project.tech}{#if destination}<span class="text-[var(--color-text-subtle)]">{' · '}{destination}</span>{/if}
 	</p>
 
 	<ul class="mt-3 space-y-2">

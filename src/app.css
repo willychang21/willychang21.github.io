@@ -108,14 +108,20 @@
   .entry + .entry {
     margin-top: 2.25rem;
   }
+}
 
-  /* Desktop: step the reading sizes up so the column doesn't read as fine print. */
-  .highlight-item {
-    font-size: 1rem;
+.entry-location {
+  white-space: nowrap;
+}
+
+/* Phones: the location gets its own line, so no line starts or ends on a separator. */
+@media (max-width: 39.99rem) {
+  .entry-location {
+    display: block;
   }
 
-  .meta-badge {
-    font-size: 0.875rem;
+  .entry-location > [aria-hidden] {
+    display: none;
   }
 }
 
@@ -241,6 +247,18 @@
   background-color: var(--color-primary);
 }
 
+/* Wider screens: step the reading sizes up so the column doesn't read as fine print.
+   Placed after the base .highlight-item / .meta-badge rules so it wins on source order. */
+@media (min-width: 40rem) {
+  .highlight-item {
+    font-size: 1rem;
+  }
+
+  .meta-badge {
+    font-size: 0.875rem;
+  }
+}
+
 /* Wide screens: a hanging margin. The reading column shifts right and its labels
    (section titles, dates, skill groups, contact labels) hang in the gutter, right-aligned,
    so the page reads like a printed CV. Dated sections get a chronology spine. */
@@ -277,9 +295,6 @@
     grid-template-areas: "title" "role";
   }
 
-  .contact-lines > div {
-    grid-template-columns: 1fr !important;
-  }
 
   .timeline::before {
     content: "";

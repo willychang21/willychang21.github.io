@@ -1,3 +1,4 @@
+<!-- Marks links that leave this site. -->
 <svg class="external-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
 	<path
 		stroke-linecap="round"

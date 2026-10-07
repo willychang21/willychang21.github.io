@@ -8,14 +8,15 @@
 	import Skills from '#lib/components/Skills.svelte';
 	import Projects from '#lib/components/Projects.svelte';
 	import SectionNav from '#lib/components/SectionNav.svelte';
-	import Contact from '#lib/components/Contact.svelte';
+	import ClosingContact from '#lib/components/ClosingContact.svelte';
 
 	const sections = [
 		{ id: 'experience', title: 'Experience' },
 		{ id: 'projects', title: 'Projects' },
 		{ id: 'education', title: 'Education' },
 		{ id: 'skills', title: 'Skills' },
-		{ id: 'contact', title: 'Contact' }
+		// Phones list four tabs (contact is in the header); wider screens fit all five.
+		{ id: 'contact', title: 'Contact', wideOnly: true }
 	];
 </script>
 
@@ -61,6 +62,6 @@
 	</Section>
 
 	<Section id="contact" title="Contact">
-		<Contact {resume} />
+		<ClosingContact {resume} />
 	</Section>
 </main>

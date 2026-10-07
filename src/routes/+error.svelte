@@ -1,5 +1,6 @@
 <script lang="ts">
 	import { page } from '$app/state';
+	import { resume } from '#lib/data/resume.ts';
 </script>
 
 <svelte:head>
@@ -7,7 +8,7 @@
 	<meta name="robots" content="noindex" />
 </svelte:head>
 
-<main class="mx-auto max-w-2xl px-5 py-16 sm:px-8 md:py-20">
+<main class="page mx-auto max-w-2xl px-5 py-16 sm:px-8 md:py-20">
 	<a href="/" class="home-lockup">
 		<img src="/avatar.jpg" alt="" width="40" height="40" />
 		<span>Willy Chang</span>
@@ -22,10 +23,12 @@
 			? 'The link may be out of date. Everything on this site lives on one page.'
 			: 'Try reloading. If it keeps happening, the home page still works.'}
 	</p>
-	<p class="mt-8">
-		<a href="/" class="entry-link text-link">
-			Back to the résumé
-		</a>
+	<p class="mt-8 flex flex-wrap gap-x-6">
+		<a href="/" class="entry-link text-link">Back to the résumé</a>
+		<a href="mailto:{resume.email}" class="entry-link text-link">Email {resume.email}</a>
+		{#if page.status !== 404}
+			<button type="button" class="entry-link text-link cursor-pointer" onclick={() => location.reload()}>Reload this page</button>
+		{/if}
 	</p>
 </main>
 
@@ -45,4 +48,5 @@
 		border-radius: 9999px;
 		object-fit: cover;
 	}
+
 </style>
