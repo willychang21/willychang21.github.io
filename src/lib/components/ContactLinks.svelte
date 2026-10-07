@@ -5,7 +5,7 @@
 	let { resume, label }: { resume: ResumeData; label: string } = $props();
 </script>
 
-<nav aria-label={label} class="flex flex-wrap items-center gap-x-4 text-sm sm:gap-x-5 sm:text-[0.9375rem]">
+<nav aria-label={label} class="flex flex-wrap items-center gap-x-3 text-sm sm:gap-x-5">
 	<span class="inline-flex items-center">
 		<a href="mailto:{resume.email}" class="nav-link">
 			<svg class="nav-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
@@ -27,7 +27,7 @@
 		<svg class="nav-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
 			<path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M7 9V4h10v5M7 17H5a1 1 0 01-1-1v-6a1 1 0 011-1h14a1 1 0 011 1v6a1 1 0 01-1 1h-2M7 14h10v6H7z" />
 		</svg>
-		<span class="nav-label">Print / PDF</span>
+		<span class="nav-label">Print / PDF…</span>
 	</button>
 </nav>
 
@@ -37,6 +37,7 @@
 		display: inline-flex;
 		align-items: center;
 		gap: 0.5rem;
+		font-family: 'Poppins', system-ui, sans-serif;
 		min-height: 2.75rem;
 		color: var(--color-text-muted);
 	}
