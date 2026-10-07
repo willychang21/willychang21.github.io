@@ -114,14 +114,23 @@
   white-space: nowrap;
 }
 
-/* Phones: the location gets its own line, so no line starts or ends on a separator. */
+/* Phones: date and location share one meta line under the role (company, role, meta),
+   so tenure sits right under the job. Wider: location stays on the role line. */
+.meta-location {
+  display: none;
+}
+
 @media (max-width: 39.99rem) {
   .entry-location {
-    display: block;
+    display: none;
   }
 
-  .entry-location > [aria-hidden] {
-    display: none;
+  .meta-location {
+    display: inline;
+  }
+
+  .entry-head > .meta-badge {
+    white-space: normal;
   }
 }
 
@@ -218,8 +227,8 @@
   background-color: var(--color-bg-elevated);
   font-family: "Poppins", system-ui, sans-serif;
   font-size: 1.125rem;
-  font-weight: 600;
-  color: var(--color-accent);
+  font-weight: 500;
+  color: var(--color-text-subtle);
 }
 
 .highlight-item {
@@ -259,6 +268,40 @@
   }
 }
 
+/* Narrow screens keep the chronology: a rule down the left of dated sections with a
+   dot per entry. Wide screens move it into the gutter (below). */
+.entry {
+  position: relative;
+}
+
+@media (max-width: 63.99rem) {
+  .timeline {
+    padding-left: 1.25rem;
+  }
+
+  .timeline::before {
+    content: "";
+    position: absolute;
+    top: 0.5rem;
+    bottom: 0.5rem;
+    left: 3px;
+    width: 1px;
+    background: var(--color-border);
+  }
+
+  .timeline .entry::before {
+    content: "";
+    position: absolute;
+    top: 0.5rem;
+    left: -1.25rem;
+    width: 7px;
+    height: 7px;
+    border-radius: 9999px;
+    background: var(--color-primary);
+    box-shadow: 0 0 0 3px var(--color-bg);
+  }
+}
+
 /* Wide screens: a hanging margin. The reading column shifts right and its labels
    (section titles, dates, skill groups, contact labels) hang in the gutter, right-aligned,
    so the page reads like a printed CV. Dated sections get a chronology spine. */
@@ -277,10 +320,6 @@
     padding: 0;
     text-align: right;
     white-space: normal;
-  }
-
-  .entry {
-    position: relative;
   }
 
   /* Dates line up with the entry title. The grid container isn't positioned, so the

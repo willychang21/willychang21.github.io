@@ -12,7 +12,9 @@
 	<div class="min-w-0 flex-1">
 		<div class="entry-head">
 			<h3>{exp.company}</h3>
-			<span class="meta-badge hang">{exp.period}</span>
+			<span class="meta-badge hang"
+				>{exp.period}<span class="meta-location">{' · '}{exp.location}</span></span
+			>
 			<p class="text-[0.9375rem] text-[var(--color-text-muted)]">
 				<span class="font-semibold text-[var(--color-text)]">{exp.title}</span>
 				<span class="entry-location"
