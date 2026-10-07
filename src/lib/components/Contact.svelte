@@ -53,6 +53,9 @@
 	}
 
 	.text-link {
+		display: inline-flex;
+		align-items: center;
+		min-height: 2.75rem;
 		color: var(--color-text);
 		overflow-wrap: anywhere;
 	}
