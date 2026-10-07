@@ -4,7 +4,6 @@ export interface Experience {
 	location: string;
 	period: string;
 	highlights: string[];
-	url?: string;
 	logo?: string;
 }
 
@@ -25,6 +24,8 @@ export interface Project {
 
 export interface ResumeData {
 	name: string;
+	role: string;
+	headline: string;
 	phone: string;
 	email: string;
 	github: string;
@@ -42,6 +43,9 @@ export interface ResumeData {
 
 export const resume: ResumeData = {
 	name: 'Willy Chang',
+	role: 'Software Engineer at TikTok',
+	headline:
+		'Builds internal platforms that handle global data-privacy requests. Before that, full-stack products for music co-creation, classroom attendance and job recruiting.',
 	phone: '206-889-0757',
 	email: 'willysde2025@gmail.com',
 	github: 'willychang21',
@@ -55,20 +59,18 @@ export const resume: ResumeData = {
 			location: 'San Jose, CA, USA',
 			period: 'Apr. 2025 – Present',
 			highlights: [
+				'Released change-region automation that reduced manual operations workload, auto-replying to **65% of requests** and leaving only 35% for ops to process manually.',
 				'Developing internal platforms and workflows to support global data privacy requests, enhancing compliance and user trust.',
-				'Launched new data intake channels to address region-specific regulatory requirements, boosting compliance coverage across multiple jurisdictions.',
-				'Released change-region automation that reduced manual operations workload, auto-replying to 65% of requests while ops manually processed only 35% of remaining requests.'
+				'Launched new data intake channels to address region-specific regulatory requirements, boosting compliance coverage across multiple jurisdictions.'
 			]
 		},
 		{
 			company: 'Kocree',
-			logo: '/logos/kocree.png',
 			title: 'Software Engineer Intern',
 			location: 'Champaign, IL, USA',
 			period: 'May 2024 – Aug. 2024',
-			url: 'https://muosaic-demo.kocree.net/home',
 			highlights: [
-				'Developed Muosaic, a music co-creation platform, using Svelte, Nest.js, PostgreSQL, and NooBaa for S3-compatible storage.',
+				'Developed [Muosaic](https://muosaic-demo.kocree.net/home), a music co-creation platform, using Svelte, Nest.js, PostgreSQL, and NooBaa for S3-compatible storage.',
 				'Optimized authentication by integrating OAuth 2.0 authentication via Stytch, streamlining the sign-up/sign-in process.',
 				'Overhauled data model to enhance privacy and access control for assets, implementing user-based permissions, task-based teams, and dynamic accessibility rules.'
 			]
@@ -79,15 +81,13 @@ export const resume: ResumeData = {
 			title: 'Software Engineer, part-time',
 			location: 'Champaign, IL, USA',
 			period: 'Mar. 2024 – Dec. 2024',
-			url: 'https://attendance-uiuc-beta-v1.netlify.app/',
 			highlights: [
-				'Building Here @ UIUC under Professor Abdussalam Alawini, serving 5,000+ students across 90+ instructors.',
+				'Built [Here @ UIUC](https://attendance-uiuc-beta-v1.netlify.app/) under Professor Abdussalam Alawini, serving **5,000+ students** across **90+ instructors**.',
 				'Decomposed existing Express.js backend into an MVC architecture, streamlining routing with distinct routers, controllers, and services, improving modularity, unit testing, and maintainability.'
 			]
 		},
 		{
 			company: 'Showu Tech',
-			logo: '/logos/showutech.png',
 			title: 'Software Engineer',
 			location: 'Taipei, Taiwan',
 			period: 'Jul. 2022 – Aug. 2022',
@@ -117,8 +117,8 @@ export const resume: ResumeData = {
 
 	skills: {
 		languages: ['Golang', 'TypeScript', 'JavaScript', 'Python', 'Swift', 'C#'],
-		frontend: ['React', 'Remix', 'Modern.js', 'Svelte', 'Zustand', 'Tanstack Query', 'Tailwind', 'Jest'],
-		backend: ['Kitex (RPC)', 'Hertz (HTTP)', 'NestJS', 'Express.js', 'MongoDB', 'PostgreSQL', 'Redis', 'Firebase', 'AWS', 'BytePlus'],
+		frontend: ['React', 'Remix', 'Modern.js (React framework)', 'Svelte', 'Zustand (state management)', 'TanStack Query', 'Tailwind', 'Jest'],
+		backend: ['Kitex (Go RPC)', 'Hertz (Go HTTP)', 'NestJS', 'Express.js', 'MongoDB', 'PostgreSQL', 'Redis', 'Firebase', 'AWS', 'BytePlus (cloud)'],
 		devops: ['Docker', 'Kubernetes', 'GitHub Actions', 'Linux']
 	},
 
@@ -128,7 +128,7 @@ export const resume: ResumeData = {
 			url: 'https://drive.google.com/file/d/10u8F0rvaDctXtf7ZJZaqDRalzZoqudZJ/view',
 			tech: 'AWS Lambda, MemoryDB, DynamoDB',
 			highlights: [
-				'Developed a serverless orchestrator with a hybrid in-memory data store and critical node selection algorithm, reducing costs by up to 25% while maintaining service level objectives.'
+				'Developed a serverless orchestrator with a hybrid in-memory data store and critical node selection algorithm, reducing costs by **up to 25%** while maintaining service level objectives.'
 			]
 		},
 		{

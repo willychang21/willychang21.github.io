@@ -23,7 +23,7 @@
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --color-primary: #e8b89a;
+    --color-primary: #b98f74; /* decorative, dimmer than the interactive accent */
     --color-accent: #e8b89a;
     --color-on-accent: #141413;
     --color-text: #f5f4f0;
@@ -33,6 +33,7 @@
     --color-bg-elevated: #1e1e1c;
     --color-border: #2a2a28;
     --color-border-subtle: #222220;
+    --color-logo-bg: #e8e6de; /* dimmed plate so logos don't glare in the dark */
   }
 }
 
@@ -42,58 +43,140 @@
   }
 }
 
-body {
-  font-family: "Source Serif 4", Georgia, "Times New Roman", serif;
-  background-color: var(--color-bg);
-  color: var(--color-text);
-  line-height: 1.7;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+@layer base {
+  body {
+    font-family: "Source Serif 4", Georgia, "Times New Roman", serif;
+    background-color: var(--color-bg);
+    color: var(--color-text);
+    line-height: 1.7;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  h1,
+  h2,
+  h3 {
+    font-family: "Poppins", system-ui, sans-serif;
+    line-height: 1.3;
+    letter-spacing: -0.02em;
+    font-weight: 500;
+    text-wrap: balance;
+  }
+
+  a {
+    color: inherit;
+    text-decoration: none;
+    transition: color var(--duration-fast) var(--ease-out);
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--color-accent);
+    outline-offset: 3px;
+    border-radius: 2px;
+  }
+
+  ::selection {
+    background-color: var(--color-accent);
+    color: var(--color-on-accent);
+  }
 }
 
-h1,
-h2,
-h3 {
+/* Visible only when focused by keyboard. */
+.skip-link {
+  position: absolute;
+  left: 1rem;
+  top: -4rem;
+  z-index: 20;
+  padding: 0.75rem 1rem;
+  background: var(--color-bg-elevated);
+  border: 1px solid var(--color-border);
+  border-radius: 0.5rem;
   font-family: "Poppins", system-ui, sans-serif;
-  line-height: 1.25;
-  letter-spacing: -0.02em;
-  font-weight: 500;
-  text-wrap: balance;
+  font-size: 0.875rem;
 }
 
-a {
-  color: inherit;
-  text-decoration: none;
-  transition: color var(--duration-fast) var(--ease-out);
-}
-
-:focus-visible {
-  outline: 2px solid var(--color-accent);
-  outline-offset: 3px;
-  border-radius: 2px;
-}
-
-::selection {
-  background-color: var(--color-accent);
-  color: var(--color-on-accent);
+.skip-link:focus {
+  top: 1rem;
 }
 
 /* Shared résumé entry pieces (Experience, Education, Projects) */
 .entry + .entry {
-  margin-top: 2.25rem;
+  margin-top: 2.75rem;
 }
 
+@media (min-width: 40rem) {
+  .entry + .entry {
+    margin-top: 2.25rem;
+  }
+
+  /* Desktop: step the reading sizes up so the column doesn't read as fine print. */
+  .highlight-item {
+    font-size: 1rem;
+  }
+
+  .meta-badge {
+    font-size: 0.875rem;
+  }
+}
+
+.entry-head > h3 {
+  font-size: 1.125rem;
+  font-weight: 600;
+}
+
+/* Phone: name, role, date stacked. Wider: date sits right of the name. */
+.entry-head {
+  display: grid;
+  grid-template-areas: "title" "role" "date";
+  row-gap: 0.25rem;
+}
+
+.entry-head > h3 { grid-area: title; }
+.entry-head > p { grid-area: role; }
+.entry-head > .meta-badge { grid-area: date; }
+
+@media (min-width: 40rem) {
+  .entry-head {
+    grid-template-columns: 1fr auto;
+    grid-template-areas: "title date" "role role";
+    column-gap: 1rem;
+    align-items: baseline;
+  }
+}
+
+/* Inline so a wrapped title keeps its icon on the last line; vertical padding on an
+   inline box grows the 44px hit area without moving the text. */
 .entry-link {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.375rem;
+  padding-block: 0.75rem;
+}
+
+/* Keep the focus ring on the text, not the padded hit area. */
+.entry-link:focus-visible {
+  padding-block: 0;
 }
 
 .entry-link:hover {
   color: var(--color-accent);
 }
 
+/* The one in-text link style: bronze underline, accent on hover. */
+.text-link {
+  text-decoration: underline 1px var(--color-primary);
+  text-underline-offset: 4px;
+  transition:
+    color var(--duration-fast) var(--ease-out),
+    text-decoration-color var(--duration-fast) var(--ease-out);
+}
+
+.text-link:hover {
+  color: var(--color-accent);
+  text-decoration-color: var(--color-accent);
+}
+
 .external-icon {
+  display: inline-block;
+  vertical-align: -0.05em;
+  margin-left: 0.375rem;
   height: 0.8125rem;
   width: 0.8125rem;
   color: var(--color-text-subtle);
@@ -105,8 +188,8 @@ a {
 }
 
 .meta-badge {
-  font-size: 0.75rem;
-  color: var(--color-text-subtle);
+  font-size: 0.8125rem;
+  color: var(--color-text-muted);
   font-variant-numeric: tabular-nums;
   white-space: nowrap;
 }
@@ -120,22 +203,31 @@ a {
   border-radius: 0.75rem;
   border: 1px solid var(--color-border);
   overflow: hidden;
+  padding: 4px;
   background-color: var(--color-logo-bg);
 }
 
+/* No usable logo: a deliberate monogram, not an imitation of a missing image. */
 .logo-plate--empty {
   background-color: var(--color-bg-elevated);
-  color: var(--color-text-subtle);
-  font-size: 0.875rem;
-  font-weight: 500;
+  font-family: "Poppins", system-ui, sans-serif;
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: var(--color-accent);
 }
 
 .highlight-item {
   font-size: 0.9375rem;
-  color: var(--color-text-muted);
+  color: var(--color-text);
   line-height: 1.65;
   padding-left: 1.25rem;
   position: relative;
+}
+
+.highlight-item strong {
+  font-weight: 600;
+  color: var(--color-text);
+  font-variant-numeric: tabular-nums;
 }
 
 .highlight-item::before {
@@ -147,4 +239,102 @@ a {
   width: 5px;
   border-radius: 9999px;
   background-color: var(--color-primary);
+}
+
+/* Wide screens: a hanging margin. The reading column shifts right and its labels
+   (section titles, dates, skill groups, contact labels) hang in the gutter, right-aligned,
+   so the page reads like a printed CV. Dated sections get a chronology spine. */
+@media (min-width: 64rem) {
+  .page {
+    --gutter: 10rem;
+    max-width: calc(42rem + var(--gutter));
+    padding-left: calc(var(--gutter) + 2rem);
+  }
+
+  .hang {
+    position: absolute;
+    right: calc(100% + 2.25rem);
+    width: calc(var(--gutter) - 1rem);
+    margin: 0;
+    padding: 0;
+    text-align: right;
+    white-space: normal;
+  }
+
+  .entry {
+    position: relative;
+  }
+
+  /* Dates line up with the entry title. The grid container isn't positioned, so the
+     date hangs from the .entry article, whose left edge is the reading column. */
+  .entry-head > .meta-badge.hang {
+    top: 0.2rem;
+    grid-area: auto;
+  }
+
+  .entry-head {
+    grid-template-columns: 1fr;
+    grid-template-areas: "title" "role";
+  }
+
+  .contact-lines > div {
+    grid-template-columns: 1fr !important;
+  }
+
+  .timeline::before {
+    content: "";
+    position: absolute;
+    top: 0.5rem;
+    bottom: 0.5rem;
+    left: -1.125rem;
+    width: 1px;
+    background: var(--color-border);
+  }
+
+  .timeline .entry::before {
+    content: "";
+    position: absolute;
+    top: 0.55rem;
+    left: calc(-1.125rem - 3px);
+    width: 7px;
+    height: 7px;
+    border-radius: 9999px;
+    background: var(--color-primary);
+    box-shadow: 0 0 0 3px var(--color-bg);
+  }
+}
+
+/* Print / Save as PDF: plain paper, no screen chrome, URLs spelled out. */
+@media print {
+  :root {
+    --color-bg: #fff;
+    --color-text: #000;
+    --color-text-muted: #222;
+    --color-text-subtle: #444;
+  }
+
+  @page {
+    margin: 1.5cm;
+  }
+
+  main {
+    padding: 0 !important;
+    max-width: none !important;
+  }
+
+  .entry {
+    break-inside: avoid;
+  }
+
+  .entry-link[href^="http"]::after {
+    content: " (" attr(href) ")";
+    font-size: 0.75rem;
+    font-weight: 400;
+    color: var(--color-text-subtle);
+    word-break: break-all;
+  }
+
+  .external-icon {
+    display: none;
+  }
 }

@@ -8,12 +8,14 @@
 	import Skills from '#lib/components/Skills.svelte';
 	import Projects from '#lib/components/Projects.svelte';
 	import SectionNav from '#lib/components/SectionNav.svelte';
+	import Contact from '#lib/components/Contact.svelte';
 
 	const sections = [
 		{ id: 'experience', title: 'Experience' },
+		{ id: 'projects', title: 'Projects' },
 		{ id: 'education', title: 'Education' },
 		{ id: 'skills', title: 'Skills' },
-		{ id: 'projects', title: 'Projects' }
+		{ id: 'contact', title: 'Contact' }
 	];
 </script>
 
@@ -30,17 +32,25 @@
 	<meta name="twitter:image" content={siteConfig.ogImage} />
 </svelte:head>
 
-<main class="mx-auto max-w-2xl px-5 py-16 sm:px-8 md:py-28">
+<a href="#experience" class="skip-link">Skip to experience</a>
+
+<main class="page mx-auto max-w-2xl px-5 py-14 sm:px-8 md:py-20">
 	<Header {resume} />
 	<SectionNav {sections} />
 
-	<Section id="experience" title="Experience">
+	<Section id="experience" title="Experience" timeline>
 		{#each resume.experiences as exp (exp.company)}
 			<Experience {exp} />
 		{/each}
 	</Section>
 
-	<Section id="education" title="Education">
+	<Section id="projects" title="Projects">
+		{#each resume.projects as project (project.name)}
+			<Projects {project} />
+		{/each}
+	</Section>
+
+	<Section id="education" title="Education" timeline>
 		{#each resume.education as edu (edu.school)}
 			<Education {edu} />
 		{/each}
@@ -50,9 +60,7 @@
 		<Skills skills={resume.skills} />
 	</Section>
 
-	<Section id="projects" title="Projects">
-		{#each resume.projects as project (project.name)}
-			<Projects {project} />
-		{/each}
+	<Section id="contact" title="Contact">
+		<Contact {resume} />
 	</Section>
 </main>
