@@ -16,16 +16,16 @@
 <article class="entry sm:pl-15">
 	<h3>
 		{#if project.url}
-			<a href={project.url} target="_blank"
-			aria-describedby="new-tab-note" rel="noopener noreferrer" class="entry-link text-link">
+			<a href={project.url} class="entry-link text-link">
 				{project.name}<ExternalIcon />
 			</a>
 		{:else}
 			{project.name}
 		{/if}
 	</h3>
-	<p class="mt-0.5 text-[0.8125rem] text-[var(--color-text-muted)]">{project.tech}</p>
-	{#if destination}<span class="meta-badge hang project-destination">{destination}</span>{/if}
+	<p class="mt-0.5 text-[0.8125rem] text-[var(--color-text-muted)]">
+		{project.tech}{#if destination}<span class="text-[var(--color-text-subtle)]">{' · '}{destination}</span>{/if}
+	</p>
 
 	<ul class="mt-3 space-y-2">
 		{#each project.highlights as highlight, i (i)}

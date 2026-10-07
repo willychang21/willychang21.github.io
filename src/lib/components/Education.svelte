@@ -14,7 +14,7 @@
 			<span class="meta-badge hang">{edu.period}</span>
 			<p class="text-[0.9375rem] text-[var(--color-text-muted)]">
 				{edu.degree}
-				<span class="whitespace-nowrap"
+				<span class="entry-location"
 					><span class="text-[var(--color-text-subtle)]" aria-hidden="true">·</span> {edu.location}</span
 				>
 			</p>

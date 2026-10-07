@@ -13,7 +13,7 @@
 <p class="closing-secondary">
 	<a href={resume.githubUrl} class="text-link">GitHub</a>
 	<span aria-hidden="true">·</span>
-	<button type="button" class="text-link" onclick={() => print()}>Print / save as PDF</button>
+	<button type="button" class="text-link" onclick={() => print()}>Print / PDF</button>
 </p>
 
 <style>

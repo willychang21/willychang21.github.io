@@ -23,7 +23,13 @@
 				(els.at(-1)?.getBoundingClientRect().top ?? Infinity) < innerHeight - 120;
 			const readingLine = innerHeight * 0.3;
 			const passed = els.filter((el) => el.getBoundingClientRect().top <= readingLine);
-			const id = (atBottom ? els.at(-1) : (passed.at(-1) ?? els[0]))?.id ?? '';
+			let id = (atBottom ? els.at(-1) : (passed.at(-1) ?? els[0]))?.id ?? '';
+			// A tab hidden at this width (Contact on phones) hands over to the nearest visible one.
+			const visible = sections.filter((s) => !s.wideOnly || matchMedia('(min-width: 40rem)').matches);
+			if (!visible.some((s) => s.id === id)) {
+				const i = sections.findIndex((s) => s.id === id);
+				id = i < 0 ? '' : ([...sections.slice(0, i)].reverse().find((s) => visible.includes(s))?.id ?? '');
+			}
 			current = listed.has(id) ? id : '';
 		};
 

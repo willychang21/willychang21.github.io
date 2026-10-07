@@ -1,5 +1,6 @@
 <script lang="ts">
 	import { page } from '$app/state';
+	import { resume } from '#lib/data/resume.ts';
 </script>
 
 <svelte:head>
@@ -24,6 +25,7 @@
 	</p>
 	<p class="mt-8 flex flex-wrap gap-x-6">
 		<a href="/" class="entry-link text-link">Back to the résumé</a>
+		<a href="mailto:{resume.email}" class="entry-link text-link">Email {resume.email}</a>
 		{#if page.status !== 404}
 			<button type="button" class="entry-link text-link cursor-pointer" onclick={() => location.reload()}>Reload this page</button>
 		{/if}

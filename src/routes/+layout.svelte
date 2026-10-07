@@ -26,6 +26,3 @@
 </svelte:head>
 
 {@render children()}
-
-<!-- Referenced by every target="_blank" link via aria-describedby. -->
-<span id="new-tab-note" hidden>Opens in a new tab</span>
