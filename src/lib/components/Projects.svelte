@@ -24,11 +24,8 @@
 			{project.name}
 		{/if}
 	</h3>
-	<p class="mt-0.5 text-[0.8125rem] text-[var(--color-text-muted)]">
-		{project.tech}{#if project.url}<span class="text-[var(--color-text-subtle)]"
-				>{' · '}{destination}</span
-			>{/if}
-	</p>
+	<p class="mt-0.5 text-[0.8125rem] text-[var(--color-text-muted)]">{project.tech}</p>
+	{#if destination}<span class="meta-badge hang project-destination">{destination}</span>{/if}
 
 	<ul class="mt-3 space-y-2">
 		{#each project.highlights as highlight, i (i)}

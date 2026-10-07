@@ -22,10 +22,11 @@
 			? 'The link may be out of date. Everything on this site lives on one page.'
 			: 'Try reloading. If it keeps happening, the home page still works.'}
 	</p>
-	<p class="mt-8">
-		<a href="/" class="entry-link text-link">
-			Back to the résumé
-		</a>
+	<p class="mt-8 flex flex-wrap gap-x-6">
+		<a href="/" class="entry-link text-link">Back to the résumé</a>
+		{#if page.status !== 404}
+			<button type="button" class="entry-link text-link cursor-pointer" onclick={() => location.reload()}>Reload this page</button>
+		{/if}
 	</p>
 </main>
 
@@ -46,14 +47,4 @@
 		object-fit: cover;
 	}
 
-	@media (min-width: 64rem) {
-		.home-lockup {
-			position: relative;
-		}
-
-		.home-lockup img {
-			position: absolute;
-			right: calc(100% + 2.25rem);
-		}
-	}
 </style>

@@ -24,8 +24,8 @@
 <style>
 	.avatar {
 		flex-shrink: 0;
-		width: 4.5rem;
-		height: 4.5rem;
+		width: 3.5rem;
+		height: 3.5rem;
 		border-radius: 9999px;
 		object-fit: cover;
 		border: 3px solid var(--color-border);
@@ -55,6 +55,13 @@
 
 	/* Wide screens: the avatar hangs in the page gutter so the name starts the reading
 	   column and the margin grid shows from the first screen (see .page in app.css). */
+	@media (min-width: 40rem) {
+		.avatar {
+			width: 4.5rem;
+			height: 4.5rem;
+		}
+	}
+
 	@media (min-width: 64rem) {
 		.header-row {
 			position: relative;

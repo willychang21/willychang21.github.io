@@ -241,6 +241,11 @@
   background-color: var(--color-primary);
 }
 
+/* Below the gutter breakpoint the project destination sits under its tech line. */
+.project-destination {
+  display: block;
+}
+
 /* Wide screens: a hanging margin. The reading column shifts right and its labels
    (section titles, dates, skill groups, contact labels) hang in the gutter, right-aligned,
    so the page reads like a printed CV. Dated sections get a chronology spine. */
@@ -267,7 +272,8 @@
 
   /* Dates line up with the entry title. The grid container isn't positioned, so the
      date hangs from the .entry article, whose left edge is the reading column. */
-  .entry-head > .meta-badge.hang {
+  .entry-head > .meta-badge.hang,
+  .project-destination.hang {
     top: 0.2rem;
     grid-area: auto;
   }

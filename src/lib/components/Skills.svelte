@@ -71,8 +71,8 @@
 		flex-wrap: wrap;
 		gap: 0.25rem 1rem;
 		font-family: 'Poppins', system-ui, sans-serif;
-		font-size: 0.875rem;
-		color: var(--color-text-muted);
+		font-size: 0.9375rem;
+		color: var(--color-text);
 	}
 
 	.gloss {
