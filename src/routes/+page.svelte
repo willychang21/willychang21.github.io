@@ -15,8 +15,7 @@
 		{ id: 'projects', title: 'Projects' },
 		{ id: 'education', title: 'Education' },
 		{ id: 'skills', title: 'Skills' },
-		// Phones list four tabs (contact is in the header); wider screens fit all five.
-		{ id: 'contact', title: 'Contact', wideOnly: true }
+		{ id: 'contact', title: 'Contact', icon: true }
 	];
 </script>
 

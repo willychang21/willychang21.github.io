@@ -1,5 +1,6 @@
 <script lang="ts">
-	let { sections }: { sections: { id: string; title: string; wideOnly?: boolean }[] } = $props();
+	// `icon`: on phones the tab shows a mail icon instead of its label, so five tabs fit.
+	let { sections }: { sections: { id: string; title: string; icon?: boolean }[] } = $props();
 
 	let current = $state('');
 	// After a nav click, trust the click until the reader scrolls by hand: a short final
@@ -23,13 +24,7 @@
 				(els.at(-1)?.getBoundingClientRect().top ?? Infinity) < innerHeight - 120;
 			const readingLine = innerHeight * 0.3;
 			const passed = els.filter((el) => el.getBoundingClientRect().top <= readingLine);
-			let id = (atBottom ? els.at(-1) : (passed.at(-1) ?? els[0]))?.id ?? '';
-			// A tab hidden at this width (Contact on phones) hands over to the nearest visible one.
-			const visible = sections.filter((s) => !s.wideOnly || matchMedia('(min-width: 40rem)').matches);
-			if (!visible.some((s) => s.id === id)) {
-				const i = sections.findIndex((s) => s.id === id);
-				id = i < 0 ? '' : ([...sections.slice(0, i)].reverse().find((s) => visible.includes(s))?.id ?? '');
-			}
+			const id = (atBottom ? els.at(-1) : (passed.at(-1) ?? els[0]))?.id ?? '';
 			current = listed.has(id) ? id : '';
 		};
 
@@ -48,15 +43,22 @@
 
 <nav aria-label="Sections" class="section-nav">
 	<ul class="flex justify-between overflow-x-auto sm:justify-start sm:gap-x-3">
-		{#each sections as { id, title, wideOnly } (id)}
-			<li class:wide-only={wideOnly}>
+		{#each sections as { id, title, icon } (id)}
+			<li>
 				<a
 					href="#{id}"
 					class="section-nav-link"
 					aria-current={current === id ? 'location' : undefined}
 					onclick={() => ((current = id), (pinned = true))}
 				>
-					{title}
+					{#if icon}
+						<svg class="tab-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+							<path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+						</svg>
+						<span class="tab-text">{title}</span>
+					{:else}
+						{title}
+					{/if}
 				</a>
 			</li>
 		{/each}
@@ -73,13 +75,26 @@
 		border-bottom: 1px solid var(--color-border);
 	}
 
-	.wide-only {
-		display: none;
+	.tab-icon {
+		width: 1.125rem;
+		height: 1.125rem;
+	}
+
+	/* Phones: icon only, label kept for screen readers. Wider: label only. */
+	@media (max-width: 39.99rem) {
+		.tab-text {
+			position: absolute;
+			width: 1px;
+			height: 1px;
+			overflow: hidden;
+			clip-path: inset(50%);
+			white-space: nowrap;
+		}
 	}
 
 	@media (min-width: 40rem) {
-		.wide-only {
-			display: list-item;
+		.tab-icon {
+			display: none;
 		}
 	}
 

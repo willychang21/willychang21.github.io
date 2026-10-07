@@ -14,7 +14,7 @@
 	const split = (item: string) => item.match(/^(.*?)(?: \((.+)\))?$/)!.slice(1) as [string, string?];
 </script>
 
-<dl class="space-y-3">
+<dl class="space-y-5 sm:space-y-3">
 	{#each groups as [label, items] (label)}
 		<div class="skill-group">
 			<dt class="skill-label hang">{label}</dt>
@@ -45,17 +45,22 @@
 		}
 	}
 
+	/* Group labels echo the section titles (small tracked caps) so they read as labels,
+	   not as one more row of skills. */
 	.skill-label {
 		flex-shrink: 0;
 		width: 6rem;
 		font-family: 'Poppins', system-ui, sans-serif;
-		font-size: 0.875rem;
+		font-size: 0.75rem;
 		font-weight: 500;
+		text-transform: uppercase;
+		letter-spacing: 0.08em;
+		color: var(--color-text-muted);
 	}
 
 	@media (min-width: 40rem) {
 		.skill-label {
-			padding-top: 0.125rem;
+			padding-top: 0.3rem;
 		}
 	}
 
