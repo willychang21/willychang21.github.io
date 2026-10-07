@@ -8,12 +8,12 @@
 <!-- The page ends on one primary action (email) with the rest as quiet secondary links,
      rather than repeating the header row. -->
 <p class="closing-email">
-	<a href="mailto:{resume.email}" class="text-link">{resume.email}</a><CopyEmail email={resume.email} />
+	<a href="mailto:{resume.email}" class="text-link closing-link">{resume.email}</a><CopyEmail email={resume.email} />
 </p>
 <p class="closing-secondary">
-	<a href={resume.githubUrl} class="text-link">GitHub</a>
+	<a href={resume.githubUrl} class="text-link closing-link">GitHub</a>
 	<span aria-hidden="true">·</span>
-	<button type="button" class="text-link" onclick={() => print()}>Print / PDF</button>
+	<button type="button" class="text-link closing-link" onclick={() => print()}>Print / PDF…</button>
 </p>
 
 <style>
@@ -39,7 +39,7 @@
 	}
 
 	/* 44px tap areas. */
-	.text-link {
+	.closing-link {
 		display: inline-flex;
 		align-items: center;
 		min-height: 2.75rem;
@@ -47,7 +47,7 @@
 		overflow-wrap: anywhere;
 	}
 
-	button.text-link {
+	button.closing-link {
 		font: inherit;
 		cursor: pointer;
 	}

@@ -54,8 +54,8 @@
 		border: 1px solid var(--color-border);
 		border-radius: 0.375rem;
 		font-family: 'Poppins', system-ui, sans-serif;
-		font-size: 0.75rem;
-		color: var(--color-text-subtle);
+		font-size: 0.8125rem;
+		color: var(--color-text-muted);
 		white-space: nowrap;
 		transition:
 			color var(--duration-fast) var(--ease-out),

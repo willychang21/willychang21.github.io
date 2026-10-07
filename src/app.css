@@ -43,6 +43,11 @@
   }
 }
 
+/* Keep focused links and anchor targets clear of the sticky section nav. */
+html {
+  scroll-padding-top: 4rem;
+}
+
 @layer base {
   body {
     font-family: "Source Serif 4", Georgia, "Times New Roman", serif;
@@ -134,7 +139,7 @@
   }
 }
 
-.entry-head > h3 {
+.entry h3 {
   font-size: 1.125rem;
   font-weight: 600;
 }
@@ -268,6 +273,13 @@
   }
 }
 
+/* Project tech reads as plain meta text until it hangs in the gutter. */
+.project-tech {
+  font-size: inherit;
+  color: inherit;
+  white-space: normal;
+}
+
 /* Narrow screens keep the chronology: a rule down the left of dated sections with a
    dot per entry. Wide screens move it into the gutter (below). */
 .entry {
@@ -327,6 +339,16 @@
   .entry-head > .meta-badge.hang {
     top: 0.2rem;
     grid-area: auto;
+  }
+
+  .project-tech.hang {
+    top: 0.25rem;
+    font-size: 0.8125rem;
+    color: var(--color-text-muted);
+  }
+
+  .project-sep {
+    display: none;
   }
 
   .entry-head {

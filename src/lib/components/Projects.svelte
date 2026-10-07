@@ -23,8 +23,13 @@
 			{project.name}
 		{/if}
 	</h3>
-	<p class="mt-0.5 text-[0.8125rem] text-[var(--color-text-muted)]">
-		{project.tech}{#if destination}<span class="text-[var(--color-text-subtle)]">{' · '}{destination}</span>{/if}
+	<!-- Phones/tablets: "tech · destination" on one line. Wide screens: the tech stack hangs
+	     in the gutter like the dates on dated entries; the destination stays under the title. -->
+	<p class="project-meta mt-0.5 text-[0.8125rem] text-[var(--color-text-muted)]">
+		<span class="meta-badge hang project-tech">{project.tech}</span>{#if destination}<span
+				class="text-[var(--color-text-subtle)]"
+				><span class="project-sep">{' · '}</span><span class="whitespace-nowrap">{destination}</span></span
+			>{/if}
 	</p>
 
 	<ul class="mt-3 space-y-2">

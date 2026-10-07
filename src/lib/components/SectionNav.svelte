@@ -8,23 +8,20 @@
 	let pinned = false;
 
 	$effect(() => {
-		// Track every page section, not just the listed ones, so an unlisted closing section
-		// (Contact) clears the highlight instead of leaving the previous tab marked.
+		// Track every page section; only listed ones can be marked current.
 		const els = [...document.querySelectorAll<HTMLElement>('main section[id]')];
 		const listed = new Set(sections.map(({ id }) => id));
 
-		// Current = last section whose top has crossed the reading line (30% down), else the first
-		// section; at page bottom the last section wins, since a short final section never reaches
-		// the line. ponytail: 5 rect reads per scroll is fine.
+		// Current = last section whose top has crossed the reading line, else the first section.
+		// The line sits 30% down, then slides to the viewport bottom over the final screen of
+		// scroll, so short closing sections (Skills, Contact) each get their turn before the page
+		// bottoms out. ponytail: 5 rect reads per scroll is fine.
 		const update = () => {
 			if (pinned) return;
-			// Bottom of page only hands over to the last section once its heading is on screen.
-			const atBottom =
-				innerHeight + scrollY >= document.documentElement.scrollHeight - 2 &&
-				(els.at(-1)?.getBoundingClientRect().top ?? Infinity) < innerHeight - 120;
-			const readingLine = innerHeight * 0.3;
+			const left = document.documentElement.scrollHeight - innerHeight - scrollY;
+			const readingLine = innerHeight * (0.3 + 0.7 * Math.max(0, 1 - left / innerHeight));
 			const passed = els.filter((el) => el.getBoundingClientRect().top <= readingLine);
-			const id = (atBottom ? els.at(-1) : (passed.at(-1) ?? els[0]))?.id ?? '';
+			const id = (passed.at(-1) ?? els[0])?.id ?? '';
 			current = listed.has(id) ? id : '';
 		};
 
@@ -101,6 +98,18 @@
 	@media print {
 		.section-nav {
 			display: none;
+		}
+	}
+
+	/* Wide screens: the bar's background covers the hanging gutter too, so margin labels
+	   scroll under it instead of showing beside it. --gutter comes from .page (app.css). */
+	@media (min-width: 64rem) {
+		.section-nav::before {
+			content: '';
+			position: absolute;
+			inset: 0 0 -1px calc(-1 * (var(--gutter) + 2rem));
+			z-index: -1;
+			background-color: var(--color-bg);
 		}
 	}
 
