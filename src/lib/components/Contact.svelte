@@ -8,11 +8,11 @@
 <!-- One fact per line so the closing never wraps mid-thought; print lives in the header. -->
 <dl class="contact-lines">
 	<div>
-		<dt>Email</dt>
+		<dt class="hang">Email</dt>
 		<dd><a href="mailto:{resume.email}" class="text-link">{resume.email}</a><CopyEmail email={resume.email} /></dd>
 	</div>
 	<div>
-		<dt>GitHub</dt>
+		<dt class="hang">GitHub</dt>
 		<dd><a href={resume.githubUrl} class="text-link">github.com/{resume.github}</a></dd>
 	</div>
 </dl>
@@ -28,6 +28,7 @@
 
 	/* Phones: label above value on every row. Wider: label column + value. */
 	.contact-lines > div {
+		position: relative;
 		display: grid;
 	}
 

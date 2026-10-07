@@ -16,8 +16,8 @@
 
 <dl class="space-y-3">
 	{#each groups as [label, items] (label)}
-		<div class="flex flex-col gap-0.5 sm:flex-row sm:gap-3">
-			<dt class="skill-label">{label}</dt>
+		<div class="skill-group">
+			<dt class="skill-label hang">{label}</dt>
 			<dd>
 				<ul class="skill-list">
 					{#each items as item (item)}
@@ -31,6 +31,20 @@
 </dl>
 
 <style>
+	.skill-group {
+		position: relative;
+		display: flex;
+		flex-direction: column;
+		gap: 0.125rem;
+	}
+
+	@media (min-width: 40rem) {
+		.skill-group {
+			flex-direction: row;
+			gap: 0.75rem;
+		}
+	}
+
 	.skill-label {
 		flex-shrink: 0;
 		width: 6rem;
@@ -42,6 +56,13 @@
 	@media (min-width: 40rem) {
 		.skill-label {
 			padding-top: 0.125rem;
+		}
+	}
+
+	/* Wide screens: the label hangs in the page gutter (see .hang in app.css). */
+	@media (min-width: 64rem) {
+		.skill-label {
+			width: 9rem;
 		}
 	}
 

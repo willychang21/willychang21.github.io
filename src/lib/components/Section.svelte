@@ -5,21 +5,26 @@
 		id: string;
 		title: string;
 		children: Snippet;
+		/** Dated entries: draw the chronology spine in the margin on wide screens. */
+		timeline?: boolean;
 	}
 
-	let { id, title, children }: Props = $props();
+	let { id, title, children, timeline = false }: Props = $props();
 </script>
 
 <section {id} aria-labelledby="{id}-title" tabindex="-1" class="mt-16 scroll-mt-16 outline-none">
 	<div class="section-header">
-		<h2 id="{id}-title" class="section-title">{title}</h2>
+		<h2 id="{id}-title" class="section-title hang">{title}</h2>
 		<div class="section-line" aria-hidden="true"></div>
 	</div>
-	{@render children()}
+	<div class="section-body" class:timeline>
+		{@render children()}
+	</div>
 </section>
 
 <style>
 	.section-header {
+		position: relative;
 		display: flex;
 		align-items: center;
 		gap: 1rem;
@@ -39,5 +44,9 @@
 		flex: 1;
 		height: 1px;
 		background: var(--color-border);
+	}
+
+	.section-body {
+		position: relative;
 	}
 </style>

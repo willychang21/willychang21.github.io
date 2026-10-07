@@ -34,11 +34,11 @@
 
 <a href="#experience" class="skip-link">Skip to experience</a>
 
-<main class="mx-auto max-w-2xl px-5 py-14 sm:px-8 md:py-20">
+<main class="page mx-auto max-w-2xl px-5 py-14 sm:px-8 md:py-20">
 	<Header {resume} />
 	<SectionNav {sections} />
 
-	<Section id="experience" title="Experience">
+	<Section id="experience" title="Experience" timeline>
 		{#each resume.experiences as exp (exp.company)}
 			<Experience {exp} />
 		{/each}
@@ -50,7 +50,7 @@
 		{/each}
 	</Section>
 
-	<Section id="education" title="Education">
+	<Section id="education" title="Education" timeline>
 		{#each resume.education as edu (edu.school)}
 			<Education {edu} />
 		{/each}

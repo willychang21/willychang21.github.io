@@ -11,7 +11,7 @@
 	<div class="min-w-0 flex-1">
 		<div class="entry-head">
 			<h3>{edu.school}</h3>
-			<span class="meta-badge">{edu.period}</span>
+			<span class="meta-badge hang">{edu.period}</span>
 			<p class="text-[0.9375rem] text-[var(--color-text-muted)]">
 				{edu.degree} <span class="text-[var(--color-text-subtle)]" aria-hidden="true">·</span>
 				{edu.location}

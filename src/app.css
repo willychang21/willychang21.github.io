@@ -241,6 +241,69 @@
   background-color: var(--color-primary);
 }
 
+/* Wide screens: a hanging margin. The reading column shifts right and its labels
+   (section titles, dates, skill groups, contact labels) hang in the gutter, right-aligned,
+   so the page reads like a printed CV. Dated sections get a chronology spine. */
+@media (min-width: 64rem) {
+  .page {
+    --gutter: 10rem;
+    max-width: calc(42rem + var(--gutter));
+    padding-left: calc(var(--gutter) + 2rem);
+  }
+
+  .hang {
+    position: absolute;
+    right: calc(100% + 2.25rem);
+    width: calc(var(--gutter) - 1rem);
+    margin: 0;
+    padding: 0;
+    text-align: right;
+    white-space: normal;
+  }
+
+  .entry {
+    position: relative;
+  }
+
+  /* Dates line up with the entry title. The grid container isn't positioned, so the
+     date hangs from the .entry article, whose left edge is the reading column. */
+  .entry-head > .meta-badge.hang {
+    top: 0.2rem;
+    grid-area: auto;
+  }
+
+  .entry-head {
+    grid-template-columns: 1fr;
+    grid-template-areas: "title" "role";
+  }
+
+  .contact-lines > div {
+    grid-template-columns: 1fr !important;
+  }
+
+  .timeline::before {
+    content: "";
+    position: absolute;
+    top: 0.5rem;
+    bottom: 0.5rem;
+    left: -1.125rem;
+    width: 1px;
+    background: var(--color-border);
+  }
+
+  .timeline .entry::before {
+    content: "";
+    position: absolute;
+    top: 0.55rem;
+    left: calc(-1.125rem - 3px);
+    width: 7px;
+    height: 7px;
+    border-radius: 9999px;
+    background: var(--color-primary);
+    box-shadow: 0 0 0 3px var(--color-bg);
+  }
+}
+
 /* Print / Save as PDF: plain paper, no screen chrome, URLs spelled out. */
 @media print {
   :root {
