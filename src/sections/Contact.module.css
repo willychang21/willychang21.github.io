@@ -1,0 +1,99 @@
+/* The last stop is the inverse of the page: the paper and ink swap. */
+.contact {
+	--paper: var(--olive-12);
+	--ink: var(--olive-1);
+	--ink-muted: var(--olive-8);
+	--rule: var(--olive-11);
+	--rule-strong: var(--olive-9);
+
+	padding-block: var(--space-9) var(--space-6);
+	background: var(--paper);
+	color: var(--ink);
+}
+
+:global(.dark) .contact {
+	/* In dark mode the band is light; orange-8 keeps 4.5:1 on it. */
+	--signal: var(--orange-8);
+}
+
+.title {
+	grid-column: 1 / -1;
+	font-size: var(--text-section);
+	font-weight: 680;
+	line-height: 0.9;
+	letter-spacing: -0.02em;
+}
+
+.deck {
+	grid-column: 1 / -1;
+	margin-top: var(--space-4);
+	font-size: var(--text-lede);
+	color: var(--ink-muted);
+}
+
+.email {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	column-gap: var(--space-3);
+	margin-top: var(--space-8);
+	padding-top: var(--space-5);
+	border-top: 1px solid var(--rule);
+}
+
+.email > a {
+	font-family: var(--font-display);
+	font-stretch: var(--stretch-display);
+	font-weight: 640;
+	font-size: clamp(2.25rem, 0.6rem + 7.6vw, 8rem);
+	line-height: 1;
+	letter-spacing: -0.02em;
+	overflow-wrap: anywhere;
+	text-decoration: underline;
+	text-decoration-thickness: 0.04em;
+	text-underline-offset: 0.12em;
+	text-decoration-color: var(--signal);
+	transition: color var(--duration-fast) var(--ease-out);
+}
+
+.email > a:hover {
+	color: var(--signal);
+}
+
+.links {
+	display: flex;
+	flex-wrap: wrap;
+	gap: var(--space-1) var(--space-6);
+	margin-top: var(--space-6);
+	font-family: var(--font-display);
+	font-weight: 500;
+}
+
+.links a,
+.links button {
+	display: inline-flex;
+	align-items: center;
+	min-height: 2.75rem;
+}
+
+.colophon {
+	margin-top: var(--space-10);
+	padding-top: var(--space-4);
+	border-top: 1px solid var(--rule);
+	font-family: var(--font-display);
+	font-size: var(--text-xs);
+	line-height: 1.6;
+	color: var(--ink-muted);
+	max-width: 70ch;
+}
+
+@media (min-width: 48rem) {
+	.title {
+		grid-column: 1 / span 7;
+	}
+
+	.deck {
+		grid-column: 8 / -1;
+		align-self: end;
+	}
+}

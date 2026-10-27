@@ -1,0 +1,179 @@
+/* Shared row anatomy: number, title, one line of context. */
+.row {
+	position: relative;
+	display: grid;
+	grid-template-columns: 2.25rem minmax(0, 1fr);
+	column-gap: var(--space-2);
+	width: 100%;
+	padding-block: var(--space-4);
+	text-align: left;
+	border-top: 1px solid var(--rule);
+}
+
+.number {
+	grid-row: span 3;
+	padding-top: 0.45em;
+	font-family: var(--font-mono);
+	font-size: var(--text-xs);
+	color: var(--ink-muted);
+}
+
+.title {
+	font-family: var(--font-display);
+	font-stretch: var(--stretch-display);
+	font-weight: 640;
+	font-size: clamp(1.625rem, 1.3rem + 1.1vw, 2.25rem);
+	line-height: 1.02;
+	letter-spacing: -0.01em;
+	transition:
+		color var(--duration-fast) var(--ease-out),
+		transform var(--duration-medium) var(--ease-out);
+}
+
+.outcome {
+	margin-top: var(--space-2);
+	font-family: var(--font-display);
+	font-stretch: var(--stretch-ui);
+	font-weight: 400;
+	font-size: var(--text-md);
+	line-height: 1.35;
+	color: var(--ink);
+}
+
+/* The figure is the first thing read on the row. */
+.outcome strong {
+	font-stretch: var(--stretch-display);
+	font-weight: 700;
+	font-size: 1.25em;
+	color: var(--signal-text);
+}
+
+.stack {
+	margin-top: var(--space-1);
+	font-family: var(--font-display);
+	font-stretch: var(--stretch-ui);
+	font-weight: 400;
+	font-size: var(--text-sm);
+	color: var(--ink-muted);
+}
+
+.panel {
+	container-type: inline-size;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+	.panel:not([hidden]) {
+		animation: panel-in var(--duration-medium) var(--ease-out);
+	}
+}
+
+@keyframes panel-in {
+	from {
+		opacity: 0;
+		transform: translateY(0.5rem);
+	}
+}
+
+/* Accordion */
+.accordion {
+	border-bottom: 1px solid var(--rule);
+}
+
+.accordion .row {
+	grid-template-columns: 2.25rem minmax(0, 1fr) 1.5rem;
+}
+
+/* Title, outcome and stack stay in the content column; the toggle keeps the third. */
+.accordion .row > :is(.title, .outcome, .stack) {
+	grid-column: 2;
+}
+
+.toggle {
+	grid-column: 3;
+	grid-row: 1;
+	position: relative;
+	align-self: center;
+	width: 1rem;
+	height: 1rem;
+}
+
+.toggle::before,
+.toggle::after {
+	content: '';
+	position: absolute;
+	top: 50%;
+	left: 0;
+	width: 100%;
+	height: 2px;
+	margin-top: -1px;
+	background: var(--ink);
+	transition: transform var(--duration-medium) var(--ease-out);
+}
+
+.toggle::after {
+	transform: rotate(90deg);
+}
+
+.row[aria-expanded='true'] .toggle::after {
+	transform: rotate(0deg);
+}
+
+.row[aria-expanded='true'] .title {
+	color: var(--ink);
+}
+
+.accordion .panel {
+	padding-bottom: var(--space-7);
+}
+
+/* Tabs */
+.tabs {
+	display: grid;
+	grid-template-columns: minmax(0, 4fr) minmax(0, 8fr);
+	column-gap: calc(var(--column-gap) * 2 + 2%);
+	align-items: start;
+}
+
+.listWrap {
+	position: sticky;
+	top: calc(var(--header-height) + var(--space-5));
+}
+
+.list {
+	position: relative;
+	border-bottom: 1px solid var(--rule);
+}
+
+.list .title {
+	color: var(--ink-muted);
+}
+
+.list .row:hover .title,
+.list .row[aria-selected='true'] .title {
+	color: var(--ink);
+}
+
+.list .row[aria-selected='true'] .title {
+	transform: translateX(0.5rem);
+}
+
+.list .row:active .title {
+	color: var(--signal-text);
+}
+
+/* The active project is the stop on the line. */
+.marker {
+	position: absolute;
+	left: -1rem;
+	top: 0;
+	width: 3px;
+	/* 1px tall, scaled to the row's height, so the slide is a pure transform. */
+	height: 1px;
+	transform-origin: 0 0;
+	background: var(--signal);
+	transition: transform var(--duration-medium) var(--ease-out);
+}
+
+.list .row:focus-visible {
+	outline-offset: -2px;
+}

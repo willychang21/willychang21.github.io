@@ -1,0 +1,194 @@
+/* A change of paper marks the record off from the work. */
+.experience {
+	padding-block: var(--space-9) var(--space-10);
+	background: var(--paper-sunk);
+}
+
+.experience :global(.text-link) {
+	text-decoration-color: var(--rule-strong);
+}
+
+.ledger {
+	position: relative;
+}
+
+/* The line every stop sits on. */
+.ledger::before {
+	content: '';
+	position: absolute;
+	top: 0.9rem;
+	bottom: 0;
+	left: 0.5rem;
+	width: 2px;
+	background: var(--ink);
+}
+
+.entry {
+	position: relative;
+	row-gap: var(--space-3);
+	padding-block: 0 var(--space-7);
+	padding-left: 2rem;
+}
+
+/* Station marker on the line. */
+.entry::before {
+	content: '';
+	position: absolute;
+	top: 0.45rem;
+	left: 0;
+	width: 1.125rem;
+	height: 1.125rem;
+	border-radius: 50%;
+	background: var(--paper-sunk);
+	box-shadow: inset 0 0 0 3px var(--ink);
+}
+
+.entry[data-current]::before {
+	box-shadow:
+		inset 0 0 0 3px var(--ink),
+		inset 0 0 0 9px var(--signal);
+}
+
+.entry:last-child {
+	padding-bottom: 0;
+}
+
+.stop {
+	grid-column: 1 / -1;
+	display: flex;
+	align-items: baseline;
+	flex-wrap: wrap;
+	gap: var(--space-1) var(--space-3);
+}
+
+.code {
+	font-family: var(--font-display);
+	font-stretch: var(--stretch-display);
+	font-weight: 700;
+	font-size: 1.75rem;
+	line-height: 1;
+}
+
+.dates {
+	font-family: var(--font-mono);
+	font-size: var(--text-xs);
+	color: var(--ink-muted);
+	font-variant-numeric: tabular-nums;
+}
+
+.logo {
+	display: none;
+}
+
+.who {
+	grid-column: 1 / -1;
+}
+
+.company {
+	font-size: var(--text-title);
+	font-weight: 640;
+}
+
+.title {
+	margin-top: var(--space-2);
+	font-family: var(--font-display);
+	font-weight: 600;
+}
+
+.place {
+	font-family: var(--font-display);
+	font-size: var(--text-sm);
+	color: var(--ink-muted);
+}
+
+.highlights {
+	grid-column: 1 / -1;
+	max-width: var(--measure);
+}
+
+.highlights li {
+	position: relative;
+	padding-left: var(--space-5);
+}
+
+.highlights li + li {
+	margin-top: var(--space-3);
+}
+
+.highlights li::before {
+	content: '';
+	position: absolute;
+	left: 0;
+	top: 0.8em;
+	width: 0.75rem;
+	height: 2px;
+	background: var(--rule-strong);
+}
+
+.highlights strong {
+	font-weight: 650;
+}
+
+.subhead {
+	margin-block: var(--space-9) var(--space-6);
+	font-size: clamp(2rem, 1.5rem + 2vw, 3.25rem);
+}
+
+.degree {
+	grid-column: 1 / -1;
+	font-size: var(--text-lede);
+	line-height: 1.4;
+}
+
+@media (min-width: 64rem) {
+	.ledger::before {
+		left: 0.5rem;
+	}
+
+	.entry {
+		padding-left: 0;
+	}
+
+	.entry::before {
+		left: 0;
+	}
+
+	.stop {
+		grid-column: 1 / span 2;
+		flex-direction: column;
+		align-items: start;
+		padding-left: 2rem;
+	}
+
+	.code {
+		font-size: 2.5rem;
+	}
+
+	.logo {
+		display: grid;
+		place-items: center;
+		width: 2.25rem;
+		height: 2.25rem;
+		margin-top: var(--space-2);
+		padding: 0.25rem;
+		background: var(--logo-plate);
+		box-shadow: inset 0 0 0 1px var(--rule);
+		font-family: var(--font-display);
+		font-weight: 600;
+		color: var(--ink-muted);
+	}
+
+	.who {
+		grid-column: 3 / span 4;
+	}
+
+	.highlights,
+	.degree {
+		grid-column: 7 / -1;
+		padding-top: 0.35rem;
+	}
+
+	.education .degree {
+		padding-top: 0.2rem;
+	}
+}

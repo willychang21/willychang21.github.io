@@ -1,0 +1,133 @@
+.opening {
+	padding-top: var(--space-6);
+	padding-bottom: var(--space-9);
+}
+
+.stage {
+	container-type: inline-size;
+	position: relative;
+}
+
+.statement {
+	max-width: 16ch;
+	margin-bottom: var(--space-6);
+	font-size: var(--text-display);
+	font-weight: 660;
+	line-height: 0.98;
+	letter-spacing: -0.015em;
+}
+
+.dek {
+	row-gap: var(--space-6);
+	margin-top: var(--space-6);
+	align-items: start;
+}
+
+.lede {
+	grid-column: 1 / -1;
+	max-width: 38ch;
+	font-size: var(--text-lede);
+	line-height: 1.45;
+}
+
+.actions {
+	grid-column: 1 / -1;
+	display: flex;
+	flex-direction: column;
+	gap: var(--space-1);
+	font-family: var(--font-display);
+	font-size: var(--text-md);
+	font-weight: 500;
+}
+
+.actions a {
+	display: inline-flex;
+	align-items: center;
+	min-height: 2.75rem;
+}
+
+.email {
+	display: flex;
+	align-items: center;
+	flex-wrap: wrap;
+}
+
+.email > a {
+	font-size: 1.25rem;
+	overflow-wrap: anywhere;
+}
+
+.portrait {
+	grid-column: 1 / -1;
+	display: flex;
+	align-items: end;
+	gap: var(--space-4);
+}
+
+.portrait img {
+	width: 6rem;
+	aspect-ratio: 1;
+	object-fit: cover;
+	filter: saturate(0.9);
+}
+
+.portrait figcaption {
+	font-family: var(--font-display);
+	font-size: var(--text-xs);
+	color: var(--ink-muted);
+	max-width: 22ch;
+}
+
+@media (min-width: 40rem) {
+	.lede {
+		grid-column: 1 / span 7;
+	}
+
+	.actions {
+		grid-column: 8 / -1;
+	}
+}
+
+@media (min-width: 64rem) {
+	.opening {
+		padding-top: var(--space-5);
+	}
+
+	/* Proportional to the plate (its width is 100cqi, its height 35.9cqi), so the
+	   statement keeps its place in the ocean, under the Taipei–Seattle arc and clear of
+	   the SJC label, at every desktop width. */
+	.statement {
+		position: absolute;
+		z-index: 1;
+		left: 27cqi;
+		top: 13.4cqi;
+		width: 39cqi;
+		max-width: none;
+		margin: 0;
+		font-size: 4.6cqi;
+	}
+
+	.lede {
+		grid-column: 1 / span 5;
+	}
+
+	.actions {
+		grid-column: 6 / span 4;
+	}
+
+	.portrait {
+		grid-column: 10 / -1;
+		flex-direction: column;
+		align-items: end;
+		gap: var(--space-2);
+		text-align: right;
+	}
+
+	.portrait img {
+		width: 11rem;
+	}
+
+	.portrait figcaption {
+		max-width: none;
+	}
+}

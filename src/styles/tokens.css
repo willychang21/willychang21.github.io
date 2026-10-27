@@ -1,0 +1,109 @@
+/*
+ * Metric-matched fallback for Archivo, so text set before the web font arrives breaks
+ * onto the same lines and nothing jumps when it swaps in. Matched by font-stretch:
+ * condensed display text gets Arial Bold scaled to Archivo at 72% width (measured at
+ * 0.744); normal-width text matches Arial as is.
+ */
+@font-face {
+	font-family: 'Archivo Fallback';
+	src: local('Arial Bold'), local('Arial-BoldMT'), local('Liberation Sans Bold');
+	font-stretch: 50% 90%;
+	font-weight: 100 900;
+	size-adjust: 74.4%;
+}
+
+@font-face {
+	font-family: 'Archivo Fallback';
+	src: local('Arial'), local('ArialMT'), local('Liberation Sans');
+	font-stretch: 91% 150%;
+	font-weight: 100 550;
+}
+
+@font-face {
+	font-family: 'Archivo Fallback';
+	src: local('Arial Bold'), local('Arial-BoldMT'), local('Liberation Sans Bold');
+	font-stretch: 91% 150%;
+	font-weight: 551 900;
+}
+
+/*
+ * Design tokens.
+ *
+ * Colour: Radix olive (a green-grey "survey paper" neutral) with Radix orange as the one
+ * signal colour, used the way charts use international orange: for the route and for
+ * whatever is current or interactive. Light and dark come from Radix's paired scales;
+ * the theme class on <html> is set before first paint by the script in index.html.
+ */
+:root {
+	--paper: var(--olive-2);
+	--paper-raised: var(--olive-1);
+	--paper-sunk: var(--olive-3);
+	--rule: var(--olive-6);
+	--rule-strong: var(--olive-8);
+	--ink: var(--olive-12);
+	--ink-muted: var(--olive-11);
+	--land: var(--olive-8);
+	--graticule: var(--olive-5);
+	/* Brand logos are drawn for a light ground. */
+	--logo-plate: var(--olive-1);
+
+	/* orange-10 clears 3:1 against paper for lines and markers; text in the signal colour
+	   is only ever set large. */
+	--signal: var(--orange-10);
+	--signal-text: var(--orange-11);
+	--signal-wash: var(--orange-3);
+	--on-signal: var(--olive-12);
+
+	--font-display: 'Archivo Variable', 'Archivo Fallback', sans-serif;
+	--font-text: 'Newsreader Variable', Georgia, 'Times New Roman', serif;
+	--font-mono: 'JetBrains Mono Variable', ui-monospace, 'SF Mono', Menlo, monospace;
+
+	/* Archivo's width axis: condensed for display, normal for interface text. */
+	--stretch-display: 72%;
+	--stretch-ui: 100%;
+
+	--text-xs: 0.75rem;
+	--text-sm: 0.875rem;
+	--text-md: 1.0625rem;
+	--text-lede: clamp(1.1875rem, 1.05rem + 0.55vw, 1.5rem);
+	--text-title: clamp(1.75rem, 1.3rem + 1.6vw, 2.75rem);
+	--text-section: clamp(3rem, 1.6rem + 5.6vw, 7.5rem);
+	--text-display: clamp(2.75rem, 1.4rem + 5.4vw, 6.5rem);
+
+	--space-1: 0.25rem;
+	--space-2: 0.5rem;
+	--space-3: 0.75rem;
+	--space-4: 1rem;
+	--space-5: 1.5rem;
+	--space-6: 2rem;
+	--space-7: 3rem;
+	--space-8: 4rem;
+	--space-9: 6rem;
+	--space-10: 8rem;
+	--space-11: 12rem;
+
+	--container: 90rem;
+	--gutter: clamp(1rem, 4vw, 4rem);
+	--column-gap: clamp(0.75rem, 1.6vw, 1.5rem);
+	--header-height: 3.5rem;
+	--measure: 64ch;
+
+	--ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+	--duration-fast: 140ms;
+	--duration-medium: 320ms;
+	--duration-slow: 900ms;
+
+	color-scheme: light;
+}
+
+:root.dark {
+	--land: var(--olive-7);
+	--graticule: var(--olive-4);
+	--logo-plate: var(--olive-12);
+	--signal: var(--orange-9);
+	--signal-text: var(--orange-11);
+	--signal-wash: var(--orange-3);
+	--on-signal: var(--olive-1);
+
+	color-scheme: dark;
+}

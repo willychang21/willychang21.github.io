@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<title>Willy Chang, software engineer</title>
+		<meta
+			name="description"
+			content="Willy Chang is a software engineer at TikTok building AOP, the Agent Operation Platform that automates global data-privacy requests. Previously full-stack products for music co-creation and classroom attendance. UIUC MCS."
+		/>
+		<meta name="author" content="Willy Chang" />
+		<meta name="robots" content="index, follow" />
+		<link rel="canonical" href="https://willychang21.github.io/" />
+		<link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+		<link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+		<!-- The display face sets the opening statement; fetch it with the HTML. -->
+		<link
+			rel="preload"
+			href="/node_modules/@fontsource-variable/archivo/files/archivo-latin-wdth-normal.woff2"
+			as="font"
+			type="font/woff2"
+			crossorigin
+		/>
+		<meta name="theme-color" content="#f8faf8" media="(prefers-color-scheme: light)" />
+		<meta name="theme-color" content="#181917" media="(prefers-color-scheme: dark)" />
+
+		<meta property="og:type" content="profile" />
+		<meta property="og:site_name" content="Willy Chang" />
+		<meta property="og:locale" content="en_US" />
+		<meta property="og:title" content="Willy Chang, software engineer" />
+		<meta
+			property="og:description"
+			content="Software engineer at TikTok, building AOP, the Agent Operation Platform for global data-privacy requests."
+		/>
+		<meta property="og:url" content="https://willychang21.github.io/" />
+		<meta property="og:image" content="https://willychang21.github.io/og.png" />
+		<meta property="og:image:width" content="1200" />
+		<meta property="og:image:height" content="630" />
+		<meta property="og:image:alt" content="Willy Chang, software engineer. A map of the route from Taipei to Champaign to San Jose." />
+		<meta property="profile:first_name" content="Willy" />
+		<meta property="profile:last_name" content="Chang" />
+		<meta name="twitter:card" content="summary_large_image" />
+		<meta name="twitter:title" content="Willy Chang, software engineer" />
+		<meta
+			name="twitter:description"
+			content="Software engineer at TikTok, building AOP, the Agent Operation Platform for global data-privacy requests."
+		/>
+		<meta name="twitter:image" content="https://willychang21.github.io/og.png" />
+
+		<script type="application/ld+json">
+			{
+				"@context": "https://schema.org",
+				"@type": "Person",
+				"name": "Willy Chang",
+				"url": "https://willychang21.github.io/",
+				"image": "https://willychang21.github.io/avatar.jpg",
+				"jobTitle": "Software Engineer",
+				"worksFor": { "@type": "Organization", "name": "TikTok" },
+				"alumniOf": [
+					{ "@type": "CollegeOrUniversity", "name": "University of Illinois Urbana-Champaign" },
+					{ "@type": "CollegeOrUniversity", "name": "Fu Jen Catholic University" }
+				],
+				"address": { "@type": "PostalAddress", "addressLocality": "San Jose", "addressRegion": "CA", "addressCountry": "US" },
+				"sameAs": ["https://github.com/willychang21"]
+			}
+		</script>
+
+		<!-- Set the theme before first paint: a saved choice, else the system setting. -->
+		<script>
+			(function () {
+				var saved = null;
+				try {
+					saved = localStorage.getItem('theme');
+				} catch (e) {}
+				var dark = saved ? saved === 'dark' : matchMedia('(prefers-color-scheme: dark)').matches;
+				document.documentElement.classList.add(dark ? 'dark' : 'light');
+			})();
+		</script>
+	</head>
+	<body>
+		<div id="root"></div>
+		<noscript>
+			<p style="padding: 1.5rem; font-family: Georgia, serif">
+				Willy Chang, software engineer at TikTok.
+				<a href="mailto:willysde2025@gmail.com">willysde2025@gmail.com</a> ·
+				<a href="https://github.com/willychang21">GitHub</a>
+			</p>
+		</noscript>
+		<script type="module" src="/src/main.tsx"></script>
+	</body>
+</html>

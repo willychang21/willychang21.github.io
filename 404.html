@@ -1,0 +1,26 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<title>Not on the map · Willy Chang</title>
+		<meta name="robots" content="noindex" />
+		<link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+		<link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+		<script>
+			(function () {
+				var saved = null;
+				try {
+					saved = localStorage.getItem('theme');
+				} catch (e) {}
+				var dark = saved ? saved === 'dark' : matchMedia('(prefers-color-scheme: dark)').matches;
+				document.documentElement.classList.add(dark ? 'dark' : 'light');
+			})();
+		</script>
+	</head>
+	<body>
+		<div id="root"></div>
+		<noscript><p><a href="/">Back to willychang21.github.io</a></p></noscript>
+		<script type="module" src="/src/not-found.tsx"></script>
+	</body>
+</html>

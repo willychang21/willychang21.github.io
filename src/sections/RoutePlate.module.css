@@ -1,0 +1,244 @@
+.plate {
+	container-type: inline-size;
+}
+
+.frame {
+	position: relative;
+	aspect-ratio: var(--ratio);
+}
+
+@media (max-width: 63.99rem) {
+	.frame {
+		margin-inline: calc(var(--gutter) * -1);
+	}
+}
+
+.map {
+	position: absolute;
+	inset: 0;
+	width: 100%;
+	height: 100%;
+	overflow: visible;
+}
+
+.graticule line {
+	stroke: var(--graticule);
+	stroke-width: 1;
+	vector-effect: non-scaling-stroke;
+}
+
+.graticuleLabels {
+	display: none;
+	font-family: var(--font-mono);
+	font-size: 11px;
+	fill: var(--ink-muted);
+	/* A paper halo keeps the labels clear of the dots behind them. */
+	paint-order: stroke;
+	stroke: var(--paper);
+	stroke-width: 4px;
+	stroke-linejoin: round;
+}
+
+.land {
+	fill: none;
+	stroke: var(--land);
+	stroke-linecap: round;
+}
+
+/* A paper-coloured casing lifts the route off the dots, as on a transit map. */
+.casing {
+	fill: none;
+	stroke: var(--paper);
+	stroke-width: 9;
+	stroke-linecap: round;
+}
+
+.route {
+	fill: none;
+	stroke: var(--signal);
+	stroke-width: 3.5;
+	stroke-linecap: round;
+	stroke-linejoin: round;
+}
+
+.station {
+	fill: var(--paper);
+	stroke: var(--ink);
+	stroke-width: 3;
+}
+
+.here {
+	fill: var(--signal);
+}
+
+/* "You are here": three slow rings on arrival, then still. */
+.pulse {
+	fill: none;
+	stroke: var(--signal);
+	stroke-width: 2;
+	transform-box: fill-box;
+	transform-origin: center;
+	opacity: 0;
+	animation: pulse 2.4s var(--ease-out) 3s 3;
+}
+
+@keyframes pulse {
+	from {
+		opacity: 0.9;
+		transform: scale(1);
+	}
+	to {
+		opacity: 0;
+		transform: scale(3.2);
+	}
+}
+
+@media (prefers-reduced-motion: reduce) {
+	.pulse {
+		display: none;
+	}
+}
+
+.labels {
+	display: none;
+}
+
+.code {
+	font-family: var(--font-display);
+	font-stretch: var(--stretch-display);
+	font-weight: 700;
+	letter-spacing: 0.01em;
+}
+
+.city {
+	font-family: var(--font-display);
+	font-weight: 500;
+}
+
+.years {
+	font-family: var(--font-mono);
+	font-size: var(--text-xs);
+	color: var(--ink-muted);
+}
+
+.caption {
+	margin-top: var(--space-3);
+	font-family: var(--font-display);
+	font-size: var(--text-xs);
+	line-height: 1.5;
+	color: var(--ink-muted);
+}
+
+/* The legend: phones and tablets. The same four labels as the desktop map, in one strip
+   (two by two on the narrowest screens), so the introduction stays near the top. */
+.legend {
+	display: grid;
+	grid-template-columns: repeat(2, minmax(0, 1fr));
+	margin-top: var(--space-4);
+	border-top: 1px solid var(--rule);
+}
+
+.legend a {
+	display: flex;
+	flex-direction: column;
+	min-height: 2.75rem;
+	padding-block: var(--space-3);
+}
+
+.legend .code {
+	font-size: 1.5rem;
+	line-height: 1;
+}
+
+.legend .city {
+	margin-top: var(--space-1);
+	font-size: var(--text-sm);
+	line-height: 1.2;
+}
+
+.legend a:hover .code {
+	color: var(--signal-text);
+}
+
+@media (min-width: 26rem) {
+	.legend {
+		grid-template-columns: repeat(4, minmax(0, 1fr));
+	}
+}
+
+@media (min-width: 64rem) {
+	.graticuleLabels {
+		display: inline;
+	}
+
+	.legend {
+		display: none;
+	}
+
+	.labels {
+		display: block;
+	}
+
+	/* Each label hangs from its station: below and to the right, unless that would
+	   leave the plate. */
+	.label {
+		position: absolute;
+		margin-top: 1.1cqi;
+		margin-left: 0.6cqi;
+	}
+
+	.label a {
+		display: grid;
+		grid-template-columns: auto auto;
+		align-items: baseline;
+		column-gap: var(--space-2);
+		padding: var(--space-1) var(--space-2);
+		background: var(--paper);
+		box-shadow: inset 0 0 0 1px var(--rule);
+		transition: box-shadow var(--duration-fast) var(--ease-out);
+	}
+
+	.label a:hover {
+		box-shadow: inset 0 0 0 2px var(--signal);
+	}
+
+	/* Label type follows the plate's width (with legible floors) so the stations
+	   keep their spacing on smaller laptops. */
+	.label a {
+		padding: 0.3cqi 0.6cqi;
+		column-gap: 0.6cqi;
+	}
+
+	.label .code {
+		grid-row: span 2;
+		font-size: clamp(1.125rem, 2.3cqi, 2.25rem);
+		line-height: 1;
+	}
+
+	.label .city {
+		font-size: clamp(0.75rem, 1.05cqi, 0.875rem);
+		line-height: 1.2;
+	}
+
+	.label .years {
+		font-size: clamp(0.6875rem, 0.85cqi, 0.75rem);
+	}
+
+	.label[data-station='cmi'] {
+		transform: translateX(-100%);
+		margin-left: -0.6cqi;
+	}
+
+	/* Seattle sits right above San Jose, so its label rises above the station. */
+	.label[data-station='sea'] {
+		transform: translateY(-100%);
+		margin-top: -1.1cqi;
+	}
+
+	.label[data-station='sjc'] {
+		transform: translateX(-50%);
+		margin-left: 0;
+		margin-top: 2.2cqi;
+	}
+
+}

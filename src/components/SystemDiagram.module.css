@@ -1,0 +1,145 @@
+.diagram {
+	container-type: inline-size;
+}
+
+.canvas {
+	position: relative;
+	aspect-ratio: var(--ratio);
+	background-color: var(--paper-raised);
+	/* A faint survey grid at the node spacing (48 × 40 on a 624 × 392 drawing). */
+	background-image:
+		linear-gradient(to right, var(--graticule) 1px, transparent 1px),
+		linear-gradient(to bottom, var(--graticule) 1px, transparent 1px);
+	background-size: calc(100% * 48 / 624) calc(100% * 40 / 392);
+	background-position: calc(100% * 24 / 624) calc(100% * 36 / 392);
+	box-shadow: inset 0 0 0 1px var(--rule);
+}
+
+.svg {
+	position: absolute;
+	inset: 0;
+	width: 100%;
+	height: 100%;
+}
+
+.edge {
+	fill: none;
+	stroke: var(--ink);
+	stroke-width: 2;
+	stroke-linejoin: round;
+}
+
+.casing {
+	fill: none;
+	stroke: var(--paper-raised);
+	stroke-width: 10;
+	stroke-linejoin: round;
+}
+
+.route {
+	fill: none;
+	stroke: var(--signal);
+	stroke-width: 5;
+	stroke-linejoin: round;
+	stroke-linecap: round;
+	stroke-dasharray: 1;
+	stroke-dashoffset: 0;
+}
+
+.marker {
+	fill: var(--paper-raised);
+	stroke: var(--ink);
+	stroke-width: 2.5;
+}
+
+.actor {
+	fill: var(--ink);
+}
+
+
+.labels {
+	position: absolute;
+	inset: 0;
+}
+
+.label {
+	position: absolute;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	width: max-content;
+	max-width: 30cqi;
+	line-height: 1.15;
+	text-align: center;
+	transform: translate(-50%, 0.9rem);
+}
+
+.label[data-at='above'] {
+	flex-direction: column-reverse;
+	transform: translate(-50%, calc(-100% - 0.9rem));
+}
+
+.label[data-at='right'] {
+	align-items: start;
+	text-align: left;
+	transform: translate(1.1rem, -50%);
+}
+
+.label[data-at='left'] {
+	align-items: end;
+	text-align: right;
+	transform: translate(calc(-100% - 1.1rem), -50%);
+}
+
+/* At the drawing's edges, labels align to the marker instead of centring on it. */
+.label[data-edge='start']:is([data-at='below'], [data-at='above']) {
+	align-items: start;
+	text-align: left;
+	margin-left: -0.6rem;
+	translate: 50% 0;
+}
+
+.label[data-edge='end']:is([data-at='below'], [data-at='above']) {
+	align-items: end;
+	text-align: right;
+	margin-left: 0.6rem;
+	translate: -50% 0;
+}
+
+.name {
+	font-family: var(--font-display);
+	font-size: clamp(0.6875rem, 2.3cqi, 0.9375rem);
+	font-weight: 600;
+}
+
+.note {
+	font-family: var(--font-display);
+	font-size: clamp(0.625rem, 2cqi, 0.8125rem);
+	color: var(--ink-muted);
+}
+
+.key {
+	color: var(--ink);
+}
+
+.caption {
+	margin-top: var(--space-3);
+	max-width: var(--measure);
+	font-family: var(--font-display);
+	font-size: var(--text-sm);
+	line-height: 1.45;
+	color: var(--ink-muted);
+}
+
+/* The request's path draws itself when the diagram appears. */
+@media (prefers-reduced-motion: no-preference) {
+	.route {
+		animation: draw 900ms var(--ease-out) 120ms both;
+	}
+}
+
+@keyframes draw {
+	from {
+		stroke-dashoffset: 1;
+	}
+}
