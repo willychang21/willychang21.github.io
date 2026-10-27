@@ -10,7 +10,7 @@ export function Opening() {
 				<div className={styles.stage}>
 					{/* On wide screens the statement sits in the open Pacific under the route. */}
 					<h1 id="statement" className={styles.statement}>
-						{profile.name} builds the systems that carry requests where they need to go.
+						{profile.name} {profile.statement}
 					</h1>
 					<RoutePlate />
 				</div>

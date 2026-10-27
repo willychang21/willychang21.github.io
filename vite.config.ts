@@ -42,6 +42,8 @@ export default defineConfig({
 		}
 	},
 	test: {
+		// Browser checks in e2e/ run under Playwright, not Vitest.
+		include: ['src/**/*.test.{ts,tsx}'],
 		environment: 'jsdom',
 		setupFiles: ['./src/test/setup.ts'],
 		css: { modules: { classNameStrategy: 'non-scoped' } },

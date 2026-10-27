@@ -45,6 +45,8 @@ export interface DiagramNode {
 	label: string;
 	/** Second line under the label, e.g. the technology. */
 	note?: string;
+	/** A shorter name for narrow drawings, where the full one would collide. */
+	short?: string;
 	x: number;
 	y: number;
 	kind: 'actor' | 'service' | 'store' | 'external';

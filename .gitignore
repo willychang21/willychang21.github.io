@@ -22,3 +22,7 @@ vite.config.ts.timestamp-*
 # Agent
 .agent
 .agents
+
+# Playwright
+/test-results
+/playwright-report

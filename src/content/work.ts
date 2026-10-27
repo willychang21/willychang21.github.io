@@ -13,25 +13,30 @@ export const featured: {
 	summary: string;
 	/** Open-source frameworks, glossed for readers outside ByteDance. */
 	stack: { name: string; gloss?: string }[];
-	notes: RichText[];
+	/** The story in three parts. Public copy only: no internal names, volumes or rates. */
+	problem: string;
+	contribution: RichText[];
+	result: string;
 	diagram: Diagram;
 } = {
 	id: 'aop',
 	title: 'AOP, the Agent Operation Platform',
 	context: 'TikTok, privacy operations',
 	period: '2025–now',
-	summary:
-		'An internal platform that automates TikTok’s privacy-operations requests. Most requests are now resolved through automation, and edge cases go to specialists.',
+	summary: 'An internal platform that automates TikTok’s privacy-operations requests.',
 	stack: [
 		{ name: 'Go' },
 		{ name: 'Kitex', gloss: 'Go RPC' },
 		{ name: 'Hertz', gloss: 'Go HTTP' },
 		{ name: 'Modern.js', gloss: 'React' }
 	],
-	notes: [
+	problem:
+		'Privacy requests reach TikTok from around the world, under different regional rules, and the operations team handled them largely by hand.',
+	contribution: [
 		'Shipped the change-region workflow, which now resolves **over 90%** of those requests automatically.',
 		'Launched new intake channels for region-specific regulatory requirements, widening compliance coverage across jurisdictions.'
 	],
+	result: 'Most requests are now resolved through automation, and edge cases go to specialists.',
 	diagram: {
 		caption: 'Requests arrive through intake channels; AOP resolves most of them automatically and routes edge cases to specialists.',
 		nodes: [
@@ -81,7 +86,7 @@ export const projects: Project[] = [
 				{ id: 'students', label: 'Students', note: '5,000+', x: 1, y: 2, kind: 'actor', labelAt: 'above' },
 				{ id: 'instructors', label: 'Instructors', note: '90+', x: 1, y: 6, kind: 'actor' },
 				{ id: 'routers', label: 'Routers', note: 'Express.js', x: 5, y: 4, kind: 'service' },
-				{ id: 'controllers', label: 'Controllers', x: 8, y: 4, kind: 'service' },
+				{ id: 'controllers', label: 'Controllers', x: 8, y: 4, kind: 'service', labelAt: 'above' },
 				{ id: 'services', label: 'Services', x: 11, y: 4, kind: 'service' }
 			],
 			edges: [
@@ -143,10 +148,10 @@ export const projects: Project[] = [
 		diagram: {
 			caption: 'Functions on AWS Lambda, a critical-node selection step, and a hybrid store of MemoryDB (in memory) and DynamoDB.',
 			nodes: [
-				{ id: 'workflow', label: 'Workflow', x: 1, y: 4, kind: 'actor' },
+				{ id: 'workflow', label: 'Workflow', x: 1, y: 4, kind: 'actor', labelAt: 'above' },
 				{ id: 'lambda', label: 'Functions', note: 'AWS Lambda', x: 4, y: 4, kind: 'service' },
-				{ id: 'select', label: 'Critical-node', note: 'selection', x: 7, y: 4, kind: 'service' },
-				{ id: 'memorydb', label: 'MemoryDB', note: 'In memory', x: 11, y: 2, kind: 'store' },
+				{ id: 'select', label: 'Critical-node', note: 'selection', x: 7, y: 4, kind: 'service', labelAt: 'above' },
+				{ id: 'memorydb', label: 'MemoryDB', note: 'In memory', x: 11, y: 2, kind: 'store', labelAt: 'above' },
 				{ id: 'dynamodb', label: 'DynamoDB', x: 11, y: 6, kind: 'store' }
 			],
 			edges: [
@@ -172,7 +177,7 @@ export const projects: Project[] = [
 		diagram: {
 			caption: 'Camera frames go through ARCore image recognition into the Unity game, which routes with Mapbox.',
 			nodes: [
-				{ id: 'camera', label: 'Camera', x: 1, y: 2, kind: 'actor', labelAt: 'above' },
+				{ id: 'camera', label: 'Camera', x: 1, y: 2, kind: 'actor' },
 				{ id: 'arcore', label: 'ARCore', note: 'Image recognition', x: 4, y: 2, kind: 'external', labelAt: 'above' },
 				{ id: 'player', label: 'Player', x: 1, y: 6, kind: 'actor' },
 				{ id: 'unity', label: 'Game', note: 'Unity, C#', x: 7, y: 5, kind: 'service' },
@@ -204,9 +209,9 @@ export const projects: Project[] = [
 				{ id: 'view', label: 'View', note: 'UIKit', x: 1, y: 4, kind: 'actor' },
 				{ id: 'vm', label: 'ViewModel', x: 4, y: 4, kind: 'service', labelAt: 'above' },
 				{ id: 'media', label: 'MapKit', note: 'AVFoundation', x: 4, y: 7, kind: 'external', labelAt: 'right' },
-				{ id: 'model', label: 'Model', x: 7, y: 4, kind: 'service', labelAt: 'above' },
+				{ id: 'model', label: 'Model', x: 7, y: 4, kind: 'service' },
 				{ id: 'auth', label: 'Authentication', x: 11, y: 1, kind: 'store' },
-				{ id: 'rtdb', label: 'Realtime Database', x: 11, y: 3, kind: 'store' },
+				{ id: 'rtdb', label: 'Realtime Database', short: 'Realtime DB', x: 11, y: 3, kind: 'store' },
 				{ id: 'firestore', label: 'Cloud Firestore', x: 11, y: 5, kind: 'store' },
 				{ id: 'storage', label: 'Cloud Storage', x: 11, y: 7, kind: 'store' }
 			],

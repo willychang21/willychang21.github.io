@@ -38,6 +38,44 @@
 	line-height: 1.45;
 }
 
+/* Problem, My part, Result: labels hang left of the text, like the ledger below. */
+.story {
+	margin-top: var(--space-5);
+	border-top: 1px solid var(--rule);
+}
+
+.story > div {
+	display: grid;
+	grid-template-columns: 5.5rem minmax(0, 1fr);
+	column-gap: var(--space-4);
+	padding-block: var(--space-4);
+	border-bottom: 1px solid var(--rule);
+}
+
+.story dt {
+	padding-top: 0.2em;
+	font-family: var(--font-display);
+	font-size: var(--text-sm);
+	font-weight: 600;
+	color: var(--ink-muted);
+}
+
+.story dd {
+	max-width: 52ch;
+}
+
+.story .notes {
+	margin-top: 0;
+}
+
+/* Phones: the label sits above its text, which keeps the full measure. */
+@media (max-width: 29.99rem) {
+	.story > div {
+		grid-template-columns: minmax(0, 1fr);
+		row-gap: var(--space-1);
+	}
+}
+
 .notes {
 	margin-top: var(--space-5);
 	max-width: 52ch;

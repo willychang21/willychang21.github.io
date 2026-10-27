@@ -1,4 +1,4 @@
-import { render, screen } from '@testing-library/react';
+import { render, screen, within } from '@testing-library/react';
 import { describe, expect, it } from 'vitest';
 import type { DiagramNode } from '../content/types';
 import { projects } from '../content/work';
@@ -33,8 +33,28 @@ describe('edgePath', () => {
 describe('SystemDiagram', () => {
 	it('names every node in text and captions the figure', () => {
 		const { diagram } = projects[0]!;
-		render(<SystemDiagram diagram={diagram} />);
-		for (const n of diagram.nodes) expect(screen.getByText(n.label)).toBeInTheDocument();
+		const { container } = render(<SystemDiagram diagram={diagram} />);
+		const drawing = within(container.querySelector('ul')!);
+		for (const n of diagram.nodes) expect(drawing.getByText(n.label)).toBeInTheDocument();
 		expect(screen.getByRole('figure')).toContainElement(screen.getByText(diagram.caption));
+	});
+});
+
+describe('SystemDiagram text alternative', () => {
+	it('describes every connection in words', () => {
+		for (const { diagram } of projects) {
+			const { container, unmount } = render(<SystemDiagram diagram={diagram} />);
+			const text = container.querySelector('figcaption')!.textContent!;
+			const byId = new Map(diagram.nodes.map((n) => [n.id, n.label]));
+			for (const e of diagram.edges) expect(text).toContain(`${byId.get(e.from)} to ${byId.get(e.to)}`);
+			unmount();
+		}
+	});
+
+	it('keeps every note in the key for narrow screens', () => {
+		const { diagram } = projects.find((p) => p.id === 'orchestrator')!;
+		const { container } = render(<SystemDiagram diagram={diagram} />);
+		const key = container.querySelector('dl')!;
+		for (const n of diagram.nodes.filter((n) => n.note)) expect(key).toHaveTextContent(`${n.label}${n.note}`);
 	});
 });
