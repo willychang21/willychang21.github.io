@@ -7,6 +7,8 @@ import { featured, projects } from './work';
 export interface StopRecord {
 	kind: 'Role' | 'Degree' | 'Project';
 	title: string;
+	/** A project's headline figure, when it has one. */
+	figure?: string;
 	detail: string;
 	href: string;
 }
@@ -23,8 +25,7 @@ export interface Stop {
  * degrees and projects. The relationship is each record's own `station` field, so a new
  * role or project joins its stop without touching this file or the map.
  */
-// The flagship has no one-line outcome of its own; its summary says what it does.
-const work: Pick<Project, 'id' | 'title' | 'station' | 'outcome'>[] = [{ ...featured, outcome: { text: featured.summary } }, ...projects];
+const work: Pick<Project, 'id' | 'title' | 'station' | 'outcome'>[] = [featured, ...projects];
 
 export const route: Stop[] = legs.map(({ station: id, years, note }) => ({
 	station: stations[id],
@@ -42,7 +43,8 @@ export const route: Stop[] = legs.map(({ station: id, years, note }) => ({
 			.map((p): StopRecord => ({
 				kind: 'Project',
 				title: p.title,
-				detail: [p.outcome.figure, p.outcome.text].filter(Boolean).join(' '),
+				figure: p.outcome.figure,
+				detail: p.outcome.text,
 				href: `#project-${p.id}`
 			}))
 	]

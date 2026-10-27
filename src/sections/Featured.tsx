@@ -52,7 +52,9 @@ export function Featured() {
 					</div>
 					<div>
 						<dt>Result</dt>
-						<dd>{featured.result}</dd>
+						<dd className={styles.result}>
+							<strong className={styles.resultFigure}>{featured.outcome.figure}</strong> {featured.outcome.text}
+						</dd>
 					</div>
 				</dl>
 			</div>

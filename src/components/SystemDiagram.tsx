@@ -117,7 +117,7 @@ export function SystemDiagram({ diagram, legend = false, marks = {} }: { diagram
 			)}
 			<figcaption className={styles.caption}>
 				{diagram.caption}
-				{legend && <span className={styles.key}> Orange marks the part I built or changed.</span>}
+				{legend && <span className={styles.key}> {diagram.key ?? 'Orange marks the part I built or changed.'}</span>}
 				{Object.keys(marks).length > 0 && (
 					<span className={styles.key}>
 						{' '}

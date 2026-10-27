@@ -64,6 +64,8 @@ export interface DiagramEdge {
 export interface Diagram {
 	/** Accessible name; the figure caption. */
 	caption: string;
+	/** What the orange line means here, when it isn't the part Willy built or changed. */
+	key?: string;
 	nodes: DiagramNode[];
 	edges: DiagramEdge[];
 }

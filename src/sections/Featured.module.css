@@ -68,6 +68,32 @@
 	margin-top: 0;
 }
 
+/* Willy's own work is the point of the ledger, so it reads at full strength; each
+   part leads with what he did. */
+.story .notes li {
+	color: var(--ink);
+}
+
+.story .notes strong {
+	font-weight: 600;
+}
+
+/* The result leads with its figure, set like the outcomes on the project rows. */
+.resultFigure {
+	display: block;
+	font-family: var(--font-display);
+	font-stretch: var(--stretch-display);
+	font-size: var(--text-title);
+	font-weight: 700;
+	line-height: 1;
+	color: var(--signal-text);
+}
+
+.result {
+	font-size: var(--text-lede);
+	line-height: 1.4;
+}
+
 /* Phones: the label sits above its text, which keeps the full measure. */
 @media (max-width: 29.99rem) {
 	.story > div {
@@ -91,7 +117,12 @@
 	margin-top: var(--space-2);
 }
 
-/* The numbers match the stations in the drawing. */
+/* The numbers match the stations in the drawing. A fixed indent, not a spacing token:
+   print tightens the tokens, and the disc must never overlap the text. */
+ol.notes li {
+	padding-left: 1.75rem;
+}
+
 .mark {
 	position: absolute;
 	left: 0;

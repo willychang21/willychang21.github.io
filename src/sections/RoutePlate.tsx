@@ -205,7 +205,7 @@ export function RoutePlate() {
 								<span className={styles.count}>
 									Stop {i + 1} of {route.length}
 								</span>
-								<span>
+								<span className={styles.place}>
 									{stop.station.city}, {stop.years}
 								</span>
 							</p>
@@ -216,7 +216,9 @@ export function RoutePlate() {
 											<a href={record.href} className={styles.record}>
 												<span className={styles.kind}>{record.kind}</span>
 												<span className={styles.recordTitle}>{record.title}</span>
-												<span className={styles.detail}>{record.detail}</span>
+												<span className={styles.detail}>
+													{record.figure && <strong>{record.figure}</strong>} {record.detail}
+												</span>
 											</a>
 										</li>
 									))}
