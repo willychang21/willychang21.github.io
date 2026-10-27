@@ -40,10 +40,13 @@ export const featured: {
 			node: 'intake',
 			text: 'Launched new intake channels for region-specific regulatory requirements, widening compliance coverage across jurisdictions.'
 		},
-		{ node: 'aop', text: 'Shipped AOP’s automated workflows, which now resolve **over 90%** of those requests automatically.' },
+		{
+			node: 'aop',
+			text: 'Designed and built AOP’s execution platform end to end: how each request is orchestrated, the agents that judge it, and the tools they act through.'
+		},
 		{
 			node: 'resolved',
-			text: 'Built the tools the agents use to read from and act on downstream systems, confirming each action took effect before a request counts as resolved.'
+			text: 'Its automated workflows now resolve **over 90%** of those requests automatically, each action confirmed before a request counts as resolved.'
 		}
 	],
 	result: 'Most requests are now resolved through automation, and edge cases go to specialists.',
