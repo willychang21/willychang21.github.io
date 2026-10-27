@@ -2,6 +2,7 @@ import { RichText } from '../components/RichText';
 import { StationLink } from '../components/StationLink';
 import { SystemDiagram } from '../components/SystemDiagram';
 import { ArrowUpRight } from '../components/Icon';
+import { stations } from '../content/profile';
 import type { Project, Screenshot } from '../content/types';
 import styles from './ProjectDetail.module.css';
 
@@ -60,6 +61,14 @@ export function ProjectDetail({ project }: { project: Project }) {
 											<StationLink station={project.station} />
 										</>
 									)}
+								</dd>
+							</div>
+						)}
+						{!project.context && project.station && (
+							<div>
+								<dt>Where</dt>
+								<dd>
+									{stations[project.station].city} · <StationLink station={project.station} />
 								</dd>
 							</div>
 						)}

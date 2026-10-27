@@ -106,7 +106,7 @@ test.describe('the route', () => {
 			await stops.getByRole('tab', { name: /CMI/ }).click();
 			const panel = page.getByRole('tabpanel', { name: /CMI/ });
 			await expect(panel).toBeVisible();
-			await expect(panel.getByRole('link')).toHaveText([/Kocree/, /University of Illinois/, /Master of Computer Science/, /Here @ UIUC/, /Muosaic/]);
+			await expect(panel.getByRole('link')).toHaveText([/Kocree/, /University of Illinois/, /Master of Computer Science/, /Here @ UIUC/, /Muosaic/, /Hybrid in-memory/]);
 			// Only one panel is on offer at a time, to people and to assistive technology.
 			await expect(page.locator('#top').getByRole('tabpanel')).toHaveCount(1);
 			expect(await ahead(page)).toEqual({ legs: 1, stations: 1 });

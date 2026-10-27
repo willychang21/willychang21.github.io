@@ -12,7 +12,7 @@ export const roles: Role[] = [
 		logo: '/logos/tiktok.png',
 		highlights: [
 			'Building AOP (Agent Operation Platform), the internal platform that automates privacy-operations requests; most requests are now resolved through automation, with edge cases routed to specialists.',
-			'Shipped change-region automation that now resolves **over 90%** of those requests automatically, sharply reducing manual operations workload.',
+			'Shipped automated workflows that now resolve **over 90%** of those requests automatically, sharply reducing manual operations workload.',
 			'Launched new data intake channels to address region-specific regulatory requirements, boosting compliance coverage across multiple jurisdictions.'
 		]
 	},
