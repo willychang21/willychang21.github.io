@@ -6,9 +6,9 @@ Willy Chang's portfolio, published at <https://willychang21.github.io>.
 
 Willy's work keeps coming back to routing: data-privacy requests across jurisdictions, an orchestrator that picks critical nodes, maps with routing, AR navigation. The site is set as a technical atlas on that idea.
 
-- **The route plate.** The page opens on a map of the real route, Taipei → Champaign → San Jose, drawn along great circles. The opening statement sits in the open Pacific under the arc.
+- **The route plate.** The page opens on a map of the real route, Taipei → Seattle → Champaign → San Jose, drawn along great circles. The opening statement sits in the open Pacific under the arc.
 - **Transit diagrams.** Each project's stated architecture is drawn in the same language: octilinear lines, station markers, and orange for the part Willy built or changed.
-- **Station codes.** TPE, CMI and SJC tie the map to the experience ledger.
+- **Station codes.** TPE, SEA, CMI and SJC tie the map to the experience ledger.
 - **One signal colour.** Radix orange is used only for the route and for whatever is current. The neutrals are Radix olive.
 - **Three type roles.** Archivo condensed for display, Newsreader for reading, JetBrains Mono for coordinates and dates only.
 
