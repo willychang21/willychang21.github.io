@@ -40,7 +40,7 @@ export const featured: {
 			node: 'intake',
 			text: 'Launched new intake channels for region-specific regulatory requirements, widening compliance coverage across jurisdictions.'
 		},
-		{ node: 'aop', text: 'Shipped the change-region workflow, which now resolves **over 90%** of those requests automatically.' }
+		{ node: 'aop', text: 'Shipped AOP’s automated workflows, which now resolve **over 90%** of those requests automatically.' }
 	],
 	result: 'Most requests are now resolved through automation, and edge cases go to specialists.',
 	diagram: {
@@ -147,6 +147,7 @@ export const projects: Project[] = [
 		id: 'orchestrator',
 		title: 'Hybrid in-memory serverless orchestrator',
 		outcome: { figure: 'Up to 25%', text: 'lower cost, with service level objectives held' },
+		station: 'cmi',
 		summary: 'A serverless orchestrator that pairs a hybrid in-memory data store with a critical-node selection algorithm.',
 		stack: ['AWS Lambda', 'MemoryDB', 'DynamoDB'],
 		notes: ['Reduced costs by **up to 25%** while maintaining service level objectives.'],
@@ -172,6 +173,7 @@ export const projects: Project[] = [
 		id: 'ar-navigation',
 		title: 'Augmented-reality navigation',
 		outcome: { figure: 'Team of 4', text: 'led, building AR games on image recognition' },
+		station: 'tpe',
 		summary: 'A location-based AR navigation app with games built on image recognition.',
 		stack: ['Unity', 'C#', 'ARCore', 'Mapbox'],
 		notes: [
@@ -201,6 +203,7 @@ export const projects: Project[] = [
 		id: 'messenger',
 		title: 'Realtime chat for iOS',
 		outcome: { text: 'Text, location and media messaging on an MVVM architecture' },
+		station: 'tpe',
 		summary: 'A messenger with text, location and multimedia messages, on UIKit and Firebase.',
 		stack: ['Swift', 'UIKit', 'Firebase', 'MapKit', 'AVFoundation'],
 		notes: [
