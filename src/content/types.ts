@@ -59,6 +59,8 @@ export interface DiagramEdge {
 	to: string;
 	/** Drawn in the signal colour: the path a request takes, or the part the project changed. */
 	route?: boolean;
+	/** A write to storage rather than a step of the work: drawn dashed, read as "checkpoints to". */
+	checkpoint?: boolean;
 }
 
 export interface Diagram {

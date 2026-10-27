@@ -46,7 +46,8 @@ describe('SystemDiagram text alternative', () => {
 			const { container, unmount } = render(<SystemDiagram diagram={diagram} />);
 			const text = container.querySelector('figcaption')!.textContent!;
 			const byId = new Map(diagram.nodes.map((n) => [n.id, n.label]));
-			for (const e of diagram.edges) expect(text).toContain(`${byId.get(e.from)} to ${byId.get(e.to)}`);
+			for (const e of diagram.edges)
+				expect(text).toContain(`${byId.get(e.from)} ${e.checkpoint ? 'checkpoints to' : 'to'} ${byId.get(e.to)}`);
 			unmount();
 		}
 	});
