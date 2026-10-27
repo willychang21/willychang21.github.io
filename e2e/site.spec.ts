@@ -247,6 +247,31 @@ test.describe('deep links', () => {
 		await expect(page.getByRole('button', { name: 'Augmented-reality navigation' })).toHaveAttribute('aria-expanded', 'true');
 	});
 
+	test('a link to an entry, the flagship or a section lands on it, below the header', async ({ page }) => {
+		for (const width of [390, 1280]) {
+			await page.setViewportSize({ width, height: 800 });
+			for (const hash of ['#role-kocree', '#project-aop', '#toolkit']) {
+				await page.goto('about:blank');
+				await page.goto(`/${hash}`);
+				const header = await page.evaluate(() => document.querySelector('header')!.getBoundingClientRect().bottom);
+				// Settles just under the sticky header (the page may scroll there smoothly).
+				await expect
+					.poll(
+						() =>
+							page.evaluate(
+								([id, top]) => {
+									const y = document.getElementById(id!)!.getBoundingClientRect().top;
+									return y >= Math.floor(top!) && y < top! + 120;
+								},
+								[hash.slice(1), header] as const
+							),
+						{ message: `${hash} at ${width}px` }
+					)
+					.toBe(true);
+			}
+		}
+	});
+
 	test('a malformed or unknown fragment leaves the page working', async ({ page }) => {
 		const problems = watch(page);
 		await page.setViewportSize({ width: 390, height: 844 });

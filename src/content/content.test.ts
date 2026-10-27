@@ -97,6 +97,12 @@ describe('content', () => {
 		expect(new Set(parts).size).toBe(parts.length);
 	});
 
+	it('gives the AOP result the same figure in the ledger and the drawing', () => {
+		const resolved = featured.diagram.nodes.find((n) => n.id === 'resolved')!;
+		expect(resolved.note).toBe(featured.outcome.figure);
+		expect(featured.diagram.caption).toContain(featured.outcome.figure.toLowerCase());
+	});
+
 	it('places each route stop on the map', () => {
 		const mapped = new Set(routeMap.stations.map((s) => s.id));
 		for (const leg of legs) {

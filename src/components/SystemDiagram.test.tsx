@@ -69,3 +69,15 @@ describe('SystemDiagram marks', () => {
 		expect(container.querySelector('figcaption')).toHaveTextContent('1, Intake; 2, AOP');
 	});
 });
+
+describe('SystemDiagram key', () => {
+	it('says what orange means, per drawing', () => {
+		const orchestrator = projects.find((p) => p.id === 'orchestrator')!.diagram;
+		const { container, unmount } = render(<SystemDiagram diagram={orchestrator} legend />);
+		expect(container.querySelector('figcaption')).toHaveTextContent('Orange marks the critical path.');
+		unmount();
+		const here = projects.find((p) => p.id === 'here')!.diagram;
+		render(<SystemDiagram diagram={here} legend />);
+		expect(screen.getByRole('figure')).toHaveTextContent('Orange marks the part I built or changed.');
+	});
+});

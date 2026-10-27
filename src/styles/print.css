@@ -109,8 +109,11 @@
 		padding-bottom: 0.4rem !important;
 	}
 
+	/* Keep each role, and each bullet of a project, whole. Holding a project's whole text
+	   block together left Chromium a blank last page. */
 	li[id^='role-'],
-	[role='tabpanel'] > div > div {
+	[role='tabpanel'] li,
+	[role='region'] li {
 		break-inside: avoid;
 	}
 

@@ -18,7 +18,8 @@ export const featured: {
 	problem: string;
 	/** Willy's part, in the order a request meets it; `node` is where it sits in the diagram. */
 	contribution: { node: string; text: RichText }[];
-	result: string;
+	/** The result, led by its figure, as on the project rows. */
+	outcome: Required<Project['outcome']>;
 	diagram: Diagram;
 } = {
 	id: 'aop',
@@ -38,25 +39,25 @@ export const featured: {
 	contribution: [
 		{
 			node: 'intake',
-			text: 'Launched new intake channels for region-specific regulatory requirements, widening compliance coverage across jurisdictions.'
+			text: '**Launched intake channels** for region-specific regulatory requirements, widening compliance coverage across jurisdictions.'
 		},
 		{
 			node: 'aop',
-			text: 'Designed and built AOP’s execution platform end to end: how each request is orchestrated, the agents that judge it, and the tools they act through.'
+			text: '**Designed and built AOP end to end:** how each request is orchestrated, the agents that judge it, and the tools they act through.'
 		},
 		{
 			node: 'resolved',
-			text: 'Its automated workflows now resolve **over 90%** of those requests automatically, each action confirmed before a request counts as resolved.'
+			text: '**Made every resolution verifiable:** each automated action is confirmed before a request counts as resolved, and edge cases go to specialists.'
 		}
 	],
-	result: 'Most requests are now resolved through automation, and edge cases go to specialists.',
+	outcome: { figure: 'Over 90%', text: 'of privacy-operations requests now resolved automatically' },
 	diagram: {
-		caption: 'Requests arrive through intake channels; AOP resolves most of them automatically and routes edge cases to specialists.',
+		caption: 'Requests arrive through intake channels; AOP resolves over 90% of them automatically and routes edge cases to specialists.',
 		nodes: [
 			{ id: 'requests', label: 'Privacy requests', x: 1, y: 4, kind: 'actor', labelAt: 'above' },
 			{ id: 'intake', label: 'Intake', note: 'Regional channels', x: 4, y: 4, kind: 'service' },
-			{ id: 'aop', label: 'AOP', note: 'Agents and workflows', x: 7, y: 4, kind: 'service', labelAt: 'above' },
-			{ id: 'resolved', label: 'Resolved', note: 'Most requests', x: 11, y: 2, kind: 'store', labelAt: 'above' },
+			{ id: 'aop', label: 'AOP', note: 'Orchestration, agents, tools', x: 7, y: 4, kind: 'service', labelAt: 'above' },
+			{ id: 'resolved', label: 'Resolved', note: 'Over 90%', x: 11, y: 2, kind: 'store', labelAt: 'above' },
 			{ id: 'specialists', label: 'Specialists', note: 'Edge cases', x: 11, y: 6, kind: 'external' }
 		],
 		edges: [
@@ -153,26 +154,35 @@ export const projects: Project[] = [
 	{
 		id: 'orchestrator',
 		title: 'Hybrid in-memory serverless orchestrator',
-		outcome: { figure: 'Up to 25%', text: 'lower cost, with service level objectives held' },
+		outcome: { figure: 'Up to 25%', text: 'less added cost to meet a latency objective, in simulation' },
+		context: 'University of Illinois, research with Kai-Siang Wang',
 		station: 'cmi',
-		summary: 'A serverless orchestrator that pairs a hybrid in-memory data store with a critical-node selection algorithm.',
+		summary:
+			'A serverless orchestrator that keeps the checkpoints on a workflow’s critical path in memory and the rest on disk, meeting a latency objective at the lowest cost.',
 		stack: ['AWS Lambda', 'MemoryDB', 'DynamoDB'],
-		notes: ['Reduced costs by **up to 25%** while maintaining service level objectives.'],
-		links: [{ label: 'Read the project document', href: 'https://drive.google.com/file/d/10u8F0rvaDctXtf7ZJZaqDRalzZoqudZJ/view' }],
+		notes: [
+			'Decentralized orchestrators checkpoint every function’s output to a durable store, and a fan-in reads one checkpoint per parent, so store latency piles up on the critical path.',
+			'A critical-node selection algorithm ranks each function by its distance from the start and the end of the workflow, then uses dynamic programming to move the fewest critical nodes to MemoryDB that still meet the service level objective.',
+			'In simulation, it cut the added cost of meeting the objective by **up to 25%** against a baseline that moves the busiest fan-ins first.'
+		],
+		links: [{ label: 'Read the paper', href: 'https://drive.google.com/file/d/10u8F0rvaDctXtf7ZJZaqDRalzZoqudZJ/view' }],
 		diagram: {
-			caption: 'Functions on AWS Lambda, a critical-node selection step, and a hybrid store of MemoryDB (in memory) and DynamoDB.',
+			caption:
+				'An example workflow of serverless functions. Its critical path runs through a fan-in, which reads one checkpoint per parent, so that node checkpoints to MemoryDB, in memory; every other function checkpoints to DynamoDB.',
+			key: 'Orange marks the critical path.',
 			nodes: [
-				{ id: 'workflow', label: 'Workflow', x: 1, y: 4, kind: 'actor', labelAt: 'above' },
-				{ id: 'lambda', label: 'Functions', note: 'AWS Lambda', x: 4, y: 4, kind: 'service' },
-				{ id: 'select', label: 'Critical-node', note: 'selection', x: 7, y: 4, kind: 'service', labelAt: 'above' },
-				{ id: 'memorydb', label: 'MemoryDB', note: 'In memory', x: 11, y: 2, kind: 'store', labelAt: 'above' },
-				{ id: 'dynamodb', label: 'DynamoDB', x: 11, y: 6, kind: 'store' }
+				{ id: 'entry', label: 'Entry', x: 1, y: 4, kind: 'actor', labelAt: 'above' },
+				{ id: 'a', label: 'Function A', x: 4, y: 2, kind: 'service', labelAt: 'above' },
+				{ id: 'b', label: 'Function B', x: 4, y: 6, kind: 'service' },
+				{ id: 'fanin', label: 'Fan-in', note: 'MemoryDB checkpoint', x: 8, y: 4, kind: 'store' },
+				{ id: 'exit', label: 'Exit', x: 11, y: 4, kind: 'service', labelAt: 'above' }
 			],
 			edges: [
-				{ from: 'workflow', to: 'lambda' },
-				{ from: 'lambda', to: 'select', route: true },
-				{ from: 'select', to: 'memorydb', route: true },
-				{ from: 'select', to: 'dynamodb' }
+				{ from: 'entry', to: 'a', route: true },
+				{ from: 'entry', to: 'b' },
+				{ from: 'a', to: 'fanin', route: true },
+				{ from: 'b', to: 'fanin' },
+				{ from: 'fanin', to: 'exit', route: true }
 			]
 		}
 	},
