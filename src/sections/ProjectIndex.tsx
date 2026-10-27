@@ -107,7 +107,7 @@ function Tabs({ projects, selected, onSelect }: ViewProps) {
 							role="tab"
 							id={`tab-${project.id}`}
 							aria-selected={active === project.id}
-							aria-controls={`panel-${project.id}`}
+							aria-controls={`project-${project.id}`}
 							aria-labelledby={`title-${project.id}`}
 							aria-describedby={`meta-${project.id}`}
 							tabIndex={active === project.id ? 0 : -1}
@@ -125,7 +125,7 @@ function Tabs({ projects, selected, onSelect }: ViewProps) {
 					<div
 						key={project.id}
 						role="tabpanel"
-						id={`panel-${project.id}`}
+						id={`project-${project.id}`}
 						aria-labelledby={`title-${project.id}`}
 						hidden={active !== project.id}
 						className={styles.panel}
@@ -155,7 +155,7 @@ function Accordion({ projects, selected: open, onSelect: setOpen }: ViewProps) {
 								type="button"
 								id={`tab-${project.id}`}
 								aria-expanded={expanded}
-								aria-controls={`panel-${project.id}`}
+								aria-controls={`project-${project.id}`}
 								aria-labelledby={`title-${project.id}`}
 								aria-describedby={`meta-${project.id}`}
 								className={styles.row}
@@ -165,7 +165,7 @@ function Accordion({ projects, selected: open, onSelect: setOpen }: ViewProps) {
 								<span className={styles.toggle} aria-hidden="true" data-print="hide" />
 							</button>
 						</h3>
-						<div id={`panel-${project.id}`} role="region" aria-labelledby={`title-${project.id}`} hidden={!expanded} className={styles.panel}>
+						<div id={`project-${project.id}`} role="region" aria-labelledby={`title-${project.id}`} hidden={!expanded} className={styles.panel}>
 							<ProjectDetail project={project} />
 						</div>
 					</li>
@@ -179,11 +179,20 @@ export function ProjectIndex({ projects }: { projects: Project[] }) {
 	const wide = useMediaQuery('(min-width: 64rem)');
 	const [selected, select] = useProjectHash(projects.map((p) => p.id));
 
-	// A link straight to a project lands on its row, below the sticky header.
+	// A link straight to a project lands on its row, below the sticky header: on load, and
+	// when a link on the page (a stop on the map, say) names a project. The browser can't
+	// do it alone, as the project's panel is still closed when it looks for the target.
 	const linked = useRef(selected);
 	useEffect(() => {
-		if (linked.current) document.getElementById(`tab-${linked.current}`)?.scrollIntoView({ block: 'start' });
-	}, []);
+		const land = (id: string) => document.getElementById(`tab-${id}`)?.scrollIntoView({ block: 'start' });
+		if (linked.current) land(linked.current);
+		const onHashChange = () => {
+			const id = location.hash.slice('#project-'.length);
+			if (location.hash.startsWith('#project-') && projects.some((p) => p.id === id)) requestAnimationFrame(() => land(id));
+		};
+		addEventListener('hashchange', onHashChange);
+		return () => removeEventListener('hashchange', onHashChange);
+	}, [projects]);
 
 	const View = wide ? Tabs : Accordion;
 	return <View projects={projects} selected={selected} onSelect={select} />;

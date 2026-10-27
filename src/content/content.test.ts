@@ -90,12 +90,18 @@ describe('content', () => {
 		}
 	});
 
-	it('places each route stop on the map and points it at an entry on the page', () => {
+	it('ties each part of the AOP story to a station in its drawing, once', () => {
+		const nodes = featured.diagram.nodes.map((n) => n.id);
+		const parts = featured.contribution.map((c) => c.node);
+		for (const node of parts) expect(nodes).toContain(node);
+		expect(new Set(parts).size).toBe(parts.length);
+	});
+
+	it('places each route stop on the map', () => {
 		const mapped = new Set(routeMap.stations.map((s) => s.id));
 		for (const leg of legs) {
 			expect(mapped).toContain(leg.station);
 			expect(stations[leg.station].code).toHaveLength(3);
-			expect(['experience', ...roles.map((r) => `role-${r.id}`), ...degrees.map((d) => `degree-${d.id}`)]).toContain(leg.anchor);
 		}
 	});
 

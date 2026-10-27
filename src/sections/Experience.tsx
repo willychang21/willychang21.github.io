@@ -1,16 +1,14 @@
 import { RichText } from '../components/RichText';
 import { SectionHead } from '../components/SectionHead';
+import { StationLink } from '../components/StationLink';
 import { degrees, roles } from '../content/experience';
-import { stations } from '../content/profile';
 import type { Station } from '../content/types';
 import styles from './Experience.module.css';
 
 function Stop({ station, start, end, logo, name }: { station: Station['id']; start: string; end: string; logo?: string; name: string }) {
 	return (
 		<div className={styles.stop}>
-			<span className={styles.code} title={stations[station].city}>
-				{stations[station].code}
-			</span>
+			<StationLink station={station} className={styles.code} />
 			<p className={styles.dates}>
 				<time>{start}</time> – <time>{end}</time>
 			</p>
@@ -26,7 +24,7 @@ export function Experience() {
 		<section id="experience" className={styles.experience} aria-labelledby="experience-title">
 			<div className="container">
 				<SectionHead id="experience" title="Experience">
-					Three roles, newest first. Station codes match the map at the top.
+					Three roles, newest first. Each station code opens its stop on the map at the top.
 				</SectionHead>
 
 				<ol className={styles.ledger}>

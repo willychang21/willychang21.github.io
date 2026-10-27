@@ -62,6 +62,20 @@
 }
 
 .code {
+	color: inherit;
+	text-decoration: underline;
+	text-decoration-color: var(--rule-strong);
+	text-decoration-thickness: 2px;
+	text-underline-offset: 0.12em;
+	transition: color var(--duration-fast) var(--ease-out);
+}
+
+.code:hover {
+	color: var(--signal-text);
+	text-decoration-color: var(--signal);
+}
+
+.code {
 	font-family: var(--font-display);
 	font-stretch: var(--stretch-display);
 	font-weight: 700;
