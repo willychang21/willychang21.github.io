@@ -57,7 +57,7 @@ test.describe('layout', () => {
 						if (inLine(p.x, p.y)) return 'route';
 					}
 				}
-				const boxes = [...svg.querySelectorAll('circle'), ...document.querySelectorAll('[data-station] a')].map((e) => e.getBoundingClientRect());
+				const boxes = [...svg.querySelectorAll('circle'), ...document.querySelectorAll('[data-station]')].map((e) => e.getBoundingClientRect());
 				const hits = boxes.filter((b) => lines.some((r) => !(b.right <= r.left || b.left >= r.right || b.bottom <= r.top || b.top >= r.bottom)));
 				return hits.length ? 'station' : null;
 			});
@@ -75,7 +75,7 @@ test.describe('layout', () => {
 			for (const id of ['featured', ...ids]) {
 				if (id !== 'featured') await page.click(`#tab-${id}`);
 				const figure =
-					id === 'featured' ? page.locator('article[aria-labelledby="featured-title"] figure') : page.locator(`#panel-${id} figure:has(svg)`);
+					id === 'featured' ? page.locator('article[aria-labelledby="featured-title"] figure') : page.locator(`#project-${id} figure:has(svg)`);
 				const labels = await figure.locator('li').evaluateAll((els) => els.map((e) => ({ text: e.textContent, box: e.getBoundingClientRect().toJSON() })));
 				for (let i = 0; i < labels.length; i++)
 					for (let j = i + 1; j < labels.length; j++)
@@ -86,13 +86,115 @@ test.describe('layout', () => {
 	});
 });
 
+test.describe('the route', () => {
+	const ahead = (page: Page) =>
+		page.evaluate(() => ({
+			legs: document.querySelectorAll('#top svg g[data-ahead]:has(> path)').length,
+			stations: document.querySelectorAll('#top svg g[data-ahead]:has(> circle)').length
+		}));
+
+	for (const width of [1440, 390]) {
+		test(`each station shows what happened there, and the route beyond it fades (${width}px)`, async ({ page }) => {
+			await page.setViewportSize({ width, height: 900 });
+			await page.goto('/');
+			const stops = page.getByRole('tablist', { name: 'Stops on the route' });
+			// Now is chosen first, with the whole route travelled.
+			await expect(stops.getByRole('tab', { selected: true })).toHaveText(/SJC/);
+			await expect(page.getByRole('tabpanel', { name: /SJC/ }).getByRole('link', { name: /AOP/ })).toBeVisible();
+			expect(await ahead(page)).toEqual({ legs: 0, stations: 0 });
+
+			await stops.getByRole('tab', { name: /CMI/ }).click();
+			const panel = page.getByRole('tabpanel', { name: /CMI/ });
+			await expect(panel).toBeVisible();
+			await expect(panel.getByRole('link')).toHaveText([/Kocree/, /University of Illinois/, /Master of Computer Science/, /Here @ UIUC/, /Muosaic/]);
+			// Only one panel is on offer at a time, to people and to assistive technology.
+			await expect(page.locator('#top').getByRole('tabpanel')).toHaveCount(1);
+			expect(await ahead(page)).toEqual({ legs: 1, stations: 1 });
+
+			await stops.getByRole('tab', { name: /TPE/ }).click();
+			expect(await ahead(page)).toEqual({ legs: 3, stations: 3 });
+			// Choosing a stop is exploring, not navigating: the URL stays as it was.
+			await expect(page).toHaveURL(/\/$/);
+		});
+	}
+
+	test('the stations work from the keyboard and stop at the ends of the route', async ({ page }) => {
+		await page.setViewportSize({ width: 1440, height: 900 });
+		await page.goto('/');
+		await page.getByRole('tab', { name: /SJC/ }).focus();
+		await page.keyboard.press('ArrowRight');
+		await expect(page.getByRole('tab', { name: /SJC/ })).toBeFocused();
+		await page.keyboard.press('ArrowLeft');
+		await expect(page.getByRole('tab', { name: /CMI/ })).toBeFocused();
+		await expect(page.getByRole('tab', { name: /CMI/ })).toHaveAttribute('aria-selected', 'true');
+		await page.keyboard.press('Home');
+		await expect(page.getByRole('tab', { name: /TPE/ })).toHaveAttribute('aria-selected', 'true');
+		await page.keyboard.press('ArrowLeft');
+		await expect(page.getByRole('tab', { name: /TPE/ })).toBeFocused();
+		// Tab leaves the stations for the open stop's first link.
+		await page.keyboard.press('Tab');
+		await expect(page.getByRole('tabpanel', { name: /TPE/ }).getByRole('link').first()).toBeFocused();
+	});
+
+	test('choosing a stop never moves the stations under the pointer', async ({ page }) => {
+		for (const width of [1280, 390]) {
+			await page.setViewportSize({ width, height: 900 });
+			await page.goto('/');
+			const places = () => page.locator('[data-station]').evaluateAll((els) => els.map((e) => e.getBoundingClientRect().toJSON()));
+			const before = await places();
+			for (const code of ['TPE', 'SEA', 'CMI', 'SJC']) {
+				await page.getByRole('tab', { name: new RegExp(code) }).click();
+				expect(await places(), `${code} at ${width}px`).toEqual(before);
+			}
+		}
+	});
+
+	test('a station code in the record opens its stop on the map, and Back returns to the record', async ({ page }) => {
+		// Instant scrolling: this is about history, and Chrome lets a smooth scroll still in
+		// flight override the position Back restores.
+		await page.emulateMedia({ reducedMotion: 'reduce' });
+		await page.setViewportSize({ width: 1440, height: 900 });
+		await page.goto('/');
+		const code = page.locator('#role-kocree').getByRole('link', { name: 'CMI, Champaign: show on the map' });
+		await code.scrollIntoViewIfNeeded();
+		await code.click();
+		await expect(page.getByRole('tab', { name: /CMI/ })).toHaveAttribute('aria-selected', 'true');
+		await expect(page.getByRole('tab', { name: /CMI/ })).toBeFocused();
+		await expect(page.getByRole('tabpanel', { name: /CMI/ })).toBeInViewport();
+		await page.goBack();
+		await expect(page.locator('#role-kocree')).toBeInViewport();
+	});
+
+	test('a stop links straight to a project, which opens in the index', async ({ page }) => {
+		for (const width of [1440, 390]) {
+			await page.setViewportSize({ width, height: 900 });
+			await page.goto('/');
+			await page.getByRole('tab', { name: /CMI/ }).click();
+			await page.getByRole('tabpanel', { name: /CMI/ }).getByRole('link', { name: /Muosaic/ }).click();
+			await expect(page).toHaveURL(/#project-muosaic$/);
+			await expect(page.locator('#tab-muosaic')).toBeInViewport();
+			await expect(page.locator('#project-muosaic')).toBeVisible();
+		}
+	});
+
+	test('a link to a stop opens it on load; a bad one leaves San Jose chosen', async ({ page }) => {
+		await page.setViewportSize({ width: 390, height: 844 });
+		await page.goto('/#stop-tpe');
+		await expect(page.getByRole('tab', { name: /TPE/ })).toHaveAttribute('aria-selected', 'true');
+		await expect(page.getByRole('tabpanel', { name: /TPE/ })).toContainText('Fu Jen Catholic University');
+		await page.goto('about:blank');
+		await page.goto('/#stop-nowhere');
+		await expect(page.getByRole('tab', { name: /SJC/ })).toHaveAttribute('aria-selected', 'true');
+	});
+});
+
 test.describe('project index, desktop', () => {
 	test.use({ viewport: { width: 1440, height: 900 } });
 
 	const markerOffset = (page: Page) =>
 		page.evaluate(() => {
-			const tab = document.querySelector('[role=tab][aria-selected=true]')!.getBoundingClientRect();
-			const marker = document.querySelector('[role=tablist] > span')!.getBoundingClientRect();
+			const tab = document.querySelector('[aria-label=Projects] [role=tab][aria-selected=true]')!.getBoundingClientRect();
+			const marker = document.querySelector('[aria-label=Projects] > span')!.getBoundingClientRect();
 			return { top: Math.round(marker.top - tab.top), height: Math.round(marker.height - tab.height) };
 		});
 
@@ -114,20 +216,21 @@ test.describe('project index, desktop', () => {
 
 	test('hovering the index does not change the project', async ({ page }) => {
 		await page.goto('/');
-		for (const tab of await page.getByRole('tab').all()) await tab.hover();
-		await expect(page.getByRole('tab').first()).toHaveAttribute('aria-selected', 'true');
+		const index = page.getByRole('tablist', { name: 'Projects' });
+		for (const tab of await index.getByRole('tab').all()) await tab.hover();
+		await expect(index.getByRole('tab').first()).toHaveAttribute('aria-selected', 'true');
 	});
 
 	test('switching from deep in a long project brings the new one into view', async ({ page }) => {
 		await page.emulateMedia({ reducedMotion: 'reduce' });
 		await page.goto('/#project-muosaic');
 		await page.evaluate(() => {
-			const r = document.getElementById('panel-muosaic')!.getBoundingClientRect();
+			const r = document.getElementById('project-muosaic')!.getBoundingClientRect();
 			scrollTo(0, scrollY + r.bottom - innerHeight + 40);
 		});
 		await page.getByRole('tab', { name: /Hybrid in-memory/ }).click();
 		await expect
-			.poll(() => page.evaluate(() => Math.round(document.getElementById('panel-orchestrator')!.getBoundingClientRect().top)))
+			.poll(() => page.evaluate(() => Math.round(document.getElementById('project-orchestrator')!.getBoundingClientRect().top)))
 			.toBeGreaterThanOrEqual(56);
 	});
 });

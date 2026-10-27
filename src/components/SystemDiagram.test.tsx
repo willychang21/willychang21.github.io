@@ -1,7 +1,7 @@
 import { render, screen, within } from '@testing-library/react';
 import { describe, expect, it } from 'vitest';
 import type { DiagramNode } from '../content/types';
-import { projects } from '../content/work';
+import { featured, projects } from '../content/work';
 import { edgePath, SystemDiagram } from './SystemDiagram';
 
 const node = (x: number, y: number): DiagramNode => ({ id: `${x}-${y}`, label: '', x, y, kind: 'service' });
@@ -56,5 +56,16 @@ describe('SystemDiagram text alternative', () => {
 		const { container } = render(<SystemDiagram diagram={diagram} />);
 		const key = container.querySelector('dl')!;
 		for (const n of diagram.nodes.filter((n) => n.note)) expect(key).toHaveTextContent(`${n.label}${n.note}`);
+	});
+});
+
+describe('SystemDiagram marks', () => {
+	it('numbers the named stations and spells the numbers out in the caption', () => {
+		const { diagram } = featured;
+		const { container } = render(<SystemDiagram diagram={diagram} marks={{ intake: '1', aop: '2' }} />);
+		const labels = [...container.querySelectorAll('li')];
+		expect(labels.find((li) => li.textContent?.includes('Intake'))!.querySelector('.mark')).toHaveTextContent('1');
+		expect(container.querySelectorAll('.mark')).toHaveLength(2);
+		expect(container.querySelector('figcaption')).toHaveTextContent('1, Intake; 2, AOP');
 	});
 });

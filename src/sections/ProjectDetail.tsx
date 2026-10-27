@@ -1,4 +1,5 @@
 import { RichText } from '../components/RichText';
+import { StationLink } from '../components/StationLink';
 import { SystemDiagram } from '../components/SystemDiagram';
 import { ArrowUpRight } from '../components/Icon';
 import type { Project, Screenshot } from '../content/types';
@@ -53,6 +54,12 @@ export function ProjectDetail({ project }: { project: Project }) {
 								<dd>
 									{project.context}
 									{project.period && `, ${project.period}`}
+									{project.station && (
+										<>
+											{' · '}
+											<StationLink station={project.station} />
+										</>
+									)}
 								</dd>
 							</div>
 						)}

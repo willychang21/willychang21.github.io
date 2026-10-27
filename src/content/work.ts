@@ -1,4 +1,4 @@
-import type { Diagram, Project, RichText } from './types';
+import type { Diagram, Project, RichText, Station } from './types';
 
 /**
  * The lead story: AOP. Public copy only: what the platform does and Willy's part in it.
@@ -10,12 +10,14 @@ export const featured: {
 	title: string;
 	context: string;
 	period: string;
+	station: Station['id'];
 	summary: string;
 	/** Open-source frameworks, glossed for readers outside ByteDance. */
 	stack: { name: string; gloss?: string }[];
 	/** The story in three parts. Public copy only: no internal names, volumes or rates. */
 	problem: string;
-	contribution: RichText[];
+	/** Willy's part, in the order a request meets it; `node` is where it sits in the diagram. */
+	contribution: { node: string; text: RichText }[];
 	result: string;
 	diagram: Diagram;
 } = {
@@ -23,6 +25,7 @@ export const featured: {
 	title: 'AOP, the Agent Operation Platform',
 	context: 'TikTok, privacy operations',
 	period: '2025–now',
+	station: 'sjc',
 	summary: 'An internal platform that automates TikTok’s privacy-operations requests.',
 	stack: [
 		{ name: 'Go' },
@@ -33,8 +36,11 @@ export const featured: {
 	problem:
 		'Privacy requests reach TikTok from around the world, under different regional rules, and the operations team handled them largely by hand.',
 	contribution: [
-		'Shipped the change-region workflow, which now resolves **over 90%** of those requests automatically.',
-		'Launched new intake channels for region-specific regulatory requirements, widening compliance coverage across jurisdictions.'
+		{
+			node: 'intake',
+			text: 'Launched new intake channels for region-specific regulatory requirements, widening compliance coverage across jurisdictions.'
+		},
+		{ node: 'aop', text: 'Shipped the change-region workflow, which now resolves **over 90%** of those requests automatically.' }
 	],
 	result: 'Most requests are now resolved through automation, and edge cases go to specialists.',
 	diagram: {

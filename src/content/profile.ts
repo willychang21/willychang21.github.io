@@ -20,10 +20,14 @@ export const stations: Record<Station['id'], Station> = {
 	sjc: { id: 'sjc', code: 'SJC', city: 'San Jose' }
 };
 
-/** When each stop was home, and the entry on the page it links to. */
-export const legs: { station: Station['id']; years: string; anchor: string }[] = [
-	{ station: 'tpe', years: '2015–2022', anchor: 'degree-fju-bs' },
-	{ station: 'sea', years: '2022–2023', anchor: 'experience' },
-	{ station: 'cmi', years: '2024', anchor: 'role-uiuc' },
-	{ station: 'sjc', years: '2025–now', anchor: 'role-tiktok' }
+/**
+ * When each stop was home. What happened there is not listed here: it comes from the
+ * records that name the station (see content/route.ts). `note` speaks for a stop that
+ * has no record on the page.
+ */
+export const legs: { station: Station['id']; years: string; note?: string }[] = [
+	{ station: 'tpe', years: '2015–2022' },
+	{ station: 'sea', years: '2022–2023', note: 'First stop in the United States.' },
+	{ station: 'cmi', years: '2024' },
+	{ station: 'sjc', years: '2025–now' }
 ];

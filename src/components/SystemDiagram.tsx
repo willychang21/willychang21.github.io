@@ -47,8 +47,11 @@ function Marker({ node }: { node: DiagramNode }) {
 	}
 }
 
-/** `legend` adds the key for the orange line; leave it off where the work is a team's. */
-export function SystemDiagram({ diagram, legend = false }: { diagram: Diagram; legend?: boolean }) {
+/**
+ * `legend` adds the key for the orange line; leave it off where the work is a team's.
+ * `marks` numbers stations (by node id) to match a numbered list beside the drawing.
+ */
+export function SystemDiagram({ diagram, legend = false, marks = {} }: { diagram: Diagram; legend?: boolean; marks?: Record<string, string> }) {
 	const byId = new Map(diagram.nodes.map((n) => [n.id, n]));
 	// The key spells out notes, and full names wherever the drawing shortens one.
 	const noted = diagram.nodes.filter((n) => n.note || n.short);
@@ -84,6 +87,11 @@ export function SystemDiagram({ diagram, legend = false }: { diagram: Diagram; l
 							style={{ left: `${(px(node) / WIDTH) * 100}%`, top: `${(py(node) / HEIGHT) * 100}%` }}
 						>
 							<span className={styles.name}>
+								{marks[node.id] && (
+									<span className={`mark ${styles.mark}`} aria-hidden="true">
+										{marks[node.id]}
+									</span>
+								)}
 								<span className={node.short ? styles.full : undefined}>{node.label}</span>
 								{node.short && (
 									<span className={styles.short} aria-hidden="true">
@@ -110,6 +118,18 @@ export function SystemDiagram({ diagram, legend = false }: { diagram: Diagram; l
 			<figcaption className={styles.caption}>
 				{diagram.caption}
 				{legend && <span className={styles.key}> Orange marks the part I built or changed.</span>}
+				{Object.keys(marks).length > 0 && (
+					<span className={styles.key}>
+						{' '}
+						Numbers match My part
+						<span className="sr-only">
+							: {Object.entries(marks)
+								.map(([id, mark]) => `${mark}, ${byId.get(id)!.label}`)
+								.join('; ')}
+						</span>
+						.
+					</span>
+				)}
 				{/* The drawing's lines, in words. */}
 				<span className="sr-only">
 					{' '}

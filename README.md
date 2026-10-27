@@ -7,8 +7,8 @@ Willy Chang's portfolio, published at <https://willychang21.github.io>.
 Willy's work keeps coming back to routing: data-privacy requests across jurisdictions, an orchestrator that picks critical nodes, maps with routing, AR navigation. The site is set as a technical atlas on that idea.
 
 - **The route plate.** The page opens on a map of the real route, Taipei → Seattle → Champaign → San Jose, drawn along great circles. The opening statement sits in the open Pacific under the arc.
+- **The stations are the way in.** Each station on the map is a tab. Choosing one lists the roles, degrees and projects recorded there, and the route beyond it turns grey, so the map reads as the journey up to that point. San Jose, now, is chosen first. The lists come from each record's own `station` field (`src/content/route.ts`), so a new role or project joins its stop by itself. Station codes in the experience record and in project details link back to their stop.
 - **Transit diagrams.** Each project's stated architecture is drawn in the same language: octilinear lines, station markers, and orange for the part Willy built or changed.
-- **Station codes.** TPE, SEA, CMI and SJC tie the map to the experience ledger.
 - **One signal colour.** Radix orange is used only for the route and for whatever is current. The neutrals are Radix olive.
 - **Three type roles.** Archivo condensed for display, Newsreader for reading, JetBrains Mono for coordinates and dates only.
 
@@ -56,7 +56,7 @@ public/         avatar, logos, project screenshots, social card, robots.txt
 
 Résumé copy supports `**bold**` and `[label](https://…)`; see `components/RichText.tsx`.
 
-Each project can be linked to directly: `/#project-<id>` (for example `/#project-muosaic`) opens it on load.
+Each project can be linked to directly: `/#project-<id>` (for example `/#project-muosaic`) opens it. A stop on the map can be too: `/#stop-<id>` (`tpe`, `sea`, `cmi`, `sjc`).
 
 ## Deploying
 
