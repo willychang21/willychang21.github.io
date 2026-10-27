@@ -106,6 +106,14 @@
 	translate: -50% 0;
 }
 
+/* Lines pass behind names, as on a transit map: each label knocks out the drawing
+   under it, so text stays legible wherever a connection runs. */
+.name,
+.note {
+	padding-inline: 0.2em;
+	background: var(--paper-raised);
+}
+
 .name {
 	font-family: var(--font-display);
 	font-size: clamp(0.6875rem, 2.3cqi, 0.9375rem);
@@ -114,7 +122,7 @@
 
 .note {
 	font-family: var(--font-display);
-	font-size: clamp(0.625rem, 2cqi, 0.8125rem);
+	font-size: clamp(0.6875rem, 2cqi, 0.8125rem);
 	color: var(--ink-muted);
 }
 
@@ -132,6 +140,67 @@
 }
 
 /* The request's path draws itself when the diagram appears. */
+/* The key and short names are for narrow drawings only (below). */
+.notes,
+.short {
+	display: none;
+}
+
+/* Narrow drawings (phones, and side columns on small laptops): names only inside the drawing, so labels have room and
+   stay at a legible size; each note moves to a key under it at reading size. */
+@container (max-width: 30rem) {
+	.note {
+		display: none;
+	}
+
+	.name {
+		font-size: 0.75rem;
+	}
+
+	.short {
+		display: inline;
+	}
+
+	/* The full name stays for screen readers. */
+	.full {
+		position: absolute;
+		width: 1px;
+		height: 1px;
+		overflow: hidden;
+		clip-path: inset(50%);
+		white-space: nowrap;
+	}
+
+	/* One line per name, set a little closer to its station. */
+	.label {
+		max-width: none;
+		white-space: nowrap;
+		transform: translate(-50%, 0.55rem);
+	}
+
+	.label[data-at='above'] {
+		transform: translate(-50%, calc(-100% - 0.55rem));
+	}
+
+	.notes {
+		display: grid;
+		grid-template-columns: repeat(2, minmax(0, 1fr));
+		gap: var(--space-2) var(--space-4);
+		margin-top: var(--space-3);
+		font-family: var(--font-display);
+		font-size: var(--text-sm);
+		line-height: 1.3;
+	}
+
+	.notes dt {
+		font-weight: 600;
+	}
+
+	.notes dd {
+		color: var(--ink-muted);
+	}
+}
+
 @media (prefers-reduced-motion: no-preference) {
 	.route {
 		animation: draw 900ms var(--ease-out) 120ms both;

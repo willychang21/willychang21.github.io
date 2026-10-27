@@ -41,13 +41,42 @@ function Tabs({ projects, selected, onSelect }: ViewProps) {
 	const setActive = (id: string) => onSelect(id);
 	const tabs = useRef(new Map<string, HTMLButtonElement>());
 	const list = useRef<HTMLDivElement>(null);
+	const panels = useRef<HTMLDivElement>(null);
 	const [marker, setMarker] = useState({ y: 0, height: 0 });
 
-	// The route marker slides to the active row.
+	// The route marker slides to the active row, and follows it when rows change height:
+	// a resize that rewraps titles, or the web fonts arriving after first paint.
 	useLayoutEffect(() => {
-		const tab = tabs.current.get(active);
-		if (tab) setMarker({ y: tab.offsetTop, height: tab.offsetHeight });
+		// Fractional rects, not offsetTop/offsetHeight, which round to whole pixels.
+		const measure = () => {
+			const tab = tabs.current.get(active)?.getBoundingClientRect();
+			const box = list.current?.getBoundingClientRect();
+			if (tab && box) setMarker({ y: tab.top - box.top, height: tab.height });
+		};
+		measure();
+		const observer = typeof ResizeObserver === 'undefined' ? null : new ResizeObserver(measure);
+		if (list.current) observer?.observe(list.current);
+		let live = true;
+		document.fonts?.ready.then(() => live && measure());
+		return () => {
+			live = false;
+			observer?.disconnect();
+		};
 	}, [active]);
+
+	// Panels differ in height, so after switching from deep in a long one, the new panel
+	// can begin above the viewport. Bring its start into view; otherwise leave the page be.
+	const reveal = () =>
+		requestAnimationFrame(() => {
+			const el = panels.current;
+			const header = parseFloat(getComputedStyle(document.documentElement).scrollPaddingTop) || 0;
+			if (el && el.getBoundingClientRect().top < header) el.scrollIntoView({ block: 'start' });
+		});
+	const choose = (id: string) => {
+		if (id === active) return;
+		setActive(id);
+		reveal();
+	};
 
 	function onKeyDown(event: KeyboardEvent) {
 		const index = projects.findIndex((p) => p.id === active);
@@ -55,7 +84,7 @@ function Tabs({ projects, selected, onSelect }: ViewProps) {
 		if (next === undefined) return;
 		event.preventDefault();
 		const project = projects[(next + projects.length) % projects.length]!;
-		setActive(project.id);
+		choose(project.id);
 		tabs.current.get(project.id)?.focus();
 	}
 
@@ -83,7 +112,7 @@ function Tabs({ projects, selected, onSelect }: ViewProps) {
 							aria-describedby={`meta-${project.id}`}
 							tabIndex={active === project.id ? 0 : -1}
 							className={styles.row}
-							onClick={() => setActive(project.id)}
+							onClick={() => choose(project.id)}
 						>
 							<Heading project={project} index={i} />
 						</button>
@@ -91,7 +120,7 @@ function Tabs({ projects, selected, onSelect }: ViewProps) {
 				</div>
 			</div>
 
-			<div className={styles.panels}>
+			<div ref={panels} className={styles.panels}>
 				{projects.map((project) => (
 					<div
 						key={project.id}

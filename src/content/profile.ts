@@ -2,14 +2,13 @@ import type { Station } from './types';
 
 export const profile = {
 	name: 'Willy Chang',
-	role: 'Software engineer',
 	employer: 'TikTok',
 	base: 'San Jose, California',
 	email: 'willysde2025@gmail.com',
 	github: { handle: 'willychang21', url: 'https://github.com/willychang21' },
 	avatar: { src: '/avatar.jpg', alt: 'Illustrated portrait of Willy in glasses and a black sweater, on a pier with a city skyline behind.' },
-	/** The opening statement. */
-	statement: 'I build the systems that carry requests where they need to go.',
+	/** The opening statement, read after the name: "Willy Chang builds…". */
+	statement: 'builds the systems that carry requests where they need to go.',
 	lede: 'Software engineer at TikTok, building AOP, the Agent Operation Platform that automates data-privacy requests from around the world. Before that, full-stack products for music co-creation and classroom attendance.'
 } as const;
 

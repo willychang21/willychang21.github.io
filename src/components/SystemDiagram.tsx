@@ -50,6 +50,8 @@ function Marker({ node }: { node: DiagramNode }) {
 /** `legend` adds the key for the orange line; leave it off where the work is a team's. */
 export function SystemDiagram({ diagram, legend = false }: { diagram: Diagram; legend?: boolean }) {
 	const byId = new Map(diagram.nodes.map((n) => [n.id, n]));
+	// The key spells out notes, and full names wherever the drawing shortens one.
+	const noted = diagram.nodes.filter((n) => n.note || n.short);
 	const ordered = [...diagram.edges].sort((a, b) => Number(a.route ?? false) - Number(b.route ?? false));
 
 	return (
@@ -81,15 +83,39 @@ export function SystemDiagram({ diagram, legend = false }: { diagram: Diagram; l
 							data-edge={node.x <= 1 ? 'start' : node.x >= 11 ? 'end' : undefined}
 							style={{ left: `${(px(node) / WIDTH) * 100}%`, top: `${(py(node) / HEIGHT) * 100}%` }}
 						>
-							<span className={styles.name}>{node.label}</span>
+							<span className={styles.name}>
+								<span className={node.short ? styles.full : undefined}>{node.label}</span>
+								{node.short && (
+									<span className={styles.short} aria-hidden="true">
+										{node.short}
+									</span>
+								)}
+							</span>
 							{node.note && <span className={styles.note}>{node.note}</span>}
 						</li>
 					))}
 				</ul>
 			</div>
+			{/* Narrow drawings show names only; the notes move here, at reading size. */}
+			{noted.length > 0 && (
+				<dl className={styles.notes} aria-hidden="true">
+					{noted.map((n) => (
+						<div key={n.id}>
+							<dt>{n.short ?? n.label}</dt>
+							<dd>{n.short ? n.label : n.note}</dd>
+						</div>
+					))}
+				</dl>
+			)}
 			<figcaption className={styles.caption}>
 				{diagram.caption}
 				{legend && <span className={styles.key}> Orange marks the part I built or changed.</span>}
+				{/* The drawing's lines, in words. */}
+				<span className="sr-only">
+					{' '}
+					Connections:{' '}
+					{diagram.edges.map((e) => `${byId.get(e.from)!.label} to ${byId.get(e.to)!.label}`).join('; ')}.
+				</span>
 			</figcaption>
 		</figure>
 	);

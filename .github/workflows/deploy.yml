@@ -22,11 +22,14 @@ jobs:
         uses: actions/checkout@v7
 
       # Pinned to the versions the lockfile and build are verified with; Vite 8 needs Node
-      # 20.19 or newer, which ubuntu-latest does not guarantee.
+      # 20.19 or newer, which ubuntu-latest does not guarantee. setup-node v7 runs on the
+      # node24 action runtime (v4 used the deprecated node20). Its automatic package-manager
+      # cache stays off: Bun installs, and this job holds Pages deploy permissions.
       - name: Setup Node
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v7
         with:
           node-version: 22
+          package-manager-cache: false
 
       - name: Setup Bun
         uses: oven-sh/setup-bun@v2
@@ -44,6 +47,13 @@ jobs:
 
       - name: Verify build output
         run: bun run verify:build
+
+      # Layout and interaction checks in a real browser, against the built site.
+      - name: Install Chromium for browser tests
+        run: bunx playwright install --with-deps chromium
+
+      - name: Browser tests
+        run: bun run test:e2e
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v5

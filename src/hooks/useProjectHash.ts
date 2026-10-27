@@ -5,7 +5,13 @@ const PREFIX = '#project-';
 function read(ids: readonly string[]): string | null {
 	const hash = typeof location === 'undefined' ? '' : location.hash;
 	if (!hash.startsWith(PREFIX)) return null;
-	const id = decodeURIComponent(hash.slice(PREFIX.length));
+	// A mistyped or truncated link (e.g. a lone %) must not take the page down.
+	let id: string;
+	try {
+		id = decodeURIComponent(hash.slice(PREFIX.length));
+	} catch {
+		return null;
+	}
 	return ids.includes(id) ? id : null;
 }
 

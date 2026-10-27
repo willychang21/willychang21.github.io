@@ -3,7 +3,7 @@ import { SystemDiagram } from '../components/SystemDiagram';
 import { featured } from '../content/work';
 import styles from './Featured.module.css';
 
-/** The lead story: AOP, in words and drawn in the same transit language as the other projects. */
+/** The lead story: AOP as problem, contribution and result, beside its flow drawn in the site's transit language. */
 export function Featured() {
 	return (
 		<article className={`grid ${styles.featured}`} aria-labelledby="featured-title">
@@ -25,13 +25,29 @@ export function Featured() {
 					))}
 				</p>
 				<p className={styles.summary}>{featured.summary}</p>
-				<ul className={styles.notes}>
-					{featured.notes.map((note) => (
-						<li key={note}>
-							<RichText>{note}</RichText>
-						</li>
-					))}
-				</ul>
+				{/* The flagship reads as a short ledger, not the bullet panel the other projects use. */}
+				<dl className={styles.story}>
+					<div>
+						<dt>Problem</dt>
+						<dd>{featured.problem}</dd>
+					</div>
+					<div>
+						<dt>My part</dt>
+						<dd>
+							<ul className={styles.notes}>
+								{featured.contribution.map((note) => (
+									<li key={note}>
+										<RichText>{note}</RichText>
+									</li>
+								))}
+							</ul>
+						</dd>
+					</div>
+					<div>
+						<dt>Result</dt>
+						<dd>{featured.result}</dd>
+					</div>
+				</dl>
 			</div>
 			<div className={styles.figure}>
 				<SystemDiagram diagram={featured.diagram} />
