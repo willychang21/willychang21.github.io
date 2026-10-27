@@ -40,7 +40,11 @@ export const featured: {
 			node: 'intake',
 			text: 'Launched new intake channels for region-specific regulatory requirements, widening compliance coverage across jurisdictions.'
 		},
-		{ node: 'aop', text: 'Shipped AOP’s automated workflows, which now resolve **over 90%** of those requests automatically.' }
+		{ node: 'aop', text: 'Shipped AOP’s automated workflows, which now resolve **over 90%** of those requests automatically.' },
+		{
+			node: 'resolved',
+			text: 'Built the tools the agents use to read from and act on downstream systems, confirming each action took effect before a request counts as resolved.'
+		}
 	],
 	result: 'Most requests are now resolved through automation, and edge cases go to specialists.',
 	diagram: {
@@ -49,7 +53,7 @@ export const featured: {
 			{ id: 'requests', label: 'Privacy requests', x: 1, y: 4, kind: 'actor', labelAt: 'above' },
 			{ id: 'intake', label: 'Intake', note: 'Regional channels', x: 4, y: 4, kind: 'service' },
 			{ id: 'aop', label: 'AOP', note: 'Agents and workflows', x: 7, y: 4, kind: 'service', labelAt: 'above' },
-			{ id: 'resolved', label: 'Resolved', note: 'Most requests', x: 11, y: 2, kind: 'store' },
+			{ id: 'resolved', label: 'Resolved', note: 'Most requests', x: 11, y: 2, kind: 'store', labelAt: 'above' },
 			{ id: 'specialists', label: 'Specialists', note: 'Edge cases', x: 11, y: 6, kind: 'external' }
 		],
 		edges: [
