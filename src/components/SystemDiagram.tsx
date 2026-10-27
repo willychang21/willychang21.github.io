@@ -69,7 +69,7 @@ export function SystemDiagram({ diagram, legend = false, marks = {} }: { diagram
 								<path d={d} className={styles.route} pathLength={1} />
 							</g>
 						) : (
-							<path key={`${edge.from}-${edge.to}`} d={d} className={styles.edge} />
+							<path key={`${edge.from}-${edge.to}`} d={d} className={edge.checkpoint ? `${styles.edge} ${styles.checkpoint}` : styles.edge} />
 						);
 					})}
 					{diagram.nodes.map((node) => (
@@ -134,7 +134,7 @@ export function SystemDiagram({ diagram, legend = false, marks = {} }: { diagram
 				<span className="sr-only">
 					{' '}
 					Connections:{' '}
-					{diagram.edges.map((e) => `${byId.get(e.from)!.label} to ${byId.get(e.to)!.label}`).join('; ')}.
+					{diagram.edges.map((e) => `${byId.get(e.from)!.label} ${e.checkpoint ? 'checkpoints to' : 'to'} ${byId.get(e.to)!.label}`).join('; ')}.
 				</span>
 			</figcaption>
 		</figure>

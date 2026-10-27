@@ -29,6 +29,13 @@
 	stroke-linejoin: round;
 }
 
+/* Storage, not a step of the work: a dashed line, so the run itself still reads as one
+   continuous line. */
+.checkpoint {
+	stroke-width: 1.5;
+	stroke-dasharray: 4 4;
+}
+
 .casing {
 	fill: none;
 	stroke: var(--paper-raised);

@@ -103,6 +103,29 @@ describe('content', () => {
 		expect(featured.diagram.caption).toContain(featured.outcome.figure.toLowerCase());
 	});
 
+	it('draws the orchestrator as it is described: work and storage apart, the critical path explained', () => {
+		const { diagram, notes, summary } = projects.find((p) => p.id === 'orchestrator')!;
+		const node = (label: string) => diagram.nodes.find((n) => n.label === label)!;
+		const text = [summary, ...notes, diagram.caption].join(' ');
+
+		// A fan-in is a function that waits on its parents, not a place data is kept.
+		expect(node('Fan-in').kind).not.toBe('store');
+		// Every store the story names is drawn, as a store of its own.
+		for (const store of ['MemoryDB', 'DynamoDB']) {
+			expect(text).toContain(store);
+			expect(node(store)?.kind, store).toBe('store');
+		}
+		// Stores are reached by checkpoint writes only, never as steps of the run, and the
+		// fan-in on the critical path is the one that checkpoints to memory.
+		const edges = diagram.edges;
+		const intoStores = edges.filter((e) => diagram.nodes.find((n) => n.id === e.to)!.kind === 'store');
+		expect(intoStores.every((e) => e.checkpoint && !e.route)).toBe(true);
+		expect(edges.some((e) => e.from === node('Fan-in').id && e.to === node('MemoryDB').id && e.checkpoint)).toBe(true);
+		expect(edges.some((e) => e.route && e.to === node('Fan-in').id)).toBe(true);
+		// The highlighted line means the critical path here, and the key says so.
+		expect(diagram.key).toMatch(/critical path/i);
+	});
+
 	it('places each route stop on the map', () => {
 		const mapped = new Set(routeMap.stations.map((s) => s.id));
 		for (const leg of legs) {

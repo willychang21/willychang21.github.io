@@ -168,21 +168,25 @@ export const projects: Project[] = [
 		links: [{ label: 'Read the paper', href: 'https://drive.google.com/file/d/10u8F0rvaDctXtf7ZJZaqDRalzZoqudZJ/view' }],
 		diagram: {
 			caption:
-				'An example workflow of serverless functions. Its critical path runs through a fan-in, which reads one checkpoint per parent, so that node checkpoints to MemoryDB, in memory; every other function checkpoints to DynamoDB.',
+				'A simplified example workflow. Solid lines run the functions; dashed lines write their checkpoints. The fan-in on the critical path, which reads one checkpoint per parent, checkpoints to MemoryDB, in memory; the other functions checkpoint to DynamoDB, on disk, of which one is drawn.',
 			key: 'Orange marks the critical path.',
 			nodes: [
-				{ id: 'entry', label: 'Entry', x: 1, y: 4, kind: 'actor', labelAt: 'above' },
-				{ id: 'a', label: 'Function A', x: 4, y: 2, kind: 'service', labelAt: 'above' },
-				{ id: 'b', label: 'Function B', x: 4, y: 6, kind: 'service' },
-				{ id: 'fanin', label: 'Fan-in', note: 'MemoryDB checkpoint', x: 8, y: 4, kind: 'store' },
-				{ id: 'exit', label: 'Exit', x: 11, y: 4, kind: 'service', labelAt: 'above' }
+				{ id: 'entry', label: 'Entry', x: 1, y: 3, kind: 'actor', labelAt: 'above' },
+				{ id: 'a', label: 'Function A', x: 4, y: 1, kind: 'service', labelAt: 'above' },
+				{ id: 'b', label: 'Function B', x: 4, y: 5, kind: 'service', labelAt: 'left' },
+				{ id: 'fanin', label: 'Fan-in', x: 7, y: 3, kind: 'service', labelAt: 'above' },
+				{ id: 'exit', label: 'Exit', x: 11, y: 3, kind: 'service', labelAt: 'above' },
+				{ id: 'memorydb', label: 'MemoryDB', note: 'In memory', x: 8, y: 7, kind: 'store' },
+				{ id: 'dynamodb', label: 'DynamoDB', note: 'On disk', x: 3, y: 7, kind: 'store' }
 			],
 			edges: [
 				{ from: 'entry', to: 'a', route: true },
 				{ from: 'entry', to: 'b' },
 				{ from: 'a', to: 'fanin', route: true },
 				{ from: 'b', to: 'fanin' },
-				{ from: 'fanin', to: 'exit', route: true }
+				{ from: 'fanin', to: 'exit', route: true },
+				{ from: 'fanin', to: 'memorydb', checkpoint: true },
+				{ from: 'b', to: 'dynamodb', checkpoint: true }
 			]
 		}
 	},
