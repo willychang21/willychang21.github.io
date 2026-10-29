@@ -149,7 +149,7 @@ describe('content', () => {
 	});
 
 	it('lists skills without duplicates', () => {
-		const names = skills.flatMap((g) => g.items);
+		const names = skills.flatMap((g) => g.items.map((i) => i.name));
 		expect(new Set(names).size).toBe(names.length);
 		expect(profile.email).toMatch(/^[^@\s]+@[^@\s]+\.[a-z]+$/);
 	});

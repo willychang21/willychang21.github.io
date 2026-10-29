@@ -20,11 +20,14 @@ export function Featured() {
 				</p>
 				<p className={styles.stack}>
 					<span className="sr-only">Built with </span>
-					{/* Lines break between names, never inside one ("Vector / search"). */}
-					{featured.stack.map((name, i) => (
-						<span key={name}>
+					{/* Lines break between names, never inside a name and its note. */}
+					{featured.stack.map((item, i) => (
+						<span key={item.name}>
 							{i > 0 && ', '}
-							<span className={styles.nowrap}>{name}</span>
+							<span className={styles.nowrap}>
+								{item.name}
+								{item.gloss && <span className={styles.gloss}> ({item.gloss})</span>}
+							</span>
 						</span>
 					))}
 				</p>

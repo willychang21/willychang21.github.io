@@ -3,22 +3,42 @@ import type { SkillGroup } from './types';
 export const skills: SkillGroup[] = [
 	{
 		label: 'Languages',
-		items: ['Go', 'TypeScript', 'JavaScript', 'Python', 'Swift', 'C#']
+		items: [{ name: 'Go' }, { name: 'TypeScript' }, { name: 'JavaScript' }, { name: 'Python' }, { name: 'Swift' }, { name: 'C#' }]
 	},
 	{
 		label: 'Frontend',
-		items: ['React', 'Remix', 'Modern.js', 'Svelte', 'Zustand', 'TanStack Query', 'Tailwind', 'Jest']
+		items: [
+			{ name: 'React' },
+			{ name: 'Remix' },
+			{ name: 'Modern.js', gloss: 'React framework' },
+			{ name: 'Svelte' },
+			{ name: 'Zustand', gloss: 'state management' },
+			{ name: 'TanStack Query' },
+			{ name: 'Tailwind' },
+			{ name: 'Jest' }
+		]
 	},
 	{
 		label: 'Backend',
-		items: ['Kitex', 'Hertz', 'NestJS', 'Express.js', 'MongoDB', 'PostgreSQL', 'Redis', 'Firebase', 'AWS', 'BytePlus']
+		items: [
+			{ name: 'Kitex', gloss: 'Go RPC' },
+			{ name: 'Hertz', gloss: 'Go HTTP' },
+			{ name: 'NestJS' },
+			{ name: 'Express.js' },
+			{ name: 'MongoDB' },
+			{ name: 'PostgreSQL' },
+			{ name: 'Redis' },
+			{ name: 'Firebase' },
+			{ name: 'AWS' },
+			{ name: 'BytePlus', gloss: 'cloud' }
+		]
 	},
 	{
 		label: 'AI',
-		items: ['LLM agents', 'MCP', 'RAG', 'Vector search', 'LLM evaluation']
+		items: [{ name: 'LLM agents' }, { name: 'MCP' }, { name: 'RAG' }, { name: 'Vector search' }, { name: 'LLM evaluation' }]
 	},
 	{
 		label: 'DevOps',
-		items: ['Docker', 'Kubernetes', 'GitHub Actions', 'Linux']
+		items: [{ name: 'Docker' }, { name: 'Kubernetes' }, { name: 'GitHub Actions' }, { name: 'Linux' }]
 	}
 ];
