@@ -32,7 +32,9 @@ export const featured: {
 		{ name: 'Go' },
 		{ name: 'Kitex', gloss: 'Go RPC' },
 		{ name: 'Hertz', gloss: 'Go HTTP' },
-		{ name: 'Modern.js', gloss: 'React' }
+		{ name: 'Modern.js', gloss: 'React' },
+		{ name: 'MongoDB', gloss: 'vector search' },
+		{ name: 'MCP' }
 	],
 	problem:
 		'Privacy requests reach TikTok from around the world, under different regional rules, and the operations team handled them largely by hand.',
@@ -47,7 +49,7 @@ export const featured: {
 		},
 		{
 			node: 'resolved',
-			text: '**Made every resolution verifiable:** each automated action is confirmed before a request counts as resolved, and edge cases go to specialists.'
+			text: '**Made every resolution verifiable:** each automated action is confirmed before a request counts as resolved, agent changes are evaluated before they ship, and edge cases go to specialists.'
 		}
 	],
 	outcome: { figure: 'Over 90%', text: 'of privacy-operations requests now resolved automatically' },
