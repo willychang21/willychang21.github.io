@@ -49,7 +49,7 @@ export const featured: {
 		},
 		{
 			node: 'resolved',
-			text: '**Made every resolution verifiable:** each automated action is confirmed before a request counts as resolved, and edge cases go to specialists.'
+			text: '**Made every resolution verifiable:** each automated action is confirmed before a request counts as resolved, agent changes are evaluated before they ship, and edge cases go to specialists.'
 		}
 	],
 	outcome: { figure: 'Over 90%', text: 'of privacy-operations requests now resolved automatically' },
