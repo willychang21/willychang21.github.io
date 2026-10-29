@@ -44,14 +44,6 @@
 	color: var(--rule-strong);
 }
 
-.gloss {
-	font-family: var(--font-text);
-	font-stretch: normal;
-	font-weight: 400;
-	font-size: 0.45em;
-	color: var(--ink-muted);
-	vertical-align: 0.6em;
-}
 
 @media (min-width: 48rem) {
 	.label {
