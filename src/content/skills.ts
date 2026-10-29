@@ -34,24 +34,8 @@ export const skills: SkillGroup[] = [
 		]
 	},
 	{
-		label: 'AI & agents',
-		items: [
-			{ name: 'LLM agents' },
-			{ name: 'Tool calling' },
-			{ name: 'MCP', gloss: 'Model Context Protocol' },
-			{ name: 'RAG' }
-		]
-	},
-	{
-		label: 'Retrieval',
-		items: [
-			{ name: 'MongoDB Vector Search', gloss: '8.2' },
-			{ name: 'Embedding pipelines' },
-			{ name: 'Hybrid search', gloss: 'vector + full-text' },
-			{ name: 'Reciprocal rank fusion' },
-			{ name: 'Metadata pre-filtering' },
-			{ name: 'Reranking' }
-		]
+		label: 'AI',
+		items: [{ name: 'LLM agents' }, { name: 'MCP' }, { name: 'RAG' }, { name: 'Vector search' }, { name: 'LLM evaluation' }]
 	},
 	{
 		label: 'DevOps',
