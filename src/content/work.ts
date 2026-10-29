@@ -27,7 +27,7 @@ export const featured: {
 	period: '2025–now',
 	station: 'sjc',
 	summary: 'An internal platform that automates TikTok’s privacy-operations requests.',
-	stack: ['Go', 'Kitex', 'Hertz', 'Modern.js', 'Vector search', 'MCP'],
+	stack: ['Go', 'Kitex', 'Hertz', 'Modern.js', 'MCP'],
 	problem:
 		'Privacy requests reach TikTok from around the world, under different regional rules, and the operations team handled them largely by hand.',
 	contribution: [
