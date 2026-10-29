@@ -43,7 +43,7 @@ export const featured: {
 		},
 		{
 			node: 'aop',
-			text: '**Designed and built AOP end to end:** how each request is orchestrated, the agents that judge it, and the tools they act through.'
+			text: '**Designed and built AOP end to end:** how each request is orchestrated, the agents that judge it, the tools they act through, and the hybrid retrieval that grounds them.'
 		},
 		{
 			node: 'resolved',

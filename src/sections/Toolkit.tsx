@@ -7,7 +7,7 @@ export function Toolkit() {
 		<section id="toolkit" className={styles.toolkit} aria-labelledby="toolkit-title">
 			<div className="container">
 				<SectionHead id="toolkit" title="Toolkit">
-					Languages and tools from the work above, grouped the way the résumé groups them.
+					Languages and tools from the work above.
 				</SectionHead>
 				<dl className={styles.groups}>
 					{skills.map((group) => (
