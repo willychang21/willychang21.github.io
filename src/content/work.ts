@@ -12,8 +12,7 @@ export const featured: {
 	period: string;
 	station: Station['id'];
 	summary: string;
-	/** Open-source frameworks, glossed for readers outside ByteDance. */
-	stack: { name: string; gloss?: string }[];
+	stack: string[];
 	/** The story in three parts. Public copy only: no internal names, volumes or rates. */
 	problem: string;
 	/** Willy's part, in the order a request meets it; `node` is where it sits in the diagram. */
@@ -28,14 +27,7 @@ export const featured: {
 	period: '2025–now',
 	station: 'sjc',
 	summary: 'An internal platform that automates TikTok’s privacy-operations requests.',
-	stack: [
-		{ name: 'Go' },
-		{ name: 'Kitex', gloss: 'Go RPC' },
-		{ name: 'Hertz', gloss: 'Go HTTP' },
-		{ name: 'Modern.js', gloss: 'React' },
-		{ name: 'MongoDB', gloss: 'vector search' },
-		{ name: 'MCP' }
-	],
+	stack: ['Go', 'Kitex', 'Hertz', 'Modern.js', 'Vector search', 'MCP'],
 	problem:
 		'Privacy requests reach TikTok from around the world, under different regional rules, and the operations team handled them largely by hand.',
 	contribution: [

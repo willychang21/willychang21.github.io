@@ -26,9 +26,8 @@
 	font-weight: 500;
 }
 
-.gloss {
-	font-weight: 400;
-	color: var(--ink-muted);
+.nowrap {
+	white-space: nowrap;
 }
 
 .summary {
