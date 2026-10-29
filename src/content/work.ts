@@ -32,7 +32,9 @@ export const featured: {
 		{ name: 'Go' },
 		{ name: 'Kitex', gloss: 'Go RPC' },
 		{ name: 'Hertz', gloss: 'Go HTTP' },
-		{ name: 'Modern.js', gloss: 'React' }
+		{ name: 'Modern.js', gloss: 'React' },
+		{ name: 'MongoDB', gloss: 'vector search' },
+		{ name: 'MCP' }
 	],
 	problem:
 		'Privacy requests reach TikTok from around the world, under different regional rules, and the operations team handled them largely by hand.',
