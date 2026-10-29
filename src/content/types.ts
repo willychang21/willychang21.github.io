@@ -109,5 +109,5 @@ export interface Project {
 
 export interface SkillGroup {
 	label: string;
-	items: { name: string; gloss?: string }[];
+	items: string[];
 }

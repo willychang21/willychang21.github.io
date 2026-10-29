@@ -16,10 +16,7 @@ export function Toolkit() {
 							<dd className={styles.items}>
 								<ul>
 									{group.items.map((item) => (
-										<li key={item.name}>
-											{item.name}
-											{item.gloss && <span className={styles.gloss}> ({item.gloss})</span>}
-										</li>
+										<li key={item}>{item}</li>
 									))}
 								</ul>
 							</dd>

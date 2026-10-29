@@ -32,7 +32,7 @@ describe('App', () => {
 	it('names what AOP is built with', () => {
 		render(<App />);
 		const aop = screen.getByRole('article', { name: /AOP/ });
-		expect(aop).toHaveTextContent('Built with Go, Kitex (Go RPC), Hertz (Go HTTP), Modern.js (React)');
+		expect(aop).toHaveTextContent('Built with Go, Kitex, Hertz, Modern.js, Vector search, MCP');
 	});
 
 	it('offers email, GitHub and the résumé', () => {
