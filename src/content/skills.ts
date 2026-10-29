@@ -35,7 +35,7 @@ export const skills: SkillGroup[] = [
 	},
 	{
 		label: 'AI',
-		items: [{ name: 'LLM agents' }, { name: 'MCP' }, { name: 'RAG' }, { name: 'Vector search' }]
+		items: [{ name: 'LLM agents' }, { name: 'MCP' }, { name: 'RAG' }, { name: 'Vector search' }, { name: 'LLM evaluation' }]
 	},
 	{
 		label: 'DevOps',
