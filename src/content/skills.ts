@@ -12,7 +12,7 @@ export const skills: SkillGroup[] = [
 			{ name: 'Remix' },
 			{ name: 'Modern.js', gloss: 'React framework' },
 			{ name: 'Svelte' },
-			{ name: 'Zustand', gloss: 'state management' },
+			{ name: 'Zustand' },
 			{ name: 'TanStack Query' },
 			{ name: 'Tailwind' },
 			{ name: 'Jest' }
