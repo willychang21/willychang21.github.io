@@ -19,22 +19,36 @@
 	color: var(--ink-muted);
 }
 
-.stack {
+/* The legend shares the ledger's label column, so the two read as one table. */
+.legend {
+	margin-top: var(--space-3);
+}
+
+.legend > div {
+	display: grid;
+	grid-template-columns: 5.5rem minmax(0, 1fr);
+	column-gap: var(--space-4);
+	align-items: baseline;
+}
+
+.legend > div + div {
 	margin-top: var(--space-1);
+}
+
+.legend dt {
+	font-family: var(--font-display);
+	font-size: var(--text-sm);
+	font-weight: 600;
+	color: var(--ink-muted);
+}
+
+.names {
+	--gloss-size: 0.8em;
+	--gloss-lift: 0.25em;
 	font-family: var(--font-display);
 	font-size: var(--text-md);
 	font-weight: 500;
 }
-
-.gloss {
-	font-weight: 400;
-	color: var(--ink-muted);
-}
-
-.nowrap {
-	white-space: nowrap;
-}
-
 .summary {
 	margin-top: var(--space-5);
 	max-width: 40ch;
