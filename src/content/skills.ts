@@ -21,8 +21,8 @@ export const skills: SkillGroup[] = [
 	{
 		label: 'Backend',
 		items: [
-			{ name: 'Kitex', gloss: 'Go RPC' },
-			{ name: 'Hertz', gloss: 'Go HTTP' },
+			{ name: 'Kitex', gloss: 'RPC' },
+			{ name: 'Hertz', gloss: 'HTTP' },
 			{ name: 'NestJS' },
 			{ name: 'Express.js' },
 			{ name: 'MongoDB' },
@@ -35,7 +35,15 @@ export const skills: SkillGroup[] = [
 	},
 	{
 		label: 'AI',
-		items: [{ name: 'LLM agents' }, { name: 'MCP' }, { name: 'RAG' }, { name: 'Vector search' }, { name: 'LLM evaluation' }]
+		items: [
+			{ name: 'LLM agents' },
+			{ name: 'MCP' },
+			{ name: 'RAG' },
+			{ name: 'Hybrid search' },
+			{ name: 'Multimodal LLMs' },
+			{ name: 'LLM evaluation' },
+			{ name: 'Human-in-the-loop' }
+		]
 	},
 	{
 		label: 'DevOps',

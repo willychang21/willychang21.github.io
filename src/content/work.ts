@@ -29,7 +29,7 @@ export const featured: {
 	station: 'sjc',
 	summary: 'An internal platform that automates TikTok’s privacy-operations requests.',
 	stack: [
-		{ label: 'Services', items: [{ name: 'Go' }, { name: 'Kitex', gloss: 'Go RPC' }, { name: 'Hertz', gloss: 'Go HTTP' }, { name: 'MongoDB' }] },
+		{ label: 'Services', items: [{ name: 'Go' }, { name: 'Kitex', gloss: 'RPC' }, { name: 'Hertz', gloss: 'HTTP' }, { name: 'MongoDB' }] },
 		{ label: 'Interface', items: [{ name: 'Modern.js', gloss: 'React' }] },
 		{ label: 'Agents', items: [{ name: 'MCP' }] }
 	],
