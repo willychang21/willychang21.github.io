@@ -39,7 +39,7 @@ describe('App', () => {
 			[...row.querySelectorAll('li')].map((li) => li.textContent)
 		]);
 		expect(rows).toEqual([
-			['Services', ['Go', 'Kitex (Go RPC)', 'Hertz (Go HTTP)', 'MongoDB']],
+			['Services', ['Go', 'Kitex (RPC)', 'Hertz (HTTP)', 'MongoDB']],
 			['Interface', ['Modern.js (React)']],
 			['Agents', ['MCP']]
 		]);
