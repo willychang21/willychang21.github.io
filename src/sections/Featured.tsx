@@ -1,3 +1,4 @@
+import { NameList } from '../components/NameList';
 import { RichText } from '../components/RichText';
 import { StationLink } from '../components/StationLink';
 import { SystemDiagram } from '../components/SystemDiagram';
@@ -18,16 +19,20 @@ export function Featured() {
 				<p className={styles.context}>
 					{featured.context}, {featured.period} · <StationLink station={featured.station} />
 				</p>
-				<p className={styles.stack}>
-					<span className="sr-only">Built with </span>
-					{/* Lines break between names, never inside one ("Vector / search"). */}
-					{featured.stack.map((name, i) => (
-						<span key={name}>
-							{i > 0 && ', '}
-							<span className={styles.nowrap}>{name}</span>
-						</span>
-					))}
+				{/* What it's built with, by layer: a small legend, labelled like the ledger below. */}
+				<p className="sr-only" id="featured-stack">
+					Built with
 				</p>
+				<dl className={styles.legend} aria-labelledby="featured-stack">
+					{featured.stack.map((group) => (
+						<div key={group.label}>
+							<dt>{group.label}</dt>
+							<dd>
+								<NameList items={group.items} className={styles.names} />
+							</dd>
+						</div>
+					))}
+				</dl>
 				<p className={styles.summary}>{featured.summary}</p>
 				{/* The flagship reads as a short ledger, not the bullet panel the other projects use. */}
 				<dl className={styles.story}>

@@ -1,3 +1,4 @@
+import { NameList } from '../components/NameList';
 import { SectionHead } from '../components/SectionHead';
 import { skills } from '../content/skills';
 import styles from './Toolkit.module.css';
@@ -14,11 +15,7 @@ export function Toolkit() {
 						<div key={group.label} className={`grid ${styles.group}`}>
 							<dt className={styles.label}>{group.label}</dt>
 							<dd className={styles.items}>
-								<ul>
-									{group.items.map((item) => (
-										<li key={item}>{item}</li>
-									))}
-								</ul>
+								<NameList items={group.items} className={styles.names} />
 							</dd>
 						</div>
 					))}

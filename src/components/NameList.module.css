@@ -1,0 +1,28 @@
+/* Set as a line of type, not a tray of chips. A name never breaks from its note. */
+.list {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: baseline;
+}
+
+.list li {
+	white-space: nowrap;
+}
+
+.list li:not(:last-child)::after {
+	content: '/' / '';
+	margin-inline: 0.3em;
+	font-weight: 300;
+	color: var(--rule-strong);
+}
+
+/* The note's size and lift scale with the line: small annotations on large type,
+   larger ones on small type, where 45% would be too small to read. */
+.gloss {
+	font-family: var(--font-text);
+	font-stretch: normal;
+	font-weight: 400;
+	font-size: var(--gloss-size, 0.45em);
+	color: var(--ink-muted);
+	vertical-align: var(--gloss-lift, 0.6em);
+}

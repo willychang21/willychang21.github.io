@@ -1,4 +1,4 @@
-import type { Diagram, Project, RichText, Station } from './types';
+import type { Diagram, Project, RichText, SkillGroup, Station } from './types';
 
 /**
  * The lead story: AOP. Public copy only: what the platform does and Willy's part in it.
@@ -12,7 +12,8 @@ export const featured: {
 	period: string;
 	station: Station['id'];
 	summary: string;
-	stack: string[];
+	/** What it is built with, by layer: a legend, as on the map. Names few readers know carry a note. */
+	stack: SkillGroup[];
 	/** The story in three parts. Public copy only: no internal names, volumes or rates. */
 	problem: string;
 	/** Willy's part, in the order a request meets it; `node` is where it sits in the diagram. */
@@ -27,7 +28,11 @@ export const featured: {
 	period: '2025–now',
 	station: 'sjc',
 	summary: 'An internal platform that automates TikTok’s privacy-operations requests.',
-	stack: ['Go', 'Kitex', 'Hertz', 'Modern.js', 'MCP'],
+	stack: [
+		{ label: 'Services', items: [{ name: 'Go' }, { name: 'Kitex', gloss: 'Go RPC' }, { name: 'Hertz', gloss: 'Go HTTP' }, { name: 'MongoDB' }] },
+		{ label: 'Interface', items: [{ name: 'Modern.js', gloss: 'React' }] },
+		{ label: 'Agents', items: [{ name: 'MCP' }] }
+	],
 	problem:
 		'Privacy requests reach TikTok from around the world, under different regional rules, and the operations team handled them largely by hand.',
 	contribution: [

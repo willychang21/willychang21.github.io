@@ -32,7 +32,17 @@ describe('App', () => {
 	it('names what AOP is built with', () => {
 		render(<App />);
 		const aop = screen.getByRole('article', { name: /AOP/ });
-		expect(aop).toHaveTextContent('Built with Go, Kitex, Hertz, Modern.js, MCP');
+		const legend = within(aop).getByText('Services').closest('dl')!;
+		expect(legend).toHaveAccessibleName('Built with');
+		const rows = [...legend.querySelectorAll(':scope > div')].map((row) => [
+			row.querySelector('dt')!.textContent,
+			[...row.querySelectorAll('li')].map((li) => li.textContent)
+		]);
+		expect(rows).toEqual([
+			['Services', ['Go', 'Kitex (Go RPC)', 'Hertz (Go HTTP)', 'MongoDB']],
+			['Interface', ['Modern.js (React)']],
+			['Agents', ['MCP']]
+		]);
 	});
 
 	it('offers email, GitHub and the résumé', () => {
