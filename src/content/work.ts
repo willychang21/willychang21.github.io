@@ -27,31 +27,31 @@ export const featured: {
 	context: 'TikTok, privacy operations',
 	period: '2025–now',
 	station: 'sjc',
-	summary: 'An internal platform that automates TikTok’s privacy-operations requests.',
+	summary: 'An internal agent platform that automates TikTok’s privacy requests.',
 	stack: [
 		{ label: 'Services', items: [{ name: 'Go' }, { name: 'Kitex', gloss: 'RPC' }, { name: 'Hertz', gloss: 'HTTP' }, { name: 'MongoDB' }] },
 		{ label: 'Interface', items: [{ name: 'Modern.js', gloss: 'React' }] },
-		{ label: 'Agents', items: [{ name: 'MCP' }] }
+		{ label: 'Agents', items: [{ name: 'MCP' }, { name: 'Hybrid search' }, { name: 'VLM' }] }
 	],
 	problem:
-		'Privacy requests reach TikTok from around the world, under different regional rules, and the operations team handled them largely by hand.',
+		'Privacy requests come to TikTok from around the world, under different regional rules. The operations team handled most of them by hand.',
 	contribution: [
 		{
 			node: 'intake',
-			text: '**Launched intake channels** for region-specific regulatory requirements, widening compliance coverage across jurisdictions.'
+			text: 'I launched intake channels for regional privacy laws, so AOP covers more jurisdictions.'
 		},
 		{
 			node: 'aop',
-			text: '**Designed and built AOP end to end:** how each request is orchestrated, the agents that judge it, the tools they act through, and the hybrid retrieval that grounds them.'
+			text: 'I designed and built AOP end to end. Code runs each workflow step by step, and an agent answers one checkable question per step. Hybrid search grounds each answer, and one tool service runs every action.'
 		},
 		{
 			node: 'resolved',
-			text: '**Made every resolution verifiable:** each automated action is confirmed before a request counts as resolved, agent changes are evaluated before they ship, and edge cases go to specialists.'
+			text: 'I made each action safe to automate. An action runs at most once, even after a retry or a crash. A person’s edit always wins over an automated write. Agents get read-only tools through MCP, and each agent change is replayed against past tickets before release.'
 		}
 	],
-	outcome: { figure: 'Over 90%', text: 'of privacy-operations requests now resolved automatically' },
+	outcome: { figure: 'Over 90%', text: 'of privacy requests resolved automatically' },
 	diagram: {
-		caption: 'Requests arrive through intake channels; AOP resolves over 90% of them automatically and routes edge cases to specialists.',
+		caption: 'A request enters through an intake channel. AOP resolves it, or sends an edge case to a specialist.',
 		nodes: [
 			{ id: 'requests', label: 'Privacy requests', x: 1, y: 4, kind: 'actor', labelAt: 'above' },
 			{ id: 'intake', label: 'Intake', note: 'Regional channels', x: 4, y: 4, kind: 'service' },
@@ -72,17 +72,16 @@ export const projects: Project[] = [
 	{
 		id: 'here',
 		title: 'Here @ UIUC',
-		outcome: { figure: '5,000+', text: 'students use it, across 90+ instructors' },
+		outcome: { figure: '5,000+', text: 'students and 90+ instructors use it' },
 		context: 'University of Illinois, part-time engineer',
 		period: '2024',
 		station: 'cmi',
 		summary:
-			'Classroom attendance for the University of Illinois, built under Professor Abdussalam Alawini. It now runs on the university’s own domain.',
+			'Classroom attendance for the University of Illinois, built under Professor Abdussalam Alawini. It runs on the university’s own domain.',
 		stack: ['Express.js', 'MVC'],
 		notes: [
-			'Serves **5,000+ students** across **90+ instructors**.',
-			'Decomposed the existing Express.js backend into an MVC architecture, with distinct routers, controllers and services.',
-			'The split made the backend more modular and easier to unit test and maintain.'
+			'Split the Express.js backend into routers, controllers and services.',
+			'Each layer is now easier to unit test and maintain.'
 		],
 		links: [{ label: 'Open here.illinois.edu', href: 'https://here.illinois.edu/' }],
 		shot: {
@@ -94,7 +93,7 @@ export const projects: Project[] = [
 			height: 1000
 		},
 		diagram: {
-			caption: 'Requests from students and instructors pass through distinct routers, controllers and services.',
+			caption: 'Requests from students and instructors go through routers, then controllers, then services.',
 			nodes: [
 				{ id: 'students', label: 'Students', note: '5,000+', x: 1, y: 2, kind: 'actor', labelAt: 'above' },
 				{ id: 'instructors', label: 'Instructors', note: '90+', x: 1, y: 6, kind: 'actor' },
@@ -120,9 +119,9 @@ export const projects: Project[] = [
 		summary: 'A music co-creation platform where people make songs together.',
 		stack: ['Svelte', 'Nest.js', 'PostgreSQL', 'NooBaa', 'Stytch'],
 		notes: [
-			'Integrated OAuth 2.0 through Stytch, streamlining sign-up and sign-in.',
-			'Overhauled the data model for privacy and access control over assets: user-based permissions, task-based teams and dynamic accessibility rules.',
-			'Assets live in NooBaa, an S3-compatible object store.'
+			'Added OAuth 2.0 sign-up and sign-in through Stytch.',
+			'Redesigned the data model for access to shared assets, with permissions per user, teams per task and dynamic access rules.',
+			'Stored the assets in NooBaa, an S3-compatible object store.'
 		],
 		links: [{ label: 'Open the live demo', href: 'https://muosaic-demo.kocree.net/home' }],
 		shot: {
@@ -157,17 +156,17 @@ export const projects: Project[] = [
 		context: 'University of Illinois, research with Kai-Siang Wang',
 		station: 'cmi',
 		summary:
-			'A serverless orchestrator that keeps the checkpoints on a workflow’s critical path in memory and the rest on disk, meeting a latency objective at the lowest cost.',
+			'A serverless orchestrator that keeps checkpoints on a workflow’s critical path in memory and the rest on disk. It meets a latency objective at the lowest cost.',
 		stack: ['AWS Lambda', 'MemoryDB', 'DynamoDB'],
 		notes: [
-			'Decentralized orchestrators checkpoint every function’s output to a durable store, and a fan-in reads one checkpoint per parent, so store latency piles up on the critical path.',
-			'A critical-node selection algorithm ranks each function by its distance from the start and the end of the workflow, then uses dynamic programming to move the fewest critical nodes to MemoryDB that still meet the service level objective.',
-			'In simulation, it cut the added cost of meeting the objective by **up to 25%** against a baseline that moves the busiest fan-ins first.'
+			'A decentralized orchestrator writes each function’s output to a durable store. A fan-in reads one checkpoint per parent, so store latency adds up on the critical path.',
+			'Our algorithm ranks each function by its distance from the start and the end of the workflow. Dynamic programming then picks the fewest critical nodes to move to MemoryDB that still meet the latency objective.',
+			'In simulation, it cut the added cost **up to 25%** below a baseline that moves the busiest fan-ins first.'
 		],
 		links: [{ label: 'Read the paper', href: 'https://drive.google.com/file/d/10u8F0rvaDctXtf7ZJZaqDRalzZoqudZJ/view' }],
 		diagram: {
 			caption:
-				'A simplified example workflow. Solid lines run the functions; dashed lines write their checkpoints. The fan-in on the critical path, which reads one checkpoint per parent, checkpoints to MemoryDB, in memory; the other functions checkpoint to DynamoDB, on disk, of which one is drawn.',
+				'A simplified workflow. Solid lines are function calls and dashed lines are checkpoint writes. The fan-in on the critical path writes its checkpoint to MemoryDB. The other functions write to DynamoDB; the drawing shows one of them.',
 			key: 'Orange marks the critical path.',
 			nodes: [
 				{ id: 'entry', label: 'Entry', x: 1, y: 3, kind: 'actor', labelAt: 'above' },
@@ -192,14 +191,13 @@ export const projects: Project[] = [
 	{
 		id: 'ar-navigation',
 		title: 'Augmented-reality navigation',
-		outcome: { figure: 'Team of 4', text: 'led, building AR games on image recognition' },
+		outcome: { text: 'Led a team of 4 engineers' },
 		station: 'tpe',
-		summary: 'A location-based AR navigation app with games built on image recognition.',
+		summary: 'A location-based navigation app in augmented reality, with games inside it.',
 		stack: ['Unity', 'C#', 'ARCore', 'Mapbox'],
 		notes: [
-			'Led a team of **4 engineers**.',
-			'Designed AR games around image recognition with the ARCore SDK.',
-			'Integrated Mapbox for 3D routing and mapping.'
+			'Designed the games around image recognition with the ARCore SDK.',
+			'Added 3D routing and maps with Mapbox.'
 		],
 		links: [{ label: 'Source on GitHub', href: 'https://github.com/willychang21/MapboxARGame' }],
 		diagram: {
@@ -224,12 +222,12 @@ export const projects: Project[] = [
 		title: 'Realtime chat for iOS',
 		outcome: { text: 'Text, location and media messaging on an MVVM architecture' },
 		station: 'tpe',
-		summary: 'A messenger with text, location and multimedia messages, on UIKit and Firebase.',
+		summary: 'A chat app for iOS, built with UIKit and Firebase.',
 		stack: ['Swift', 'UIKit', 'Firebase', 'MapKit', 'AVFoundation'],
 		notes: [
-			'An MVVM architecture keeps updates and new features simple to add.',
-			'Location and multimedia messages through MapKit and AVFoundation.',
-			'Backend on Firebase Realtime Database, Cloud Storage, Cloud Firestore and Firebase Authentication.'
+			'The MVVM architecture keeps each layer separate, so new features are simple to add.',
+			'MapKit handles location messages, and AVFoundation handles photo and video messages.',
+			'Firebase handles sign-in, live messages, data and file storage.'
 		],
 		links: [{ label: 'Source on GitHub', href: 'https://github.com/willychang21/Messenger' }],
 		diagram: {

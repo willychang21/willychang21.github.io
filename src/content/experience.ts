@@ -11,9 +11,7 @@ export const roles: Role[] = [
 		end: 'Present',
 		logo: '/logos/tiktok.png',
 		highlights: [
-			'Designed and built AOP (Agent Operation Platform) end to end: TikTok’s internal platform for automating privacy-operations requests.',
-			'Its automated workflows resolve **over 90%** of those requests automatically, sharply reducing manual operations workload.',
-			'Launched intake channels for region-specific regulatory requirements across multiple jurisdictions.'
+			'Designed and built AOP (Agent Operation Platform). It resolves **over 90%** of TikTok’s privacy requests automatically.'
 		]
 	},
 	{
@@ -26,9 +24,7 @@ export const roles: Role[] = [
 		end: 'Aug 2024',
 		logo: '/logos/kocree.png',
 		highlights: [
-			'Developed [Muosaic](https://muosaic-demo.kocree.net/home), a music co-creation platform, using Svelte, Nest.js, PostgreSQL, and NooBaa for S3-compatible storage.',
-			'Optimized authentication by integrating OAuth 2.0 authentication via Stytch, streamlining the sign-up/sign-in process.',
-			'Overhauled data model to enhance privacy and access control for assets, implementing user-based permissions, task-based teams, and dynamic accessibility rules.'
+			'Built sign-in and access control for [Muosaic](https://muosaic-demo.kocree.net/home), a music co-creation platform.'
 		]
 	},
 	{
@@ -41,8 +37,7 @@ export const roles: Role[] = [
 		end: 'Dec 2024',
 		logo: '/logos/uiuc.png',
 		highlights: [
-			'Built [Here @ UIUC](https://here.illinois.edu/) under Professor Abdussalam Alawini, serving **5,000+ students** across **90+ instructors**.',
-			'Decomposed existing Express.js backend into an MVC architecture, streamlining routing with distinct routers, controllers, and services, improving modularity, unit testing, and maintainability.'
+			'Rebuilt the backend of [Here @ UIUC](https://here.illinois.edu/), the university’s attendance system.'
 		]
 	}
 ];
