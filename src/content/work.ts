@@ -31,7 +31,7 @@ export const featured: {
 	stack: [
 		{ label: 'Services', items: [{ name: 'Go' }, { name: 'Kitex', gloss: 'RPC' }, { name: 'Hertz', gloss: 'HTTP' }, { name: 'MongoDB' }] },
 		{ label: 'Interface', items: [{ name: 'Modern.js', gloss: 'React' }] },
-		{ label: 'Agents', items: [{ name: 'MCP' }] }
+		{ label: 'Agents', items: [{ name: 'MCP' }, { name: 'Hybrid search' }, { name: 'VLM' }] }
 	],
 	problem:
 		'Privacy requests reach TikTok from around the world, under different regional rules, and the operations team handled them largely by hand.',
@@ -42,11 +42,11 @@ export const featured: {
 		},
 		{
 			node: 'aop',
-			text: '**Designed and built AOP end to end:** how each request is orchestrated, the agents that judge it, the tools they act through, and the hybrid retrieval that grounds them.'
+			text: '**Designed and built AOP end to end:** code runs each workflow and agents answer single, checkable questions, grounded by hybrid retrieval, with one tool service through which every action runs.'
 		},
 		{
 			node: 'resolved',
-			text: '**Made every resolution verifiable:** each automated action is confirmed before a request counts as resolved, agent changes are evaluated before they ship, and edge cases go to specialists.'
+			text: '**Made every action safe to automate:** each external effect happens at most once and is confirmed before a request counts as resolved, people’s edits are never overwritten, and agent changes are evaluated before they ship.'
 		}
 	],
 	outcome: { figure: 'Over 90%', text: 'of privacy-operations requests now resolved automatically' },
