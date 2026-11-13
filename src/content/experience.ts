@@ -11,9 +11,7 @@ export const roles: Role[] = [
 		end: 'Present',
 		logo: '/logos/tiktok.png',
 		highlights: [
-			'Designed and built AOP (Agent Operation Platform) end to end: TikTok’s internal platform for automating privacy-operations requests.',
-			'Its automated workflows resolve **over 90%** of those requests automatically, sharply reducing manual operations workload.',
-			'Launched intake channels for region-specific regulatory requirements across multiple jurisdictions.'
+			'Designed and built AOP (Agent Operation Platform). It resolves **over 90%** of TikTok’s privacy requests automatically.'
 		]
 	},
 	{
@@ -39,7 +37,7 @@ export const roles: Role[] = [
 		end: 'Dec 2024',
 		logo: '/logos/uiuc.png',
 		highlights: [
-			'Rebuilt the backend of [Here @ UIUC](https://here.illinois.edu/), the attendance system for **5,000+ students** and **90+ instructors**.'
+			'Rebuilt the backend of [Here @ UIUC](https://here.illinois.edu/), the university’s attendance system.'
 		]
 	}
 ];

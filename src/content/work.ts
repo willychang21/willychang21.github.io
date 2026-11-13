@@ -27,31 +27,31 @@ export const featured: {
 	context: 'TikTok, privacy operations',
 	period: '2025–now',
 	station: 'sjc',
-	summary: 'An internal platform that automates TikTok’s privacy-operations requests.',
+	summary: 'An internal agent platform that automates TikTok’s privacy requests.',
 	stack: [
 		{ label: 'Services', items: [{ name: 'Go' }, { name: 'Kitex', gloss: 'RPC' }, { name: 'Hertz', gloss: 'HTTP' }, { name: 'MongoDB' }] },
 		{ label: 'Interface', items: [{ name: 'Modern.js', gloss: 'React' }] },
 		{ label: 'Agents', items: [{ name: 'MCP' }, { name: 'Hybrid search' }, { name: 'VLM' }] }
 	],
 	problem:
-		'Privacy requests reach TikTok from around the world, under different regional rules, and the operations team handled them largely by hand.',
+		'Privacy requests come to TikTok from around the world, under different regional rules. The operations team handled most of them by hand.',
 	contribution: [
 		{
 			node: 'intake',
-			text: '**Launched intake channels** for region-specific regulatory requirements, widening compliance coverage across jurisdictions.'
+			text: 'I launched intake channels for regional privacy laws, so AOP covers more jurisdictions.'
 		},
 		{
 			node: 'aop',
-			text: '**Designed and built AOP end to end:** code runs each workflow and agents answer single, checkable questions, grounded by hybrid retrieval, with one tool service through which every action runs.'
+			text: 'I designed and built AOP end to end. Code runs each workflow step by step, and an agent answers one checkable question per step. Hybrid search grounds each answer, and one tool service runs every action.'
 		},
 		{
 			node: 'resolved',
-			text: '**Made every action safe to automate:** each external effect happens at most once and is confirmed before a request counts as resolved, people’s edits are never overwritten, and agent changes are evaluated before they ship.'
+			text: 'I made each action safe to automate. An action runs at most once, even after a retry or a crash. A person’s edit always wins over an automated write. Agents get read-only tools through MCP, and each agent change is replayed against past tickets before release.'
 		}
 	],
-	outcome: { figure: 'Over 90%', text: 'of privacy-operations requests now resolved automatically' },
+	outcome: { figure: 'Over 90%', text: 'of privacy requests resolved automatically' },
 	diagram: {
-		caption: 'Requests arrive through intake channels; AOP resolves over 90% of them automatically and routes edge cases to specialists.',
+		caption: 'A request enters through an intake channel. AOP resolves it, or sends an edge case to a specialist.',
 		nodes: [
 			{ id: 'requests', label: 'Privacy requests', x: 1, y: 4, kind: 'actor', labelAt: 'above' },
 			{ id: 'intake', label: 'Intake', note: 'Regional channels', x: 4, y: 4, kind: 'service' },
@@ -72,7 +72,7 @@ export const projects: Project[] = [
 	{
 		id: 'here',
 		title: 'Here @ UIUC',
-		outcome: { figure: '5,000+', text: 'students use it, across 90+ instructors' },
+		outcome: { figure: '5,000+', text: 'students and 90+ instructors use it' },
 		context: 'University of Illinois, part-time engineer',
 		period: '2024',
 		station: 'cmi',
@@ -191,9 +191,9 @@ export const projects: Project[] = [
 	{
 		id: 'ar-navigation',
 		title: 'Augmented-reality navigation',
-		outcome: { text: 'Led a team of 4 engineers to build AR games on image recognition' },
+		outcome: { text: 'Led a team of 4 engineers' },
 		station: 'tpe',
-		summary: 'A location-based AR navigation app with games built on image recognition.',
+		summary: 'A location-based navigation app in augmented reality, with games inside it.',
 		stack: ['Unity', 'C#', 'ARCore', 'Mapbox'],
 		notes: [
 			'Designed the games around image recognition with the ARCore SDK.',

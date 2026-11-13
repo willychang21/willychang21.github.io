@@ -40,7 +40,7 @@ describe('content', () => {
 			'Master of Computer Science',
 			'Bachelor of Science in Computer Science'
 		]);
-		expect(roles.flatMap((r) => r.highlights)).toHaveLength(5);
+		expect(roles.flatMap((r) => r.highlights)).toHaveLength(3);
 		expect(degrees[0]).toMatchObject({ start: 'Aug 2022', end: 'Dec 2024' });
 	});
 
@@ -101,7 +101,6 @@ describe('content', () => {
 	it('gives the AOP result the same figure in the ledger and the drawing', () => {
 		const resolved = featured.diagram.nodes.find((n) => n.id === 'resolved')!;
 		expect(resolved.note).toBe(featured.outcome.figure);
-		expect(featured.diagram.caption).toContain(featured.outcome.figure.toLowerCase());
 	});
 
 	it('draws the orchestrator as it is described: work and storage apart, the critical path explained', () => {
