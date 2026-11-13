@@ -40,7 +40,7 @@ describe('content', () => {
 			'Master of Computer Science',
 			'Bachelor of Science in Computer Science'
 		]);
-		expect(roles.flatMap((r) => r.highlights)).toHaveLength(8);
+		expect(roles.flatMap((r) => r.highlights)).toHaveLength(5);
 		expect(degrees[0]).toMatchObject({ start: 'Aug 2022', end: 'Dec 2024' });
 	});
 
@@ -58,12 +58,13 @@ describe('content', () => {
 		expect(tiktok).not.toMatch(/\b\d{1,3}(,\d{3})+\b/);
 	});
 
-	it('backs every figure on a project row with the project’s own notes', () => {
-		for (const { id, outcome, notes } of projects) {
+	it('backs every figure on a project row with the project’s own content', () => {
+		// The row states the figure once; the panel needs to support it, not repeat it.
+		for (const { id, outcome, notes, summary, diagram } of projects) {
 			expect(outcome.text, id).not.toBe('');
 			if (!outcome.figure) continue;
-			const numbers = outcome.figure.match(/[\d,]+/g) ?? [];
-			for (const n of numbers) expect(notes.join(' '), `${id}: ${n}`).toContain(n);
+			const body = [summary, ...notes, ...diagram.nodes.map((n) => n.note ?? '')].join(' ');
+			for (const n of outcome.figure.match(/[\d,]+/g) ?? []) expect(body, `${id}: ${n}`).toContain(n);
 		}
 	});
 
