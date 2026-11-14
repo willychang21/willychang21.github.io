@@ -116,6 +116,8 @@ test.describe('layout', () => {
 				return { h1: sizes('h1'), h2: sizes('h2'), names: sizes('h3, h4, [id^="title-"]'), small: [...small] };
 			});
 			expect(Math.min(...type.h1), `h1 against h2 at ${width}px`).toBeGreaterThan(Math.max(...type.h2));
+			// Every section title, Education among them, is one size.
+			expect(new Set(type.h2).size, `h2 sizes at ${width}px: ${type.h2}`).toBe(1);
 			expect(Math.min(...type.h2), `h2 against names at ${width}px`).toBeGreaterThan(Math.max(...type.names));
 			expect(type.small, `text under 13px at ${width}px`).toEqual([]);
 		}

@@ -145,7 +145,7 @@ function Tabs({ projects, selected, onSelect }: ViewProps) {
  */
 function Accordion({ projects, selected: open, onSelect: setOpen }: ViewProps) {
 	return (
-		<ol className={styles.accordion}>
+		<ol className={styles.accordion} aria-label="Projects">
 			{projects.map((project, i) => {
 				const expanded = open === project.id;
 				return (
