@@ -98,6 +98,16 @@ describe('content', () => {
 		expect(new Set(parts).size).toBe(parts.length);
 	});
 
+	it('keeps the AOP ledger short: 2 to 4 lines a row, each said once', () => {
+		const lines = [...featured.flow.map((s) => s.text), ...featured.ledger.flatMap((r) => r.points)];
+		for (const row of featured.ledger) {
+			expect(row.points.length, row.label).toBeGreaterThanOrEqual(2);
+			expect(row.points.length, row.label).toBeLessThanOrEqual(4);
+		}
+		expect(new Set(lines).size).toBe(lines.length);
+		expect(new Set(featured.ledger.map((r) => r.label)).size).toBe(featured.ledger.length);
+	});
+
 	it('gives the AOP result the same figure in the ledger and the drawing', () => {
 		const resolved = featured.diagram.nodes.find((n) => n.id === 'resolved')!;
 		expect(resolved.note).toBe(featured.outcome.figure);

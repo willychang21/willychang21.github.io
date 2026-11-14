@@ -11,8 +11,8 @@ export const roles: Role[] = [
 		end: 'Present',
 		logo: '/logos/tiktok.png',
 		highlights: [
-			'Designed and built AOP (Agent Operation Platform) end to end: the workflow runtime, the LLM agents, the tool service and the release checks.',
-			'Launched intake channels for regional privacy laws, which extended coverage to more jurisdictions.'
+			'Designed and built AOP (Agent Operation Platform) end to end: the runtime, the agents, the tool service and the evaluation.',
+			'Launched intake channels for regional privacy laws.'
 		]
 	},
 	{
@@ -25,7 +25,7 @@ export const roles: Role[] = [
 		end: 'Aug 2024',
 		logo: '/logos/kocree.png',
 		highlights: [
-			'Built sign-in and access control for [Muosaic](https://muosaic-demo.kocree.net/home), a music co-creation platform.'
+			'Built OAuth 2.0 sign-in and a per-asset access model for [Muosaic](https://muosaic-demo.kocree.net/home), a music co-creation platform.'
 		]
 	},
 	{

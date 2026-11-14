@@ -20,7 +20,7 @@ function Points({ items }: { items: string[] }) {
 	);
 }
 
-/** The lead story: AOP as result, flow, agent and evaluation, beside its components drawn in the site's transit language. */
+/** The lead story: AOP as a result, a flow and the decisions behind it, beside its components drawn in the site's transit language. */
 export function Featured() {
 	return (
 		<article id={`project-${featured.id}`} className={`grid ${styles.featured}`} aria-labelledby="featured-title">
@@ -46,7 +46,7 @@ export function Featured() {
 					))}
 				</dl>
 				<p className={styles.summary}>{featured.summary}</p>
-				{/* The flagship reads as a short ledger: the result first, then how it works. */}
+				{/* The flagship reads as a short ledger: the result first, then how it works and why. */}
 				<dl className={styles.story}>
 					<div>
 						<dt>Result</dt>
@@ -72,23 +72,22 @@ export function Featured() {
 							</ol>
 						</dd>
 					</div>
-					<div>
-						<dt>Agent</dt>
-						<dd>
-							<Points items={featured.agent} />
-						</dd>
-					</div>
-					<div>
-						<dt>Evaluation</dt>
-						<dd>
-							<Points items={featured.evaluation} />
-						</dd>
-					</div>
 				</dl>
 			</div>
+			{/* The drawing follows the flow it numbers. On wide screens it stays beside the whole ledger. */}
 			<div className={styles.figure}>
 				<SystemDiagram diagram={featured.diagram} marks={marks} />
 			</div>
+			<dl className={`${styles.story} ${styles.more}`}>
+				{featured.ledger.map((row) => (
+					<div key={row.label}>
+						<dt>{row.label}</dt>
+						<dd>
+							<Points items={row.points} />
+						</dd>
+					</div>
+				))}
+			</dl>
 		</article>
 	);
 }

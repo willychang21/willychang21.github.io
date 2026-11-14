@@ -1,9 +1,12 @@
 import type { Diagram, Project, RichText, SkillGroup, Station } from './types';
 
 /**
- * The lead story: AOP. Public copy only: what the platform does and how it is built.
- * No internal names, systems, volumes or operating metrics; the one figure is the
- * owner's own, rounded.
+ * The lead story: AOP. Public copy only: what the platform does and why it is built
+ * that way. No internal names, systems, volumes or operating metrics; the one figure is
+ * the owner's own, rounded.
+ *
+ * One word per thing throughout: request, procedure, runtime, agent, tool service,
+ * action, person, release. Each fact is stated once.
  */
 export const featured: {
 	id: string;
@@ -20,10 +23,8 @@ export const featured: {
 	before: string;
 	/** How a request moves, one step per component; `node` is that component in the diagram. */
 	flow: { node: string; text: RichText }[];
-	/** How the agent is built. */
-	agent: RichText[];
-	/** How a change is tested before and after release. */
-	evaluation: RichText[];
+	/** The decisions behind it, a row per topic. Each line says what was done and why. */
+	ledger: { label: string; points: RichText[] }[];
 	diagram: Diagram;
 } = {
 	id: 'aop',
@@ -31,50 +32,74 @@ export const featured: {
 	context: 'TikTok, privacy operations',
 	period: '2025–now',
 	station: 'sjc',
-	summary: 'An LLM agent platform that resolves TikTok’s privacy requests. I designed and built it end to end.',
+	summary:
+		'An LLM agent platform for TikTok’s privacy requests. One rule shapes it: code controls the flow, and the agent answers one question at a time.',
 	stack: [
 		{ label: 'Services', items: [{ name: 'Go' }, { name: 'Kitex', gloss: 'RPC' }, { name: 'Hertz', gloss: 'HTTP' }, { name: 'MongoDB' }] },
 		{ label: 'Interface', items: [{ name: 'Modern.js', gloss: 'React' }] },
-		{ label: 'Agents', items: [{ name: 'MCP' }, { name: 'Hybrid search' }, { name: 'VLM' }] }
+		{ label: 'Agents', items: [{ name: 'MCP' }, { name: 'Hybrid search' }, { name: 'VLM', gloss: 'vision model' }] }
 	],
 	outcome: { figure: 'Over 90%', text: 'of privacy requests resolved automatically' },
-	before: 'The operations team used to handle most of them by hand.',
+	before: 'Before AOP, people handled most of them by hand.',
 	flow: [
 		{
 			node: 'runtime',
-			text: 'The runtime runs the procedure. Each operating procedure (SOP) compiles to a versioned workflow, and code runs it step by step. A new procedure needs no new code.'
+			text: 'The runtime follows the procedure step by step. An agent that picks its own next step can skip a check. A new procedure ships as data, with no new code.'
 		},
 		{
 			node: 'agent',
-			text: 'An agent answers one question. When a step needs judgment, the runtime asks an LLM agent one question with a fixed list of answers.'
+			text: 'At a step that needs judgment, the agent picks one answer from a fixed list. Any other answer goes to a person.'
 		},
 		{
 			node: 'tools',
-			text: 'The tool service does the action. One service runs every action, and runs it at most once, even after a retry or a crash. If a person changed the request, that change wins.'
+			text: 'The tool service does every action. The agent has read tools only. For a reply, it finds approved text with hybrid search, and the runtime sends it.'
 		}
 	],
-	agent: [
-		'Each call starts fresh. The agent gets only a request ID and loads the current request and procedure through read-only MCP tools.',
-		'Hybrid search over procedures, reply templates and past requests grounds each answer. The agent can cite only what its own search returned.',
-		'Inside a step, the agent runs a ReAct loop under a budget for steps, tokens and time. Each answer must match the step’s schema.',
-		'An answer that is off the list sends the request to a specialist. One gateway serves the text and vision models, so a model change needs no code change.'
-	],
-	evaluation: [
-		'AOP records every run with its exact model, prompt and tool versions. Before a release, it replays past requests through the new version and compares the results.',
-		'One missed handoff to a specialist blocks the release, even when the automation rate goes up.',
-		'Search, planning and full runs are scored separately, so a failure points to one part.',
-		'An action that cannot be undone runs in shadow mode first, with its own off switch and hourly limit.',
-		'After release, a second agent reads the requests that still needed a person and proposes procedure fixes.'
+	ledger: [
+		{
+			label: 'Reliability',
+			points: [
+				'A compiler checks each procedure before it ships: every outcome needs a next step, and every path must end.',
+				'Each action happens at most once. If a crash interrupts one, AOP marks it unknown and a person checks it.',
+				'If a user sends a new message before the first action, AOP restarts on that message. After that, it finishes the run.',
+				'The old code could erase a person’s edit. I changed every write to check one field first, so a person’s change wins.'
+			]
+		},
+		{
+			label: 'Agent',
+			points: [
+				'Each agent call starts fresh and reads through read-only MCP tools. The platform sets the request ID, so the agent cannot reach another request.',
+				'Against prompt injection, tool results mark the text a user wrote, and the agent treats it as data. It can open only the past requests that its own search returned.',
+				'The agent runs a ReAct loop. Code stops the loop at a budget limit, or when it repeats itself or finds nothing new.'
+			]
+		},
+		{
+			label: 'Evaluation',
+			points: [
+				'AOP records each run with its exact model, prompt, tool and procedure versions. Before a release, it replays past requests through the new version on the production code path.',
+				'One missed hand-off to a person blocks a release, even when the automation rate goes up.',
+				'Separate experiments score search, planning and the full run, so a failure points to one part. AOP compares the LLM judge with labels from people before the judge scores anything.',
+				'Each known failure point has a test, some with real faults. An action without a test blocks the release.'
+			]
+		},
+		{
+			label: 'Release',
+			points: [
+				'Every action has a switch: off, shadow or on. A missing setting means off, and a request can still reach a person when all writes are off.',
+				'An action that cannot be undone first runs in shadow on live requests. It goes live after a counted run with no wrong action, checked against what the person did.',
+				'A separate agent reads each request that needed a person and proposes a fix to the procedure. People approve it.'
+			]
+		}
 	],
 	diagram: {
-		caption: 'Orange is the automatic path. The agent reads through the tool service, and a request it cannot answer goes to a specialist.',
+		caption: 'Orange is the automatic path. The agent reads through the tool service, and a request it cannot answer goes to a person.',
 		nodes: [
 			{ id: 'request', label: 'Request', x: 1, y: 4, kind: 'actor', labelAt: 'above' },
 			{ id: 'runtime', label: 'Runtime', note: 'Runs the procedure', x: 4, y: 4, kind: 'service' },
 			{ id: 'agent', label: 'Agent', note: 'One question per step', x: 6.5, y: 2, kind: 'service', labelAt: 'above' },
 			{ id: 'tools', label: 'Tool service', note: 'Every action, once', x: 9.5, y: 4, kind: 'service' },
 			{ id: 'resolved', label: 'Resolved', note: 'Over 90%', x: 11, y: 4, kind: 'store', labelAt: 'above' },
-			{ id: 'specialist', label: 'Specialist', note: 'Needs a person', x: 11, y: 7, kind: 'external' }
+			{ id: 'person', label: 'Person', note: 'Takes over', x: 11, y: 7, kind: 'external' }
 		],
 		edges: [
 			{ from: 'request', to: 'runtime', route: true },
@@ -82,7 +107,7 @@ export const featured: {
 			{ from: 'agent', to: 'tools' },
 			{ from: 'runtime', to: 'tools', route: true },
 			{ from: 'tools', to: 'resolved', route: true },
-			{ from: 'runtime', to: 'specialist' }
+			{ from: 'runtime', to: 'person' }
 		]
 	}
 };
@@ -100,7 +125,7 @@ export const projects: Project[] = [
 		stack: ['Express.js', 'MVC'],
 		notes: [
 			'Split the Express.js backend into routers, controllers and services.',
-			'Each layer is now easier to unit test and maintain.'
+			'A unit test can now cover one layer at a time.'
 		],
 		links: [{ label: 'Open here.illinois.edu', href: 'https://here.illinois.edu/' }],
 		shot: {
@@ -250,7 +275,7 @@ export const projects: Project[] = [
 		],
 		links: [{ label: 'Source on GitHub', href: 'https://github.com/willychang21/Messenger' }],
 		diagram: {
-			caption: 'View, view model and model layers, with the model backed by four Firebase services.',
+			caption: 'View, view model and model layers, with the model backed by 4 Firebase services.',
 			nodes: [
 				{ id: 'view', label: 'View', note: 'UIKit', x: 1, y: 4, kind: 'actor' },
 				{ id: 'vm', label: 'ViewModel', x: 4, y: 4, kind: 'service', labelAt: 'above' },

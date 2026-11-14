@@ -3,5 +3,5 @@ export const site = {
 	url: 'https://willychang21.github.io',
 	title: 'Willy Chang, software engineer',
 	description:
-		'Willy Chang is a software engineer at TikTok who designed and built AOP, an agent platform that automates privacy requests from around the world. UIUC MCS.'
+		'Willy Chang is a software engineer at TikTok who designed and built AOP, an LLM agent platform that resolves privacy requests, and its evaluation. UIUC MCS.'
 } as const;
