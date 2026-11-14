@@ -18,6 +18,8 @@ export const featured: {
 	problem: string;
 	/** Willy's part, in the order a request meets it; `node` is where it sits in the diagram. */
 	contribution: { node: string; text: RichText }[];
+	/** The key design decisions, each with its reason. */
+	decisions: RichText[];
 	/** The result, led by its figure, as on the project rows. */
 	outcome: Required<Project['outcome']>;
 	diagram: Diagram;
@@ -38,16 +40,21 @@ export const featured: {
 	contribution: [
 		{
 			node: 'intake',
-			text: 'I launched intake channels for regional privacy laws, so AOP covers more jurisdictions.'
+			text: 'Launched intake channels for regional privacy laws, so AOP covers more jurisdictions.'
 		},
 		{
 			node: 'aop',
-			text: 'I designed and built AOP end to end. Code runs each workflow step by step, and an agent answers one checkable question per step. Hybrid search grounds each answer, and one tool service runs every action.'
+			text: 'Designed and built AOP end to end in Go: the runtime that runs each SOP, LLM agents with MCP tools and hybrid search, and the tool service that runs every action.'
 		},
 		{
 			node: 'resolved',
-			text: 'I made each action safe to automate. An action runs at most once, even after a retry or a crash. A person’s edit always wins over an automated write. Agents get read-only tools through MCP, and each agent change is replayed against past tickets before release.'
+			text: 'Built the release path. Each agent change is replayed against past tickets, and irreversible actions run in shadow mode before they go live.'
 		}
+	],
+	decisions: [
+		'Each SOP compiles to a versioned workflow that code runs step by step. An agent answers one checkable question per step, so every run is auditable and a new SOP needs no new code.',
+		'One tool service runs every action. It runs each action at most once through retries and crashes, and a person’s edit always wins over an automated write.',
+		'Agents get read-only tools and can cite only what their own search returned. A missed escalation blocks a release, even when the automation rate goes up.'
 	],
 	outcome: { figure: 'Over 90%', text: 'of privacy requests resolved automatically' },
 	diagram: {
@@ -120,7 +127,7 @@ export const projects: Project[] = [
 		stack: ['Svelte', 'Nest.js', 'PostgreSQL', 'NooBaa', 'Stytch'],
 		notes: [
 			'Added OAuth 2.0 sign-up and sign-in through Stytch.',
-			'Redesigned the data model for access to shared assets, with permissions per user, teams per task and dynamic access rules.',
+			'Redesigned the data model for access to shared assets, with permissions per user, teams per task and access rules per asset.',
 			'Stored the assets in NooBaa, an S3-compatible object store.'
 		],
 		links: [{ label: 'Open the live demo', href: 'https://muosaic-demo.kocree.net/home' }],

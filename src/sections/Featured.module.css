@@ -96,6 +96,11 @@
 	font-weight: 600;
 }
 
+/* Decisions: why the design is the way it is, one short paragraph each. */
+.decisions li + li {
+	margin-top: var(--space-2);
+}
+
 /* The result leads with its figure, set like the outcomes on the project rows. */
 .resultFigure {
 	display: block;

@@ -45,7 +45,7 @@ describe('content', () => {
 	});
 
 	it('keeps the published figures', () => {
-		const text = JSON.stringify({ roles, projects, featured });
+		const text = JSON.stringify({ roles, projects, featured }).toLowerCase();
 		for (const figure of ['over 90%', '5,000+', '90+', 'up to 25%', '4 engineers']) expect(text).toContain(figure);
 	});
 

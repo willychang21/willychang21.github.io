@@ -56,6 +56,18 @@ export function Featured() {
 						</dd>
 					</div>
 					<div>
+						<dt>Decisions</dt>
+						<dd>
+							<ul className={styles.decisions}>
+								{featured.decisions.map((decision) => (
+									<li key={decision}>
+										<RichText>{decision}</RichText>
+									</li>
+								))}
+							</ul>
+						</dd>
+					</div>
+					<div>
 						<dt>Result</dt>
 						<dd className={styles.result}>
 							<strong className={styles.resultFigure}>{featured.outcome.figure}</strong> {featured.outcome.text}
