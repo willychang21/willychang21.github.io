@@ -33,7 +33,7 @@ export const featured: {
 	period: '2025–now',
 	station: 'sjc',
 	summary:
-		'An LLM agent platform for TikTok’s privacy requests. One rule shapes it: code controls the flow, and the agent answers one question at a time.',
+		'An LLM agent platform for TikTok’s privacy requests. I designed and built it end to end. Code controls the flow, and the agent answers one question at a time.',
 	stack: [
 		{ label: 'Services', items: [{ name: 'Go' }, { name: 'Kitex', gloss: 'RPC' }, { name: 'Hertz', gloss: 'HTTP' }, { name: 'MongoDB' }] },
 		{ label: 'Interface', items: [{ name: 'Modern.js', gloss: 'React' }] },

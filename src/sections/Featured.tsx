@@ -74,7 +74,7 @@ export function Featured() {
 					</div>
 				</dl>
 			</div>
-			{/* The drawing follows the flow it numbers. On wide screens it stays beside the whole ledger. */}
+			{/* The drawing follows the flow it numbers. On wide screens it sits beside it, and the decision rows run two-up below. */}
 			<div className={styles.figure}>
 				<SystemDiagram diagram={featured.diagram} marks={marks} />
 			</div>
