@@ -64,11 +64,11 @@
 	border-bottom: 1px solid var(--rule);
 }
 
-/* The decision rows continue the ledger after the drawing, one level quieter: the
-   result and the flow are the six-second read, these are for the reader who stays. */
+/* The decision rows continue the ledger after the drawing, for the reader who stays.
+   Their place and their plain size set them under the result and the flow; they are
+   sentences to read, so they keep the ink. */
 .more {
 	margin-top: 0;
-	color: var(--ink-muted);
 }
 
 .story dt {
@@ -109,9 +109,9 @@
 	line-height: 1.4;
 }
 
+/* In the ink, like every sentence on the page; its size keeps it under the result. */
 .before {
 	margin-top: var(--space-2);
-	color: var(--ink-muted);
 }
 
 /* Phones: the label sits above its text, which keeps the full measure. */
@@ -172,10 +172,19 @@ ul.notes li::before {
 		grid-column: 1 / span 5;
 	}
 
-	/* The drawing sits beside the result and the flow it numbers. */
+	/* The drawing's cell is as tall as the text beside it. The drawing starts level with
+	   the title and stays in view down to the flow it numbers, then stops with its cell,
+	   clear of the rows below. (Centred, it lined up with nothing beside a column of text a
+	   good deal taller. Sticky on the cell itself would be held by the whole grid, not the
+	   row, and would ride over those rows.) */
 	.figure {
 		grid-column: 7 / -1;
-		align-self: center;
+		align-self: stretch;
+	}
+
+	.figure > figure {
+		position: sticky;
+		top: calc(var(--header-height) + var(--space-5));
 	}
 
 	.more {
