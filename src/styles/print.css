@@ -124,7 +124,8 @@
 
 	h2,
 	h3,
-	h4 {
+	h4,
+	.subhead {
 		break-after: avoid;
 	}
 

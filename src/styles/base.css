@@ -126,13 +126,14 @@ p {
 	line-height: 1;
 }
 
-/* The heading of a second list inside a section: More projects, Education. */
+/* A label over a list inside a section ("More projects"). It names the list and is not
+   a heading: every h2 on the page is a section title and every h3 the name of a thing,
+   so each level has one size. */
 .subhead {
 	font-family: var(--font-display);
-	font-stretch: var(--stretch-ui);
 	font-size: var(--text-md);
 	font-weight: 600;
-	letter-spacing: 0;
+	line-height: 1.2;
 }
 
 .sr-only {

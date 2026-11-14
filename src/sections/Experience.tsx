@@ -47,13 +47,16 @@ export function Experience() {
 					))}
 				</ol>
 
-				<h3 className={`subhead ${styles.subhead}`}>Education</h3>
-				<ol className={styles.ledger}>
+				{/* A second section title: Experience and Education are peers, as on a résumé. */}
+				<h2 id="education-title" className={styles.subhead}>
+					Education
+				</h2>
+				<ol className={styles.ledger} aria-labelledby="education-title">
 					{degrees.map((degree) => (
 						<li key={degree.id} id={`degree-${degree.id}`} className={`grid ${styles.entry}`}>
 							<Stop station={degree.station} start={degree.start} end={degree.end} logo={degree.logo} name={degree.school} />
 							<div className={styles.who}>
-								<h4 className={styles.company}>{degree.school}</h4>
+								<h3 className={styles.company}>{degree.school}</h3>
 								<p className={styles.place}>{degree.location}</p>
 							</div>
 							<p className={styles.degree}>{degree.degree}</p>

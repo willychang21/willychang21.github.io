@@ -12,7 +12,7 @@ export function Work() {
 					What each project achieved, what I did, and what it was built with.
 				</SectionHead>
 				<Featured />
-				<h3 className={`subhead ${styles.indexTitle}`}>More projects</h3>
+				<p className={`subhead ${styles.indexTitle}`}>More projects</p>
 				<ProjectIndex projects={projects} />
 			</div>
 		</section>
