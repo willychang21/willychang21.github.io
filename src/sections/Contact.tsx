@@ -8,7 +8,7 @@ export function Contact() {
 	return (
 		<section id="contact" className={styles.contact} aria-labelledby="contact-title">
 			<div className="container">
-				<div className="grid">
+				<div className={`grid ${styles.head}`}>
 					<h2 id="contact-title" className={styles.title}>
 						Contact
 					</h2>
@@ -44,8 +44,8 @@ export function Contact() {
 
 				<footer className={styles.colophon} data-print="hide">
 					<p>
-						Set in Archivo, Newsreader and JetBrains Mono. Map from Natural Earth data. Built with React, Vite and
-						Motion;{' '}
+						Set in Archivo and Newsreader. Map: plate carrée centred on 163°W, land from Natural Earth. Built with
+						React, Vite and Motion;{' '}
 						<a href="https://github.com/willychang21/willychang21.github.io" className="text-link">
 							source on GitHub
 						</a>

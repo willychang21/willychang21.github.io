@@ -40,7 +40,7 @@ export function Featured() {
 						<div key={group.label}>
 							<dt>{group.label}</dt>
 							<dd>
-								<NameList items={group.items} className={styles.names} />
+								<NameList items={group.items} />
 							</dd>
 						</div>
 					))}

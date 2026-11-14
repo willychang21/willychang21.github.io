@@ -12,14 +12,13 @@
 	max-width: 16ch;
 	margin-bottom: var(--space-6);
 	font-size: var(--text-display);
-	font-weight: 660;
 	line-height: 0.98;
 	letter-spacing: -0.015em;
 }
 
 .dek {
 	row-gap: var(--space-6);
-	margin-top: var(--space-6);
+	margin-top: var(--space-5);
 	align-items: start;
 }
 
@@ -53,7 +52,7 @@
 }
 
 .email > a {
-	font-size: 1.25rem;
+	font-size: var(--text-lg);
 	overflow-wrap: anywhere;
 }
 
@@ -93,30 +92,34 @@
 		padding-top: var(--space-5);
 	}
 
-	/* Proportional to the plate (its width is 100cqi, its height 35.9cqi), so the
+	/* Proportional to the plate (its width is 100cqi, its height 29.3cqi), so the
 	   statement keeps its place in the ocean, under the Taipei–Seattle arc and clear of
-	   the SJC label, at every desktop width. */
+	   the SJC label, at every desktop width. It starts on the page's fourth column line,
+	   where the stop's records under the plate start too. */
 	.statement {
 		position: absolute;
 		z-index: 1;
-		left: 27cqi;
-		top: 13.4cqi;
+		left: calc(25cqi + var(--column-gap) / 4);
+		top: 10.1cqi;
 		width: 39cqi;
 		max-width: none;
 		margin: 0;
 		font-size: 4.6cqi;
 	}
 
+	/* Half the page for the introduction, so it reads in four lines and stays on the
+	   first screen with the plate. */
 	.lede {
-		grid-column: 1 / span 5;
+		grid-column: 1 / span 6;
+		max-width: 56ch;
 	}
 
 	.actions {
-		grid-column: 6 / span 4;
+		grid-column: 7 / span 4;
 	}
 
 	.portrait {
-		grid-column: 10 / -1;
+		grid-column: 11 / -1;
 		flex-direction: column;
 		align-items: end;
 		gap: var(--space-2);
@@ -124,7 +127,7 @@
 	}
 
 	.portrait img {
-		width: 11rem;
+		width: min(11rem, 100%);
 	}
 
 	.portrait figcaption {

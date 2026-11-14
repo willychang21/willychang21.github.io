@@ -13,7 +13,7 @@ function Capture({ shot }: { shot: Screenshot }) {
 			<img
 				src={`/work/${shot.name}-800.webp`}
 				srcSet={`/work/${shot.name}-800.webp 800w, /work/${shot.name}-1600.webp 1600w`}
-				sizes={lead ? '(min-width: 64rem) 52vw, 92vw' : '(min-width: 64rem) 18rem, 92vw'}
+				sizes={lead ? '(min-width: 64rem) 52vw, 92vw' : '(min-width: 64rem) 20rem, 18rem'}
 				width={shot.width}
 				height={shot.height}
 				alt={shot.alt}

@@ -126,15 +126,17 @@
 	vertical-align: 0.1em;
 }
 
+/* Names step between the page's two smallest sizes with the drawing's width; notes keep
+   the smallest. Nothing in a drawing is set below it. */
 .name {
 	font-family: var(--font-display);
-	font-size: clamp(0.6875rem, 2.3cqi, 0.9375rem);
+	font-size: clamp(var(--text-xs), 2.3cqi, var(--text-sm));
 	font-weight: 600;
 }
 
 .note {
 	font-family: var(--font-display);
-	font-size: clamp(0.6875rem, 2cqi, 0.8125rem);
+	font-size: var(--text-xs);
 	color: var(--ink-muted);
 }
 
@@ -166,7 +168,7 @@
 	}
 
 	.name {
-		font-size: 0.75rem;
+		font-size: var(--text-xs);
 	}
 
 	.short {

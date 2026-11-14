@@ -19,10 +19,11 @@
 	max-width: 56ch;
 }
 
+/* Notes are the substance of a project, so they read in the ink. A fixed indent, not a
+   spacing token: print tightens the tokens, and the list mark must not overlap the text. */
 .notes li {
 	position: relative;
-	padding-left: var(--space-5);
-	color: var(--ink-muted);
+	padding-left: 1.5rem;
 }
 
 .notes li + li {
@@ -40,7 +41,6 @@
 }
 
 .notes strong {
-	color: var(--ink);
 	font-weight: 600;
 }
 
@@ -94,5 +94,10 @@
 	.body {
 		grid-template-columns: minmax(0, 5fr) minmax(0, 3fr);
 		column-gap: var(--space-6);
+	}
+
+	/* Beside the facts, the capture fills its column and ends on the page's right line. */
+	.shot[data-emphasis='aside'] {
+		max-width: none;
 	}
 }

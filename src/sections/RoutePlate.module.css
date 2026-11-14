@@ -29,8 +29,9 @@
 
 .graticuleLabels {
 	display: none;
-	font-family: var(--font-mono);
+	font-family: var(--font-display);
 	font-size: 11px;
+	font-variant-numeric: tabular-nums;
 	fill: var(--ink-muted);
 	/* A paper halo keeps the labels clear of the dots behind them. */
 	paint-order: stroke;
@@ -102,7 +103,7 @@
 .code {
 	font-family: var(--font-display);
 	font-stretch: var(--stretch-display);
-	font-weight: 700;
+	font-weight: var(--weight-strong);
 	letter-spacing: 0.01em;
 }
 
@@ -112,16 +113,9 @@
 }
 
 .years {
-	font-family: var(--font-mono);
-	font-size: var(--text-xs);
-	color: var(--ink-muted);
-}
-
-.caption {
-	margin-top: var(--space-3);
 	font-family: var(--font-display);
 	font-size: var(--text-xs);
-	line-height: 1.5;
+	font-variant-numeric: tabular-nums;
 	color: var(--ink-muted);
 }
 
@@ -227,8 +221,9 @@
 }
 
 .count {
-	font-family: var(--font-mono);
+	font-family: var(--font-display);
 	font-size: var(--text-xs);
+	font-variant-numeric: tabular-nums;
 	color: var(--ink-muted);
 }
 
@@ -249,7 +244,7 @@
 }
 
 .kind {
-	font-family: var(--font-mono);
+	font-family: var(--font-display);
 	font-size: var(--text-xs);
 	color: var(--ink-muted);
 }
@@ -271,7 +266,7 @@
    falls short of AA contrast. */
 .detail strong {
 	font-family: var(--font-display);
-	font-weight: 700;
+	font-weight: var(--weight-strong);
 	color: var(--ink);
 }
 
@@ -340,8 +335,8 @@
 		box-shadow: inset 0 0 0 2px var(--signal);
 	}
 
-	/* Label type follows the plate's width (with legible floors) so the stations
-	   keep their spacing on smaller laptops. */
+	/* The code follows the plate's width so the stations keep their spacing on smaller
+	   laptops; the city and the years stay at the smallest size the page sets. */
 	.labels .code {
 		grid-row: span 2;
 		font-size: clamp(1.125rem, 2.3cqi, 2.25rem);
@@ -350,12 +345,8 @@
 
 	.labels .city {
 		margin: 0;
-		font-size: clamp(0.75rem, 1.05cqi, 0.875rem);
+		font-size: var(--text-xs);
 		line-height: 1.2;
-	}
-
-	.labels .years {
-		font-size: clamp(0.6875rem, 0.85cqi, 0.75rem);
 	}
 
 	.label[data-station='cmi'] {

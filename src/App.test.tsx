@@ -52,9 +52,13 @@ describe('App', () => {
 			'mailto:willysde2025@gmail.com'
 		);
 		expect(screen.getAllByRole('link', { name: /GitHub/ })[0]).toHaveAttribute('href', 'https://github.com/willychang21');
-		const resume = screen.getByRole('link', { name: 'Download the résumé (PDF)' });
-		expect(resume).toHaveAttribute('href', '/resume.pdf');
-		expect(resume).toHaveAttribute('download', 'Willy-Chang-Resume.pdf');
+		// Once in the opening and once in Contact, in the same words.
+		const resumes = screen.getAllByRole('link', { name: 'Download the résumé (PDF)' });
+		expect(resumes).toHaveLength(2);
+		for (const resume of resumes) {
+			expect(resume).toHaveAttribute('href', '/resume.pdf');
+			expect(resume).toHaveAttribute('download', 'Willy-Chang-Resume.pdf');
+		}
 	});
 
 	it('gives every image a text alternative', () => {

@@ -3,6 +3,10 @@
 	display: flex;
 	flex-wrap: wrap;
 	align-items: baseline;
+	font-family: var(--font-display);
+	font-size: var(--text-md);
+	font-weight: 500;
+	line-height: 1.5;
 }
 
 .list li {
@@ -16,13 +20,19 @@
 	color: var(--rule-strong);
 }
 
-/* The note's size and lift scale with the line: small annotations on large type,
-   larger ones on small type, where 45% would be too small to read. */
+/* The note is a size down and raised a little, like an annotation on a map. */
 .gloss {
 	font-family: var(--font-text);
 	font-stretch: normal;
 	font-weight: 400;
-	font-size: var(--gloss-size, 0.45em);
+	font-size: var(--text-sm);
 	color: var(--ink-muted);
-	vertical-align: var(--gloss-lift, 0.6em);
+	vertical-align: 0.2em;
+}
+
+/* On paper the names are smaller, so the note steps down with them. */
+@media print {
+	.gloss {
+		font-size: 0.85em;
+	}
 }

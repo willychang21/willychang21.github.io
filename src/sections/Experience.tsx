@@ -47,8 +47,8 @@ export function Experience() {
 					))}
 				</ol>
 
-				<h3 className={styles.subhead}>Education</h3>
-				<ol className={`${styles.ledger} ${styles.education}`}>
+				<h3 className={`subhead ${styles.subhead}`}>Education</h3>
+				<ol className={styles.ledger}>
 					{degrees.map((degree) => (
 						<li key={degree.id} id={`degree-${degree.id}`} className={`grid ${styles.entry}`}>
 							<Stop station={degree.station} start={degree.start} end={degree.end} logo={degree.logo} name={degree.school} />

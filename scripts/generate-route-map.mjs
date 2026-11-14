@@ -17,8 +17,10 @@ const land = feature(topology, topology.objects.land);
 // route reads in the same direction as the page.
 const CENTER_LON = -163;
 const LON_SPAN = 184; // degrees shown, centred on CENTER_LON
-const LAT_TOP = 72;
-const LAT_BOTTOM = 6;
+// The plate runs from just above the route's highest point to just below Taipei's label:
+// a shorter map leaves room for the introduction on the first screen.
+const LAT_TOP = 64.5;
+const LAT_BOTTOM = 10.5;
 const UNIT = 6; // viewBox units per degree
 const STEP = 1.5; // degrees between dots
 

@@ -20,7 +20,7 @@ export function Opening() {
 						{profile.lede}
 					</p>
 
-					<ul className={styles.actions} aria-label="Contact">
+					<ul className={styles.actions} aria-label="Contact and résumé">
 						<li className={styles.email}>
 							<a href={`mailto:${profile.email}`} className="text-link">
 								{profile.email}
@@ -30,6 +30,12 @@ export function Opening() {
 						<li>
 							<a href={profile.github.url} className="text-link">
 								GitHub
+							</a>
+						</li>
+						{/* The same file and the same words as in Contact: one action, one wording. */}
+						<li data-print="hide">
+							<a href={profile.resume.href} download={profile.resume.filename} type="application/pdf" className="text-link">
+								Download the résumé (PDF)
 							</a>
 						</li>
 					</ul>
@@ -42,7 +48,8 @@ export function Opening() {
 							width={480}
 							height={480}
 							alt={profile.avatar.alt}
-							fetchPriority="low"
+							loading="lazy"
+							decoding="async"
 						/>
 						<figcaption>Based in {profile.base}.</figcaption>
 					</figure>
