@@ -104,6 +104,13 @@
 	margin-top: var(--space-2);
 }
 
+/* A key term stands at full strength in its quieter line, as figures do in the project
+   notes: one or two a row, for the reader who scans. */
+.points strong {
+	color: var(--ink);
+	font-weight: 600;
+}
+
 /* The result leads with its figure, set like the outcomes on the project rows. */
 .resultFigure {
 	display: block;

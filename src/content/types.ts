@@ -1,5 +1,5 @@
 /**
- * Résumé copy supports two inline marks: **bold** for figures and [label](https://…) for
+ * Résumé copy supports two inline marks: **bold** for figures and key terms, and [label](https://…) for
  * links. See components/RichText.
  */
 export type RichText = string;

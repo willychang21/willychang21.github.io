@@ -59,8 +59,8 @@ export const featured: {
 		{
 			label: 'Reliability',
 			points: [
-				'A compiler checks each procedure before it ships: every outcome needs a next step, and every path must end.',
-				'Each action happens at most once. If a crash interrupts one, AOP marks it unknown and a person checks it.',
+				'A **compiler** checks each procedure before it ships: every outcome needs a next step, and every path must end.',
+				'Each action happens **at\u00a0most\u00a0once**. If a crash interrupts one, AOP marks it unknown and a person checks it.',
 				'If a user sends a new message before the first action, AOP restarts on that message. After that, it finishes the run.',
 				'The old code could erase a person’s edit. I changed every write to check one field first, so a person’s change wins.'
 			]
@@ -69,16 +69,16 @@ export const featured: {
 			label: 'Agent',
 			points: [
 				'Each agent call starts fresh and reads through read-only MCP tools. The platform sets the request ID, so the agent cannot reach another request.',
-				'Against prompt injection, tool results mark the text a user wrote, and the agent treats it as data. It can open only the past requests that its own search returned.',
-				'The agent runs a ReAct loop. Code stops the loop at a budget limit, or when it repeats itself or finds nothing new.'
+				'Against **prompt\u00a0injection**, tool results mark the text a user wrote, and the agent treats it as data. It can open only the past requests that its own search returned.',
+				'The agent runs a **ReAct\u00a0loop**. Code stops the loop at a budget limit, or when it repeats itself or finds nothing new.'
 			]
 		},
 		{
 			label: 'Evaluation',
 			points: [
-				'AOP records each run with its exact model, prompt, tool and procedure versions. Before a release, it replays past requests through the new version on the production code path.',
+				'AOP records each run with its exact model, prompt, tool and procedure versions. Before a release, it **replays past requests** through the new version on the production code path.',
 				'One missed hand-off to a person blocks a release, even when the automation rate goes up.',
-				'Separate experiments score search, planning and the full run, so a failure points to one part. AOP compares the LLM judge with labels from people before the judge scores anything.',
+				'Separate experiments score search, planning and the full run, so a failure points to one part. AOP compares the **LLM\u00a0judge** with labels from people before the judge scores anything.',
 				'Each known failure point has a test, some with real faults. An action without a test blocks the release.'
 			]
 		},
@@ -86,7 +86,7 @@ export const featured: {
 			label: 'Release',
 			points: [
 				'Every action has a switch: off, shadow or on. A missing setting means off, and a request can still reach a person when all writes are off.',
-				'An action that cannot be undone first runs in shadow on live requests. It goes live after a counted run with no wrong action, checked against what the person did.',
+				'An action that cannot be undone first runs in **shadow** on live requests. It goes live after a counted run with no wrong action, checked against what the person did.',
 				'A separate agent reads each request that needed a person and proposes a fix to the procedure. People approve it.'
 			]
 		}
