@@ -6,6 +6,8 @@ export const profile = {
 	base: 'San Jose, California',
 	email: 'willysde2025@gmail.com',
 	github: { handle: 'willychang21', url: 'https://github.com/willychang21' },
+	/** The résumé itself, in public/. `filename` is the name it is saved under. */
+	resume: { href: '/resume.pdf', filename: 'Willy-Chang-Resume.pdf' },
 	avatar: { src: '/avatar.jpg', alt: 'Illustrated portrait of Willy in glasses and a black sweater, on a pier with a city skyline behind.' },
 	/** The opening statement, read after the name: "Willy Chang builds…". */
 	statement: 'builds the systems that carry requests where they need to go.',

@@ -350,6 +350,15 @@ test.describe('preferences', () => {
 	});
 });
 
+test('the résumé link downloads the PDF under a readable name', async ({ page }) => {
+	await page.goto('/');
+	const [download] = await Promise.all([page.waitForEvent('download'), page.getByRole('link', { name: 'Download the résumé (PDF)' }).click()]);
+	expect(download.suggestedFilename()).toBe('Willy-Chang-Resume.pdf');
+	const file = await page.request.get('/resume.pdf');
+	expect(file.headers()['content-type']).toContain('application/pdf');
+	expect((await file.body()).subarray(0, 5).toString()).toBe('%PDF-');
+});
+
 test('the 404 page renders and links home', async ({ page }) => {
 	const problems = watch(page);
 	await page.goto('/404.html');

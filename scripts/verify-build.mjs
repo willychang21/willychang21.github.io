@@ -35,7 +35,8 @@ for (const page of ['index.html', '404.html']) {
 	}
 }
 
-for (const required of ['sitemap.xml', 'robots.txt', 'og.png', 'favicon.svg', '.nojekyll']) {
+// resume.pdf is linked from the Contact section, which React renders, so the HTML scan above cannot see it.
+for (const required of ['sitemap.xml', 'robots.txt', 'og.png', 'favicon.svg', '.nojekyll', 'resume.pdf']) {
 	if (!existsSync(join(root, required))) problems.push(`${required} is missing`);
 }
 if (existsSync(join(root, 'sitemap.xml')) && !readFileSync(join(root, 'sitemap.xml'), 'utf8').includes(`<loc>${site}/</loc>`)) {

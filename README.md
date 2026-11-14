@@ -47,11 +47,11 @@ src/
   components/   shared pieces: header, diagram, copy-email, theme toggle, rich text
   sections/     one component per page section, each with its CSS module
   hooks/        media queries, active section, theme
-  styles/       tokens, base, print (the Save as PDF résumé)
+  styles/       tokens, base, print (the page on paper)
 scripts/
   generate-route-map.mjs   rebuilds src/content/route-map.generated.ts from Natural Earth data
   render-og.mjs            renders public/og.png from a running preview
-public/         avatar, logos, project screenshots, social card, robots.txt
+public/         avatar, logos, project screenshots, social card, robots.txt, resume.pdf (the Contact section's download)
 ```
 
 Résumé copy supports `**bold**` and `[label](https://…)`; see `components/RichText.tsx`.

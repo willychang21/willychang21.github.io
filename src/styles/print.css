@@ -1,5 +1,6 @@
-/* Save as PDF: the page prints as a plain résumé. Drawings and screen-only controls drop
-   out, every project prints open under its title, and link targets are spelled out. */
+/* The page on paper. The résumé itself is a file (public/resume.pdf); this is for someone
+   who prints the page anyway. Drawings and screen-only controls drop out, every project
+   prints open under its title, and link targets are spelled out. */
 @media print {
 	:root,
 	:root.dark,
