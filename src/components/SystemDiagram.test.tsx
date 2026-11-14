@@ -63,11 +63,11 @@ describe('SystemDiagram text alternative', () => {
 describe('SystemDiagram marks', () => {
 	it('numbers the named stations and spells the numbers out in the caption', () => {
 		const { diagram } = featured;
-		const { container } = render(<SystemDiagram diagram={diagram} marks={{ intake: '1', aop: '2' }} />);
+		const { container } = render(<SystemDiagram diagram={diagram} marks={{ runtime: '1', agent: '2' }} />);
 		const labels = [...container.querySelectorAll('li')];
-		expect(labels.find((li) => li.textContent?.includes('Intake'))!.querySelector('.mark')).toHaveTextContent('1');
+		expect(labels.find((li) => li.textContent?.includes('Runtime'))!.querySelector('.mark')).toHaveTextContent('1');
 		expect(container.querySelectorAll('.mark')).toHaveLength(2);
-		expect(container.querySelector('figcaption')).toHaveTextContent('1, Intake; 2, AOP');
+		expect(container.querySelector('figcaption')).toHaveTextContent('1, Runtime; 2, Agent');
 	});
 });
 

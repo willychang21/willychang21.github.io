@@ -3,19 +3,18 @@ import type { SkillGroup } from './types';
 export const skills: SkillGroup[] = [
 	{
 		label: 'Languages',
-		items: [{ name: 'Go' }, { name: 'TypeScript' }, { name: 'JavaScript' }, { name: 'Python' }, { name: 'Swift' }, { name: 'C#' }]
+		items: [{ name: 'Go' }, { name: 'Python' }, { name: 'TypeScript' }, { name: 'JavaScript' }, { name: 'Swift' }, { name: 'C#' }]
 	},
 	{
-		label: 'Frontend',
+		label: 'AI',
 		items: [
-			{ name: 'React' },
-			{ name: 'Remix' },
-			{ name: 'Modern.js', gloss: 'React framework' },
-			{ name: 'Svelte' },
-			{ name: 'Zustand' },
-			{ name: 'TanStack Query' },
-			{ name: 'Tailwind' },
-			{ name: 'Jest' }
+			{ name: 'LLM agents' },
+			{ name: 'MCP' },
+			{ name: 'RAG' },
+			{ name: 'Hybrid search' },
+			{ name: 'Multimodal LLMs' },
+			{ name: 'LLM evaluation' },
+			{ name: 'Human-in-the-loop' }
 		]
 	},
 	{
@@ -34,19 +33,20 @@ export const skills: SkillGroup[] = [
 		]
 	},
 	{
-		label: 'AI',
-		items: [
-			{ name: 'LLM agents' },
-			{ name: 'MCP' },
-			{ name: 'RAG' },
-			{ name: 'Hybrid search' },
-			{ name: 'Multimodal LLMs' },
-			{ name: 'LLM evaluation' },
-			{ name: 'Human-in-the-loop' }
-		]
-	},
-	{
 		label: 'DevOps',
 		items: [{ name: 'Docker' }, { name: 'Kubernetes' }, { name: 'GitHub Actions' }, { name: 'Linux' }]
+	},
+	{
+		label: 'Frontend',
+		items: [
+			{ name: 'React' },
+			{ name: 'Remix' },
+			{ name: 'Modern.js', gloss: 'React framework' },
+			{ name: 'Svelte' },
+			{ name: 'Zustand' },
+			{ name: 'TanStack Query' },
+			{ name: 'Tailwind' },
+			{ name: 'Jest' }
+		]
 	}
 ];

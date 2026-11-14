@@ -121,7 +121,7 @@ export function SystemDiagram({ diagram, legend = false, marks = {} }: { diagram
 				{Object.keys(marks).length > 0 && (
 					<span className={styles.key}>
 						{' '}
-						Numbers match My part
+						Numbers match the flow
 						<span className="sr-only">
 							: {Object.entries(marks)
 								.map(([id, mark]) => `${mark}, ${byId.get(id)!.label}`)

@@ -9,7 +9,7 @@ export const profile = {
 	avatar: { src: '/avatar.jpg', alt: 'Illustrated portrait of Willy in glasses and a black sweater, on a pier with a city skyline behind.' },
 	/** The opening statement, read after the name: "Willy Chang builds…". */
 	statement: 'builds the systems that carry requests where they need to go.',
-	lede: 'Software engineer at TikTok. I designed and built AOP, an agent platform that automates privacy requests from around the world. Before TikTok, I built full-stack products for music co-creation and classroom attendance.'
+	lede: 'Software engineer at TikTok. I designed and built AOP, an LLM agent platform in Go that resolves over 90% of TikTok’s privacy requests automatically. I work on agent design, evaluation, reliability and distributed systems. Before TikTok, I built full-stack products for music co-creation and classroom attendance.'
 } as const;
 
 /** The places on the route, in the order they were lived in. */

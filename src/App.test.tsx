@@ -41,7 +41,7 @@ describe('App', () => {
 		expect(rows).toEqual([
 			['Services', ['Go', 'Kitex (RPC)', 'Hertz (HTTP)', 'MongoDB']],
 			['Interface', ['Modern.js (React)']],
-			['Agents', ['MCP', 'Hybrid search', 'VLM']]
+			['Agents', ['MCP', 'Hybrid search', 'VLM (vision model)']]
 		]);
 	});
 

@@ -40,12 +40,12 @@ describe('content', () => {
 			'Master of Computer Science',
 			'Bachelor of Science in Computer Science'
 		]);
-		expect(roles.flatMap((r) => r.highlights)).toHaveLength(3);
+		expect(roles.flatMap((r) => r.highlights)).toHaveLength(4);
 		expect(degrees[0]).toMatchObject({ start: 'Aug 2022', end: 'Dec 2024' });
 	});
 
 	it('keeps the published figures', () => {
-		const text = JSON.stringify({ roles, projects, featured });
+		const text = JSON.stringify({ roles, projects, featured }).toLowerCase();
 		for (const figure of ['over 90%', '5,000+', '90+', 'up to 25%', '4 engineers']) expect(text).toContain(figure);
 	});
 
@@ -91,11 +91,21 @@ describe('content', () => {
 		}
 	});
 
-	it('ties each part of the AOP story to a station in its drawing, once', () => {
+	it('ties each step of the AOP flow to a station in its drawing, once', () => {
 		const nodes = featured.diagram.nodes.map((n) => n.id);
-		const parts = featured.contribution.map((c) => c.node);
+		const parts = featured.flow.map((c) => c.node);
 		for (const node of parts) expect(nodes).toContain(node);
 		expect(new Set(parts).size).toBe(parts.length);
+	});
+
+	it('keeps the AOP ledger short: 2 to 4 lines a row, each said once', () => {
+		const lines = [...featured.flow.map((s) => s.text), ...featured.ledger.flatMap((r) => r.points)];
+		for (const row of featured.ledger) {
+			expect(row.points.length, row.label).toBeGreaterThanOrEqual(2);
+			expect(row.points.length, row.label).toBeLessThanOrEqual(4);
+		}
+		expect(new Set(lines).size).toBe(lines.length);
+		expect(new Set(featured.ledger.map((r) => r.label)).size).toBe(featured.ledger.length);
 	});
 
 	it('gives the AOP result the same figure in the ledger and the drawing', () => {

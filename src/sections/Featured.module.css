@@ -4,7 +4,8 @@
 	align-items: end;
 }
 
-.text {
+.text,
+.more {
 	grid-column: 1 / -1;
 }
 
@@ -56,7 +57,7 @@
 	line-height: 1.45;
 }
 
-/* Problem, My part, Result: labels hang left of the text, like the ledger below. */
+/* Result, Flow and the decision rows: labels hang left of the text, like the ledger below. */
 .story {
 	margin-top: var(--space-5);
 	border-top: 1px solid var(--rule);
@@ -68,6 +69,11 @@
 	column-gap: var(--space-4);
 	padding-block: var(--space-4);
 	border-bottom: 1px solid var(--rule);
+}
+
+/* The decision rows continue the ledger after the drawing. */
+.more {
+	margin-top: 0;
 }
 
 .story dt {
@@ -86,14 +92,14 @@
 	margin-top: 0;
 }
 
-/* Willy's own work is the point of the ledger, so it reads at full strength; each
-   part leads with what he did. */
+/* The flow reads at full strength: it is the spine of the story. */
 .story .notes li {
 	color: var(--ink);
 }
 
-.story .notes strong {
-	font-weight: 600;
+/* The decision rows: short statements, one per line. */
+.points li + li {
+	margin-top: var(--space-2);
 }
 
 /* The result leads with its figure, set like the outcomes on the project rows. */
@@ -110,6 +116,11 @@
 .result {
 	font-size: var(--text-lede);
 	line-height: 1.4;
+}
+
+.before {
+	margin-top: var(--space-2);
+	color: var(--ink-muted);
 }
 
 /* Phones: the label sits above its text, which keeps the full measure. */
@@ -163,12 +174,49 @@ ul.notes li::before {
 }
 
 @media (min-width: 64rem) {
-	.text {
+	/* One column of text, unbroken: the decision rows run straight on from the flow. */
+	.featured {
+		row-gap: 0;
+	}
+
+	.text,
+	.more {
 		grid-column: 1 / span 5;
 	}
 
+	.more {
+		border-top: 0;
+	}
+
+	/* The ledger is long, so the drawing stays in view beside it, like the project index. */
 	.figure {
 		grid-column: 7 / -1;
-		align-self: center;
+		grid-row: 1 / span 2;
+		align-self: start;
+		position: sticky;
+		top: calc(var(--header-height) + var(--space-5));
+	}
+}
+
+/* On paper there is no drawing beside the ledger, so its lines take the full measure
+   and its rows sit closer. */
+@media print {
+	.summary,
+	.story dd,
+	.notes {
+		max-width: none;
+	}
+
+	.story > div {
+		padding-block: 0.4rem;
+	}
+
+	/* No drawing on paper, so the two halves of the ledger join. */
+	.featured {
+		row-gap: 0;
+	}
+
+	.more {
+		border-top: 0;
 	}
 }
