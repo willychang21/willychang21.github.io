@@ -5,13 +5,17 @@ import { RoutePlate } from './RoutePlate';
 
 export function Opening() {
 	return (
-		<section id="top" className={styles.opening} aria-labelledby="statement">
+		<section id="top" className={styles.opening} aria-labelledby="opening-title">
 			<div className="container">
 				<div className={styles.stage}>
-					{/* On wide screens the statement sits in the open Pacific under the route. */}
-					<h1 id="statement" className={styles.statement}>
-						{profile.name} {profile.statement}
-					</h1>
+					{/* The h1 names who Willy is; the statement under it is the page's one figure of
+					    speech. On wide screens both sit in the open Pacific under the route. */}
+					<div id="opening-words" className={styles.words}>
+						<h1 id="opening-title" className={styles.title}>
+							{profile.name}, {profile.role} at {profile.employer}
+						</h1>
+						<p className={styles.statement}>{profile.statement}</p>
+					</div>
 					<RoutePlate />
 				</div>
 

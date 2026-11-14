@@ -36,7 +36,7 @@ test.describe('layout', () => {
 		});
 	}
 
-	test('the opening statement stays clear of the route, its stations and labels', async ({ page }) => {
+	test('the opening words stay clear of the route, its stations and labels', async ({ page }) => {
 		await page.emulateMedia({ reducedMotion: 'reduce' });
 		for (const width of [1024, 1180, 1280, 1440, 1920]) {
 			await page.setViewportSize({ width, height: 900 });
@@ -44,7 +44,7 @@ test.describe('layout', () => {
 			await page.evaluate(() => document.fonts.ready);
 			const clash = await page.evaluate(() => {
 				const range = document.createRange();
-				range.selectNodeContents(document.getElementById('statement')!);
+				range.selectNodeContents(document.getElementById('opening-words')!);
 				const lines = [...range.getClientRects()];
 				const inLine = (x: number, y: number) => lines.some((r) => x >= r.left && x <= r.right && y >= r.top && y <= r.bottom);
 				const svg = document.querySelector<SVGSVGElement>('#top svg')!;
@@ -61,7 +61,7 @@ test.describe('layout', () => {
 				const hits = boxes.filter((b) => lines.some((r) => !(b.right <= r.left || b.left >= r.right || b.bottom <= r.top || b.top >= r.bottom)));
 				return hits.length ? 'station' : null;
 			});
-			expect(clash, `statement overlaps the ${clash} at ${width}px`).toBeNull();
+			expect(clash, `the opening words overlap the ${clash} at ${width}px`).toBeNull();
 		}
 	});
 
@@ -73,7 +73,7 @@ test.describe('layout', () => {
 			await page.setViewportSize({ width, height });
 			await page.goto('/');
 			await page.evaluate(() => document.fonts.ready);
-			const lede = page.locator('#top').getByText(/^Software engineer at TikTok/);
+			const lede = page.locator('#top').getByText(/^I designed and built AOP/);
 			const box = (await lede.boundingBox())!;
 			const line = await lede.evaluate((e) => parseFloat(getComputedStyle(e).lineHeight));
 			const needed = whole ? box.height : line * 3;
@@ -96,7 +96,7 @@ test.describe('layout', () => {
 		}
 	});
 
-	test('type steps down from the statement to section titles to names, and stops at 13px', async ({ page }) => {
+	test('type steps down from the h1 to section titles to names, and stops at 13px', async ({ page }) => {
 		for (const width of widths) {
 			await page.setViewportSize({ width, height: 900 });
 			await page.goto('/');

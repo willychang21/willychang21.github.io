@@ -2,6 +2,8 @@ import type { Station } from './types';
 
 export const profile = {
 	name: 'Willy Chang',
+	/** What Willy is. The page's h1 reads "<name>, <role> at <employer>". */
+	role: 'software engineer',
 	employer: 'TikTok',
 	base: 'San Jose, California',
 	email: 'willysde2025@gmail.com',
@@ -9,9 +11,10 @@ export const profile = {
 	/** The résumé itself, in public/. `filename` is the name it is saved under. */
 	resume: { href: '/resume.pdf', filename: 'Willy-Chang-Resume.pdf' },
 	avatar: { src: '/avatar.jpg', alt: 'Illustrated portrait of Willy in glasses and a black sweater, on a pier with a city skyline behind.' },
-	/** The opening statement, read after the name: "Willy Chang builds…". */
-	statement: 'builds the systems that carry requests where they need to go.',
-	lede: 'Software engineer at TikTok. I designed and built AOP, an LLM agent platform in Go that resolves over 90% of TikTok’s privacy requests automatically. I work on agent design, evaluation, reliability and distributed systems. Before TikTok, I built full-stack products for music co-creation and classroom attendance.'
+	/** The page's one figure of speech, set under the h1. The h1 itself says plainly who Willy is. */
+	statement: 'I build the systems that carry requests where they need to go.',
+	/** Starts with the work: the h1 above it has already said "software engineer at TikTok". */
+	lede: 'I designed and built AOP, an LLM agent platform in Go that resolves over 90% of TikTok’s privacy requests automatically. I work on agent design, evaluation, reliability and distributed systems. Before TikTok, I built full-stack products for music co-creation and classroom attendance.'
 } as const;
 
 /** The places on the route, in the order they were lived in. */

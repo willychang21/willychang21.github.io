@@ -4,9 +4,14 @@ import { App } from './App';
 import { sections } from './content/navigation';
 
 describe('App', () => {
-	it('opens on a statement that names Willy', () => {
+	it('opens on a heading that says who Willy is, with the statement under it', () => {
 		render(<App />);
-		expect(screen.getByRole('heading', { level: 1 })).toHaveTextContent(/^Willy Chang builds the systems/);
+		const h1 = screen.getByRole('heading', { level: 1 });
+		expect(h1).toHaveTextContent('Willy Chang, software engineer at TikTok');
+		// 2 to 8 words: a name and a category, read at a glance.
+		expect(h1.textContent!.trim().split(/\s+/).length).toBeLessThanOrEqual(8);
+		expect(screen.getByText('I build the systems that carry requests where they need to go.')).toBeInTheDocument();
+		expect(screen.getByRole('region', { name: 'Willy Chang, software engineer at TikTok' })).toBeInTheDocument();
 	});
 
 	it('links every navigation item to a section that exists', () => {

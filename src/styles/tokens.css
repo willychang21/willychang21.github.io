@@ -62,9 +62,9 @@
 	--stretch-ui: 100%;
 
 	/* One scale. Nothing is set below --text-xs, and each level stands about a third
-	   above the next: the statement, then section titles, then the names of things. The
-	   statement leaves this scale on wide screens, where it is sized to the plate, and
-	   stays the largest heading there too. */
+	   above the next: the h1, then section titles, then the names of things. The h1
+	   leaves this scale on wide screens, where it is sized to the plate, and stays the
+	   largest heading there too. */
 	--text-xs: 0.8125rem;
 	--text-sm: 0.875rem;
 	--text-md: 1.0625rem;

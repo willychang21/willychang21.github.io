@@ -70,11 +70,14 @@
 		display: none;
 	}
 
-	#statement {
+	#opening-words {
 		position: static !important;
 		width: auto !important;
-		max-width: none !important;
 		margin-bottom: 0.5rem !important;
+	}
+
+	#opening-title {
+		max-width: none !important;
 		font-size: 1.5rem !important;
 	}
 
