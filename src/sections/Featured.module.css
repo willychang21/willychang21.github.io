@@ -56,7 +56,7 @@
 	line-height: 1.45;
 }
 
-/* Problem, My part, Result: labels hang left of the text, like the ledger below. */
+/* Result, Flow, Agent, Evaluation: labels hang left of the text, like the ledger below. */
 .story {
 	margin-top: var(--space-5);
 	border-top: 1px solid var(--rule);
@@ -86,18 +86,13 @@
 	margin-top: 0;
 }
 
-/* Willy's own work is the point of the ledger, so it reads at full strength; each
-   part leads with what he did. */
+/* The flow reads at full strength: it is the spine of the story. */
 .story .notes li {
 	color: var(--ink);
 }
 
-.story .notes strong {
-	font-weight: 600;
-}
-
-/* Decisions: why the design is the way it is, one short paragraph each. */
-.decisions li + li {
+/* Agent and Evaluation: short statements, one per line. */
+.points li + li {
 	margin-top: var(--space-2);
 }
 
@@ -115,6 +110,11 @@
 .result {
 	font-size: var(--text-lede);
 	line-height: 1.4;
+}
+
+.before {
+	margin-top: var(--space-2);
+	color: var(--ink-muted);
 }
 
 /* Phones: the label sits above its text, which keeps the full measure. */

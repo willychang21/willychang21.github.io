@@ -21,7 +21,9 @@ function useLandOnFragment() {
 			return;
 		}
 		if (!id || id.startsWith('stop-') || document.getElementById(`tab-${id.replace(/^project-/, '')}`)) return;
-		document.getElementById(id)?.scrollIntoView({ block: 'start' });
+		// Jump, don't glide. A smooth scroll aims at where the target was when it began, and
+		// web fonts that arrive on the way re-wrap the text above it, so it would stop short.
+		document.getElementById(id)?.scrollIntoView({ block: 'start', behavior: 'instant' });
 	}, []);
 }
 

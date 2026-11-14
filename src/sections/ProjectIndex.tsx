@@ -184,8 +184,10 @@ export function ProjectIndex({ projects }: { projects: Project[] }) {
 	// do it alone, as the project's panel is still closed when it looks for the target.
 	const linked = useRef(selected);
 	useEffect(() => {
-		const land = (id: string) => document.getElementById(`tab-${id}`)?.scrollIntoView({ block: 'start' });
-		if (linked.current) land(linked.current);
+		const land = (id: string, behavior: ScrollBehavior = 'auto') =>
+			document.getElementById(`tab-${id}`)?.scrollIntoView({ block: 'start', behavior });
+		// On load, jump: a smooth scroll would stop short if web fonts re-wrap the text above.
+		if (linked.current) land(linked.current, 'instant');
 		const onHashChange = () => {
 			const id = location.hash.slice('#project-'.length);
 			if (location.hash.startsWith('#project-') && projects.some((p) => p.id === id)) requestAnimationFrame(() => land(id));

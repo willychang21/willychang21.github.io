@@ -40,7 +40,7 @@ describe('content', () => {
 			'Master of Computer Science',
 			'Bachelor of Science in Computer Science'
 		]);
-		expect(roles.flatMap((r) => r.highlights)).toHaveLength(3);
+		expect(roles.flatMap((r) => r.highlights)).toHaveLength(4);
 		expect(degrees[0]).toMatchObject({ start: 'Aug 2022', end: 'Dec 2024' });
 	});
 
@@ -91,9 +91,9 @@ describe('content', () => {
 		}
 	});
 
-	it('ties each part of the AOP story to a station in its drawing, once', () => {
+	it('ties each step of the AOP flow to a station in its drawing, once', () => {
 		const nodes = featured.diagram.nodes.map((n) => n.id);
-		const parts = featured.contribution.map((c) => c.node);
+		const parts = featured.flow.map((c) => c.node);
 		for (const node of parts) expect(nodes).toContain(node);
 		expect(new Set(parts).size).toBe(parts.length);
 	});

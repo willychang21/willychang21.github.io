@@ -1,9 +1,9 @@
 import type { Diagram, Project, RichText, SkillGroup, Station } from './types';
 
 /**
- * The lead story: AOP. Public copy only: what the platform does and Willy's part in it.
- * No internal metrics, volumes, breakdowns by request type, or system names; the one
- * figure is Willy's own result, rounded.
+ * The lead story: AOP. Public copy only: what the platform does and how it is built.
+ * No internal names, systems, volumes or operating metrics; the one figure is the
+ * owner's own, rounded.
  */
 export const featured: {
 	id: string;
@@ -14,14 +14,16 @@ export const featured: {
 	summary: string;
 	/** What it is built with, by layer: a legend, as on the map. Names few readers know carry a note. */
 	stack: SkillGroup[];
-	/** The story in three parts. Public copy only: no internal names, volumes or rates. */
-	problem: string;
-	/** Willy's part, in the order a request meets it; `node` is where it sits in the diagram. */
-	contribution: { node: string; text: RichText }[];
-	/** The key design decisions, each with its reason. */
-	decisions: RichText[];
 	/** The result, led by its figure, as on the project rows. */
 	outcome: Required<Project['outcome']>;
+	/** How the work was done before AOP: one sentence beside the result. */
+	before: string;
+	/** How a request moves, one step per component; `node` is that component in the diagram. */
+	flow: { node: string; text: RichText }[];
+	/** How the agent is built. */
+	agent: RichText[];
+	/** How a change is tested before and after release. */
+	evaluation: RichText[];
 	diagram: Diagram;
 } = {
 	id: 'aop',
@@ -29,48 +31,58 @@ export const featured: {
 	context: 'TikTok, privacy operations',
 	period: '2025–now',
 	station: 'sjc',
-	summary: 'An internal agent platform that automates TikTok’s privacy requests.',
+	summary: 'An LLM agent platform that resolves TikTok’s privacy requests. I designed and built it end to end.',
 	stack: [
 		{ label: 'Services', items: [{ name: 'Go' }, { name: 'Kitex', gloss: 'RPC' }, { name: 'Hertz', gloss: 'HTTP' }, { name: 'MongoDB' }] },
 		{ label: 'Interface', items: [{ name: 'Modern.js', gloss: 'React' }] },
 		{ label: 'Agents', items: [{ name: 'MCP' }, { name: 'Hybrid search' }, { name: 'VLM' }] }
 	],
-	problem:
-		'Privacy requests come to TikTok from around the world, under different regional rules. The operations team handled most of them by hand.',
-	contribution: [
+	outcome: { figure: 'Over 90%', text: 'of privacy requests resolved automatically' },
+	before: 'The operations team used to handle most of them by hand.',
+	flow: [
 		{
-			node: 'intake',
-			text: 'Launched intake channels for regional privacy laws, so AOP covers more jurisdictions.'
+			node: 'runtime',
+			text: 'The runtime runs the procedure. Each operating procedure (SOP) compiles to a versioned workflow, and code runs it step by step. A new procedure needs no new code.'
 		},
 		{
-			node: 'aop',
-			text: 'Designed and built AOP end to end in Go: the runtime that runs each SOP, LLM agents with MCP tools and hybrid search, and the tool service that runs every action.'
+			node: 'agent',
+			text: 'An agent answers one question. When a step needs judgment, the runtime asks an LLM agent one question with a fixed list of answers.'
 		},
 		{
-			node: 'resolved',
-			text: 'Built the release path. Each agent change is replayed against past tickets, and irreversible actions run in shadow mode before they go live.'
+			node: 'tools',
+			text: 'The tool service does the action. One service runs every action, and runs it at most once, even after a retry or a crash. If a person changed the request, that change wins.'
 		}
 	],
-	decisions: [
-		'Each SOP compiles to a versioned workflow that code runs step by step. An agent answers one checkable question per step, so every run is auditable and a new SOP needs no new code.',
-		'One tool service runs every action. It runs each action at most once through retries and crashes, and a person’s edit always wins over an automated write.',
-		'Agents get read-only tools and can cite only what their own search returned. A missed escalation blocks a release, even when the automation rate goes up.'
+	agent: [
+		'Each call starts fresh. The agent gets only a request ID and loads the current request and procedure through read-only MCP tools.',
+		'Hybrid search over procedures, reply templates and past requests grounds each answer. The agent can cite only what its own search returned.',
+		'Inside a step, the agent runs a ReAct loop under a budget for steps, tokens and time. Each answer must match the step’s schema.',
+		'An answer that is off the list sends the request to a specialist. One gateway serves the text and vision models, so a model change needs no code change.'
 	],
-	outcome: { figure: 'Over 90%', text: 'of privacy requests resolved automatically' },
+	evaluation: [
+		'AOP records every run with its exact model, prompt and tool versions. Before a release, it replays past requests through the new version and compares the results.',
+		'One missed handoff to a specialist blocks the release, even when the automation rate goes up.',
+		'Search, planning and full runs are scored separately, so a failure points to one part.',
+		'An action that cannot be undone runs in shadow mode first, with its own off switch and hourly limit.',
+		'After release, a second agent reads the requests that still needed a person and proposes procedure fixes.'
+	],
 	diagram: {
-		caption: 'A request enters through an intake channel. AOP resolves it, or sends an edge case to a specialist.',
+		caption: 'Orange is the automatic path. The agent reads through the tool service, and a request it cannot answer goes to a specialist.',
 		nodes: [
-			{ id: 'requests', label: 'Privacy requests', x: 1, y: 4, kind: 'actor', labelAt: 'above' },
-			{ id: 'intake', label: 'Intake', note: 'Regional channels', x: 4, y: 4, kind: 'service' },
-			{ id: 'aop', label: 'AOP', note: 'Orchestration, agents, tools', x: 7, y: 4, kind: 'service', labelAt: 'above' },
-			{ id: 'resolved', label: 'Resolved', note: 'Over 90%', x: 11, y: 2, kind: 'store', labelAt: 'above' },
-			{ id: 'specialists', label: 'Specialists', note: 'Edge cases', x: 11, y: 6, kind: 'external' }
+			{ id: 'request', label: 'Request', x: 1, y: 4, kind: 'actor', labelAt: 'above' },
+			{ id: 'runtime', label: 'Runtime', note: 'Runs the procedure', x: 4, y: 4, kind: 'service' },
+			{ id: 'agent', label: 'Agent', note: 'One question per step', x: 6.5, y: 2, kind: 'service', labelAt: 'above' },
+			{ id: 'tools', label: 'Tool service', note: 'Every action, once', x: 9.5, y: 4, kind: 'service' },
+			{ id: 'resolved', label: 'Resolved', note: 'Over 90%', x: 11, y: 4, kind: 'store', labelAt: 'above' },
+			{ id: 'specialist', label: 'Specialist', note: 'Needs a person', x: 11, y: 7, kind: 'external' }
 		],
 		edges: [
-			{ from: 'requests', to: 'intake' },
-			{ from: 'intake', to: 'aop', route: true },
-			{ from: 'aop', to: 'resolved', route: true },
-			{ from: 'aop', to: 'specialists' }
+			{ from: 'request', to: 'runtime', route: true },
+			{ from: 'runtime', to: 'agent' },
+			{ from: 'agent', to: 'tools' },
+			{ from: 'runtime', to: 'tools', route: true },
+			{ from: 'tools', to: 'resolved', route: true },
+			{ from: 'runtime', to: 'specialist' }
 		]
 	}
 };

@@ -11,7 +11,8 @@ export const roles: Role[] = [
 		end: 'Present',
 		logo: '/logos/tiktok.png',
 		highlights: [
-			'Designed and built AOP (Agent Operation Platform), TikTok’s LLM agent platform for privacy requests, from the runtime and agents to the tool service.'
+			'Designed and built AOP (Agent Operation Platform) end to end: the workflow runtime, the LLM agents, the tool service and the release checks.',
+			'Launched intake channels for regional privacy laws, which extended coverage to more jurisdictions.'
 		]
 	},
 	{
