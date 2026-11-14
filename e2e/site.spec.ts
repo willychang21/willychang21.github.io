@@ -65,6 +65,62 @@ test.describe('layout', () => {
 		}
 	});
 
+	test('the introduction starts on the first screen with the plate on laptops', async ({ page }) => {
+		await page.emulateMedia({ reducedMotion: 'reduce' });
+		// A 13-inch laptop with the browser's own bars shows at least the first three lines,
+		// which say who Willy is and what he built. A roomier window shows all of it.
+		for (const [width, height, whole] of [[1280, 720, false], [1440, 789, false], [1440, 900, true]] as const) {
+			await page.setViewportSize({ width, height });
+			await page.goto('/');
+			await page.evaluate(() => document.fonts.ready);
+			const lede = page.locator('#top').getByText(/^Software engineer at TikTok/);
+			const box = (await lede.boundingBox())!;
+			const line = await lede.evaluate((e) => parseFloat(getComputedStyle(e).lineHeight));
+			const needed = whole ? box.height : line * 3;
+			expect(box.y + needed, `the introduction is under the fold at ${width}×${height}`).toBeLessThanOrEqual(height);
+		}
+	});
+
+	test('the header is opaque, so type scrolling under it never shows through', async ({ page }) => {
+		for (const scheme of ['light', 'dark'] as const) {
+			await page.emulateMedia({ colorScheme: scheme });
+			await page.goto('/');
+			const bar = await page.evaluate(() => {
+				const style = getComputedStyle(document.querySelector('header')!);
+				const canvas = document.createElement('canvas').getContext('2d')!;
+				canvas.fillStyle = style.backgroundColor;
+				canvas.fillRect(0, 0, 1, 1);
+				return { alpha: canvas.getImageData(0, 0, 1, 1).data[3], blur: style.backdropFilter };
+			});
+			expect(bar, scheme).toEqual({ alpha: 255, blur: 'none' });
+		}
+	});
+
+	test('type steps down from the statement to section titles to names, and stops at 13px', async ({ page }) => {
+		for (const width of widths) {
+			await page.setViewportSize({ width, height: 900 });
+			await page.goto('/');
+			await page.evaluate(() => document.fonts.ready);
+			const type = await page.evaluate(() => {
+				const shown = (e: Element) => e.getClientRects().length > 0;
+				const sizes = (selector: string) => [...document.querySelectorAll(selector)].filter(shown).map((e) => parseFloat(getComputedStyle(e).fontSize));
+				// Every run of text a visitor reads. The graticule's degree labels are part of
+				// the drawing (and hidden from assistive technology): they scale with the plate.
+				const small = new Set<string>();
+				const walker = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT);
+				for (let node = walker.nextNode(); node; node = walker.nextNode()) {
+					const parent = node.parentElement!;
+					if (!node.textContent!.trim() || parent.closest('svg, script, style, noscript, [hidden], .sr-only') || !shown(parent)) continue;
+					if (parseFloat(getComputedStyle(parent).fontSize) < 13) small.add(node.textContent!.trim().slice(0, 30));
+				}
+				return { h1: sizes('h1'), h2: sizes('h2'), names: sizes('h3, h4, [id^="title-"]'), small: [...small] };
+			});
+			expect(Math.min(...type.h1), `h1 against h2 at ${width}px`).toBeGreaterThan(Math.max(...type.h2));
+			expect(Math.min(...type.h2), `h2 against names at ${width}px`).toBeGreaterThan(Math.max(...type.names));
+			expect(type.small, `text under 13px at ${width}px`).toEqual([]);
+		}
+	});
+
 	test('system diagram labels never collide on phones', async ({ page }) => {
 		await page.emulateMedia({ reducedMotion: 'reduce' });
 		for (const width of [320, 390]) {
@@ -352,8 +408,12 @@ test.describe('preferences', () => {
 
 test('the résumé link downloads the PDF under a readable name', async ({ page }) => {
 	await page.goto('/');
-	const [download] = await Promise.all([page.waitForEvent('download'), page.getByRole('link', { name: 'Download the résumé (PDF)' }).click()]);
-	expect(download.suggestedFilename()).toBe('Willy-Chang-Resume.pdf');
+	// Offered in the opening and again in Contact: the same file from both.
+	for (const section of ['#top', '#contact']) {
+		const link = page.locator(section).getByRole('link', { name: 'Download the résumé (PDF)' });
+		const [download] = await Promise.all([page.waitForEvent('download'), link.click()]);
+		expect(download.suggestedFilename(), section).toBe('Willy-Chang-Resume.pdf');
+	}
 	const file = await page.request.get('/resume.pdf');
 	expect(file.headers()['content-type']).toContain('application/pdf');
 	expect((await file.body()).subarray(0, 5).toString()).toBe('%PDF-');

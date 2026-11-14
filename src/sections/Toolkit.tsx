@@ -15,7 +15,7 @@ export function Toolkit() {
 						<div key={group.label} className={`grid ${styles.group}`}>
 							<dt className={styles.label}>{group.label}</dt>
 							<dd className={styles.items}>
-								<NameList items={group.items} className={styles.names} />
+								<NameList items={group.items} />
 							</dd>
 						</div>
 					))}

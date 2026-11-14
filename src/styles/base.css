@@ -71,7 +71,7 @@ h3,
 h4 {
 	font-family: var(--font-display);
 	font-stretch: var(--stretch-display);
-	font-weight: 640;
+	font-weight: var(--weight-display);
 	line-height: 1;
 	letter-spacing: -0.01em;
 	text-wrap: balance;
@@ -119,10 +119,20 @@ p {
 	border-radius: 50%;
 	background: var(--ink);
 	color: var(--paper);
-	font-family: var(--font-mono);
-	font-size: 0.75rem;
-	font-weight: 600;
+	font-family: var(--font-display);
+	font-size: var(--text-xs);
+	font-weight: var(--weight-strong);
+	font-variant-numeric: tabular-nums;
 	line-height: 1;
+}
+
+/* The heading of a second list inside a section: More projects, Education. */
+.subhead {
+	font-family: var(--font-display);
+	font-stretch: var(--stretch-ui);
+	font-size: var(--text-md);
+	font-weight: 600;
+	letter-spacing: 0;
 }
 
 .sr-only {

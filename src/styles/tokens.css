@@ -56,19 +56,27 @@
 
 	--font-display: 'Archivo Variable', 'Archivo Fallback', sans-serif;
 	--font-text: 'Newsreader Variable', Georgia, 'Times New Roman', serif;
-	--font-mono: 'JetBrains Mono Variable', ui-monospace, 'SF Mono', Menlo, monospace;
 
 	/* Archivo's width axis: condensed for display, normal for interface text. */
 	--stretch-display: 72%;
 	--stretch-ui: 100%;
 
-	--text-xs: 0.75rem;
+	/* One scale. Nothing is set below --text-xs, and each level stands about a third
+	   above the next: the statement, then section titles, then the names of things. The
+	   statement leaves this scale on wide screens, where it is sized to the plate, and
+	   stays the largest heading there too. */
+	--text-xs: 0.8125rem;
 	--text-sm: 0.875rem;
 	--text-md: 1.0625rem;
+	--text-lg: 1.25rem;
 	--text-lede: clamp(1.1875rem, 1.05rem + 0.55vw, 1.5rem);
-	--text-title: clamp(1.75rem, 1.3rem + 1.6vw, 2.75rem);
-	--text-section: clamp(3rem, 1.6rem + 5.6vw, 7.5rem);
+	--text-title: clamp(1.5rem, 1.2rem + 0.9vw, 2rem);
+	--text-section: clamp(2rem, 1.4rem + 1.5vw, 2.75rem);
 	--text-display: clamp(2.75rem, 1.4rem + 5.4vw, 6.5rem);
+
+	/* Two weights for the condensed face: headings and names, then codes and figures. */
+	--weight-display: 650;
+	--weight-strong: 700;
 
 	--space-1: 0.25rem;
 	--space-2: 0.5rem;

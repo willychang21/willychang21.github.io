@@ -231,9 +231,10 @@ export function RoutePlate() {
 				})}
 			</div>
 
-			<figcaption id="plate-caption" className={styles.caption}>
-				<span>Plate 1. Taipei, Seattle, Champaign, San Jose, along great circles.</span>{' '}
-				<span>Plate carrée centred on 163°W. Land from Natural Earth.</span>
+			{/* Names the figure for assistive technology. The projection and the land data are
+			    credited once, in the colophon. */}
+			<figcaption id="plate-caption" className="sr-only">
+				The route: Taipei, Seattle, Champaign and San Jose, along great circles.
 			</figcaption>
 		</figure>
 	);

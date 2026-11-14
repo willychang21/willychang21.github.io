@@ -1,7 +1,7 @@
 import type { ReactNode } from 'react';
 import styles from './SectionHead.module.css';
 
-/** A section opens on its title set large, with one sentence of context beside it. */
+/** A section opens on a rule and its title, with one sentence of context beside it. */
 export function SectionHead({ id, title, children }: { id: string; title: string; children?: ReactNode }) {
 	return (
 		<div className={`grid ${styles.head}`}>

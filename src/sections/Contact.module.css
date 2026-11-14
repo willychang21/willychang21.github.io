@@ -16,19 +16,20 @@
 	--signal: var(--orange-8);
 }
 
+.head {
+	align-items: baseline;
+}
+
 .title {
 	grid-column: 1 / -1;
 	font-size: var(--text-section);
-	font-weight: 680;
-	line-height: 0.9;
-	letter-spacing: -0.02em;
 }
 
 .deck {
 	grid-column: 1 / -1;
-	margin-top: var(--space-4);
+	margin-top: var(--space-3);
 	font-size: var(--text-lede);
-	color: var(--ink-muted);
+	line-height: 1.4;
 }
 
 .email {
@@ -41,17 +42,22 @@
 	border-top: 1px solid var(--rule);
 }
 
+/* The address is the page's closing line and its one large link. The rule runs whole
+   under the descenders instead of breaking at each one, and the padding gives the link
+   a 44px target at its smallest size. */
 .email > a {
+	padding-block: 0.1em;
 	font-family: var(--font-display);
 	font-stretch: var(--stretch-display);
-	font-weight: 640;
+	font-weight: var(--weight-display);
 	font-size: clamp(2.25rem, 0.6rem + 7.6vw, 8rem);
-	line-height: 1;
+	line-height: 1.15;
 	letter-spacing: -0.02em;
 	overflow-wrap: anywhere;
 	text-decoration: underline;
 	text-decoration-thickness: 0.04em;
-	text-underline-offset: 0.12em;
+	text-underline-offset: 0.24em;
+	text-decoration-skip-ink: none;
 	text-decoration-color: var(--signal);
 	transition: color var(--duration-fast) var(--ease-out);
 }
@@ -94,6 +100,6 @@
 
 	.deck {
 		grid-column: 8 / -1;
-		align-self: end;
+		margin-top: 0;
 	}
 }
