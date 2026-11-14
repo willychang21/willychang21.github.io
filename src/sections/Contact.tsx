@@ -31,9 +31,9 @@ export function Contact() {
 						</a>
 					</li>
 					<li data-print="hide">
-						<button type="button" className="text-link" onClick={() => print()}>
-							Save the résumé as PDF
-						</button>
+						<a href={profile.resume.href} download={profile.resume.filename} type="application/pdf" className="text-link">
+							Download the résumé (PDF)
+						</a>
 					</li>
 					<li data-print="hide">
 						<a href="#top" className="text-link">

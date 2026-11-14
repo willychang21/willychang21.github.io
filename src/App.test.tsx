@@ -52,7 +52,9 @@ describe('App', () => {
 			'mailto:willysde2025@gmail.com'
 		);
 		expect(screen.getAllByRole('link', { name: /GitHub/ })[0]).toHaveAttribute('href', 'https://github.com/willychang21');
-		expect(screen.getByRole('button', { name: 'Save the résumé as PDF' })).toBeInTheDocument();
+		const resume = screen.getByRole('link', { name: 'Download the résumé (PDF)' });
+		expect(resume).toHaveAttribute('href', '/resume.pdf');
+		expect(resume).toHaveAttribute('download', 'Willy-Chang-Resume.pdf');
 	});
 
 	it('gives every image a text alternative', () => {
