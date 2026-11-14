@@ -25,9 +25,14 @@ describe('index.html metadata', () => {
 		expect(ld.sameAs).toContain(profile.github.url);
 	});
 
-	it('describes the social card as it is drawn: the statement and every stop on the route', () => {
+	it('describes the social card as it is drawn: who Willy is, the statement and every stop on the route', () => {
 		const alt = meta('property', 'og:image:alt')!;
-		expect(alt.startsWith(`${profile.name} ${profile.statement.replace(/\.$/, '')}`)).toBe(true);
+		expect(alt.startsWith(`${profile.name}, ${profile.role} at ${profile.employer}. `)).toBe(true);
+		expect(alt).toContain(profile.statement.replace(/\.$/, ''));
 		for (const { city } of Object.values(stations)) expect(alt).toContain(city);
+	});
+
+	it('names the same role in the page title and the h1', () => {
+		expect(site.title).toBe(`${profile.name}, ${profile.role}`);
 	});
 });

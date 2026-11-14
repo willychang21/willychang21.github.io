@@ -15,9 +15,9 @@ const page = await browser.newPage({
 });
 await page.goto(url, { waitUntil: 'networkidle' });
 await page.evaluate('document.fonts.ready'); // evaluated in the page
-// Just the plate and the statement: no header, caption or contact row.
+// Just the plate and the words on it: no header, stop panel, caption or contact row.
 await page.addStyleTag({
-	content: `header, figcaption, #top .grid, main > section:not(#top) { display: none !important; }
+	content: `header, figcaption, #top [role="tabpanel"], #top .grid, main > section:not(#top) { display: none !important; }
 	#top { min-height: 630px; display: grid; align-content: center; padding: 0 !important; }`
 });
 await page.screenshot({ path: new URL('../public/og.png', import.meta.url).pathname });

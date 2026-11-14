@@ -6,11 +6,11 @@ Willy Chang's portfolio, published at <https://willychang21.github.io>.
 
 Willy's work keeps coming back to routing: data-privacy requests across jurisdictions, an orchestrator that picks critical nodes, maps with routing, AR navigation. The site is set as a technical atlas on that idea.
 
-- **The route plate.** The page opens on a map of the real route, Taipei → Seattle → Champaign → San Jose, drawn along great circles. The opening statement sits in the open Pacific under the arc. The plate is cut close to the route (`LAT_TOP` and `LAT_BOTTOM` in `scripts/generate-route-map.mjs`), so the introduction under it stays on the first screen of a laptop.
+- **The route plate.** The page opens on a map of the real route, Taipei → Seattle → Champaign → San Jose, drawn along great circles. The h1 says who Willy is, and the opening statement under it is the page's one figure of speech; both sit in the open Pacific under the arc. The plate is cut close to the route (`LAT_TOP` and `LAT_BOTTOM` in `scripts/generate-route-map.mjs`), so the introduction under it stays on the first screen of a laptop.
 - **The stations are the way in.** Each station on the map is a tab. Choosing one lists the roles, degrees and projects recorded there, and the route beyond it turns grey, so the map reads as the journey up to that point. San Jose, now, is chosen first. The lists come from each record's own `station` field (`src/content/route.ts`), so a new role or project joins its stop by itself. Station codes in the experience record and in project details link back to their stop.
 - **Transit diagrams.** Each project's stated architecture is drawn in the same language: octilinear lines, station markers, and orange for the part Willy built or changed.
 - **One signal colour.** Radix orange is used only for the route and for whatever is current. The neutrals are Radix olive.
-- **Two type families, one scale.** Archivo for display (condensed) and interface text, with tabular figures for coordinates and dates; Newsreader for reading. The statement is the largest heading, section titles come next and the names of things after them (`src/styles/tokens.css`). Nothing is set below 13px.
+- **Two type families, one scale.** Archivo for display (condensed) and interface text, with tabular figures for coordinates and dates; Newsreader for reading. The h1 is the largest heading, section titles come next and the names of things after them (`src/styles/tokens.css`). Nothing is set below 13px.
 
 ## Stack
 
